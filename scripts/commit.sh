@@ -286,57 +286,6 @@ rewrite_commit_message() {
     echo "$new_message"
 }
 
-# 변경사항 분석 함수
-analyze_changes() {
-    local body=""
-    local total_files=0
-    
-    # 스테이징된 변경사항 분석
-    if ! git diff --cached --quiet; then
-        log_info "변경사항 분석 중..."
-        
-        # git diff --cached --stat 결과를 파싱
-        while IFS= read -r line; do
-            # 파일명과 변경 통계가 있는 라인만 처리
-            if [[ $line =~ ^[[:space:]]*([^[:space:]]+)[[:space:]]+\|[[:space:]]+([0-9]+)[[:space:]]+([+-]+)$ ]]; then
-                file_path="${BASH_REMATCH[1]}"
-                
-                # 파일 확장자 추출
-                file_ext="${file_path##*.}"
-                
-                # 파일 타입별 설명 생성
-                case "$file_ext" in
-                    "tsx"|"ts"|"jsx"|"js")
-                        file_type="TypeScript/JavaScript"
-                        ;;
-                    "css"|"scss"|"sass")
-                        file_type="CSS/Styling"
-                        ;;
-                    "md")
-                        file_type="Documentation"
-                        ;;
-                    "json"|"yaml"|"yml")
-                        file_type="Configuration"
-                        ;;
-                    "sh")
-                        file_type="Script"
-                        ;;
-                    *)
-                        file_type="File"
-                        ;;
-                esac
-                
-                total_files=$((total_files + 1))
-                
-                # 파일별 설명 생성 (라인 수 제거)
-                body+="- $file_type: $file_path"$'\n'
-            fi
-        done < <(git diff --cached --stat)
-    fi
-    
-    echo "$body"
-}
-
 # 메인 함수
 main() {
     local input="$1"
@@ -407,9 +356,6 @@ main() {
         rewritten_message="$description"
     fi
     
-    # 변경사항 분석
-    local changes_body=$(analyze_changes)
-    
     # 코드 로직 분석
     local logic_changes=$(analyze_code_changes)
     
@@ -419,14 +365,6 @@ main() {
     # 코드 로직 변경사항이 있으면 추가
     if [ ! -z "$logic_changes" ]; then
         commit_message+=$'\n\n'"$logic_changes"
-    fi
-    
-    # 파일 변경사항이 있으면 추가
-    if [ ! -z "$changes_body" ]; then
-        if [ ! -z "$logic_changes" ]; then
-            commit_message+=$'\n'
-        fi
-        commit_message+=$'\n'"$changes_body"
     fi
     
     log_info "생성된 커밋 메시지:"
