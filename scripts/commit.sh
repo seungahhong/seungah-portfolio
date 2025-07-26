@@ -185,80 +185,6 @@ analyze_code_changes() {
     echo "$logic_changes"
 }
 
-# 변경사항 분석 함수
-analyze_changes() {
-    local body=""
-    local total_added=0
-    local total_deleted=0
-    local total_files=0
-    
-    # 스테이징된 변경사항 분석
-    if ! git diff --cached --quiet; then
-        log_info "변경사항 분석 중..."
-        
-        # git diff --cached --stat 결과를 파싱
-        while IFS= read -r line; do
-            # 파일명과 변경 통계가 있는 라인만 처리
-            if [[ $line =~ ^[[:space:]]*([^[:space:]]+)[[:space:]]+\|[[:space:]]+([0-9]+)[[:space:]]+([+-]+)$ ]]; then
-                file_path="${BASH_REMATCH[1]}"
-                changes="${BASH_REMATCH[2]}"
-                plus_minus="${BASH_REMATCH[3]}"
-                
-                # 파일 확장자 추출
-                file_ext="${file_path##*.}"
-                
-                # 파일 타입별 설명 생성
-                case "$file_ext" in
-                    "tsx"|"ts"|"jsx"|"js")
-                        file_type="TypeScript/JavaScript"
-                        ;;
-                    "css"|"scss"|"sass")
-                        file_type="CSS/Styling"
-                        ;;
-                    "md")
-                        file_type="Documentation"
-                        ;;
-                    "json"|"yaml"|"yml")
-                        file_type="Configuration"
-                        ;;
-                    "sh")
-                        file_type="Script"
-                        ;;
-                    *)
-                        file_type="File"
-                        ;;
-                esac
-                
-                # +/- 개수 계산
-                added=$(echo "$plus_minus" | tr -cd '+' | wc -c)
-                deleted=$(echo "$plus_minus" | tr -cd '-' | wc -c)
-                
-                total_added=$((total_added + added))
-                total_deleted=$((total_deleted + deleted))
-                total_files=$((total_files + 1))
-                
-                # 파일별 설명 생성
-                if [ $added -gt 0 ] && [ $deleted -gt 0 ]; then
-                    body+="- $file_type: $file_path (+$added/-$deleted lines)"$'\n'
-                elif [ $added -gt 0 ]; then
-                    body+="- $file_type: $file_path (+$added lines)"$'\n'
-                elif [ $deleted -gt 0 ]; then
-                    body+="- $file_type: $file_path (-$deleted lines)"$'\n'
-                else
-                    body+="- $file_type: $file_path (modified)"$'\n'
-                fi
-            fi
-        done < <(git diff --cached --stat)
-        
-        # 전체 통계 추가
-        if [ $total_files -gt 0 ]; then
-            body+=$'\n'"Total: $total_files files changed, +$total_added/-$total_deleted lines"
-        fi
-    fi
-    
-    echo "$body"
-}
-
 # git diff 기반 commit 메시지 재작성 함수
 rewrite_commit_message() {
     local original_message="$1"
@@ -270,59 +196,36 @@ rewrite_commit_message() {
     
     # 파일별 변경사항 분석
     local file_analysis=""
-    local total_added=0
-    local total_deleted=0
     
     while IFS= read -r file; do
         if [ ! -z "$file" ]; then
-            # 파일별 추가/삭제 라인 수 계산
-            local file_stats=$(git diff --cached --numstat | grep "$file")
-            if [ ! -z "$file_stats" ]; then
-                local added=$(echo "$file_stats" | awk '{print $1}')
-                local deleted=$(echo "$file_stats" | awk '{print $2}')
-                
-                if [ "$added" = "-" ]; then added=0; fi
-                if [ "$deleted" = "-" ]; then deleted=0; fi
-                
-                total_added=$((total_added + added))
-                total_deleted=$((total_deleted + deleted))
-                
-                # 파일 확장자에 따른 설명
-                local file_ext="${file##*.}"
-                local file_type=""
-                
-                case "$file_ext" in
-                    "tsx"|"ts"|"jsx"|"js")
-                        file_type="TypeScript/JavaScript"
-                        ;;
-                    "css"|"scss"|"sass")
-                        file_type="CSS/Styling"
-                        ;;
-                    "md")
-                        file_type="Documentation"
-                        ;;
-                    "json"|"yaml"|"yml")
-                        file_type="Configuration"
-                        ;;
-                    "sh")
-                        file_type="Script"
-                        ;;
-                    *)
-                        file_type="File"
-                        ;;
-                esac
-                
-                # 파일별 변경사항 설명
-                if [ $added -gt 0 ] && [ $deleted -gt 0 ]; then
-                    file_analysis+="- $file_type: $file (+$added/-$deleted lines)"$'\n'
-                elif [ $added -gt 0 ]; then
-                    file_analysis+="- $file_type: $file (+$added lines)"$'\n'
-                elif [ $deleted -gt 0 ]; then
-                    file_analysis+="- $file_type: $file (-$deleted lines)"$'\n'
-                else
-                    file_analysis+="- $file_type: $file (modified)"$'\n'
-                fi
-            fi
+            # 파일 확장자에 따른 설명
+            local file_ext="${file##*.}"
+            local file_type=""
+            
+            case "$file_ext" in
+                "tsx"|"ts"|"jsx"|"js")
+                    file_type="TypeScript/JavaScript"
+                    ;;
+                "css"|"scss"|"sass")
+                    file_type="CSS/Styling"
+                    ;;
+                "md")
+                    file_type="Documentation"
+                    ;;
+                "json"|"yaml"|"yml")
+                    file_type="Configuration"
+                    ;;
+                "sh")
+                    file_type="Script"
+                    ;;
+                *)
+                    file_type="File"
+                    ;;
+            esac
+            
+            # 파일별 변경사항 설명 (라인 수 제거)
+            file_analysis+="- $file_type: $file"$'\n'
         fi
     done <<< "$changed_files"
     
@@ -375,15 +278,63 @@ rewrite_commit_message() {
         new_message="코드 변경사항"
     fi
     
-    # 파일 수와 라인 수 정보 추가
-    new_message+=" ($file_count files, +$total_added/-$total_deleted lines)"
-    
     # 파일별 상세 분석 추가
     if [ ! -z "$file_analysis" ]; then
         new_message+=$'\n\n'"변경된 파일:"$'\n'"$file_analysis"
     fi
     
     echo "$new_message"
+}
+
+# 변경사항 분석 함수
+analyze_changes() {
+    local body=""
+    local total_files=0
+    
+    # 스테이징된 변경사항 분석
+    if ! git diff --cached --quiet; then
+        log_info "변경사항 분석 중..."
+        
+        # git diff --cached --stat 결과를 파싱
+        while IFS= read -r line; do
+            # 파일명과 변경 통계가 있는 라인만 처리
+            if [[ $line =~ ^[[:space:]]*([^[:space:]]+)[[:space:]]+\|[[:space:]]+([0-9]+)[[:space:]]+([+-]+)$ ]]; then
+                file_path="${BASH_REMATCH[1]}"
+                
+                # 파일 확장자 추출
+                file_ext="${file_path##*.}"
+                
+                # 파일 타입별 설명 생성
+                case "$file_ext" in
+                    "tsx"|"ts"|"jsx"|"js")
+                        file_type="TypeScript/JavaScript"
+                        ;;
+                    "css"|"scss"|"sass")
+                        file_type="CSS/Styling"
+                        ;;
+                    "md")
+                        file_type="Documentation"
+                        ;;
+                    "json"|"yaml"|"yml")
+                        file_type="Configuration"
+                        ;;
+                    "sh")
+                        file_type="Script"
+                        ;;
+                    *)
+                        file_type="File"
+                        ;;
+                esac
+                
+                total_files=$((total_files + 1))
+                
+                # 파일별 설명 생성 (라인 수 제거)
+                body+="- $file_type: $file_path"$'\n'
+            fi
+        done < <(git diff --cached --stat)
+    fi
+    
+    echo "$body"
 }
 
 # 메인 함수
