@@ -12,11 +12,51 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+/* 다크모드 클래스가 적용될 때의 스타일 */
+.dark body {
+  background: #0a0a0a;
+  color: #ededed;
+}
+
+.dark .bg-gray-50 {
+  background-color: #0a0a0a;
+}
+
+.dark .bg-white {
+  background-color: #1a1a1a;
+}
+
+.dark .bg-neutral-800 {
+  background-color: #1a1a1a;
+}
+
+.dark .text-gray-900 {
+  color: #ffffff;
+}
+
+.dark .text-gray-700 {
+  color: #d1d5db;
+}
+
+.dark .text-gray-600 {
+  color: #9ca3af;
+}
+
+.dark .text-gray-300 {
+  color: #d1d5db;
+}
+
+.dark .border-gray-100 {
+  border-color: #374151;
+}
+
+.dark .border-neutral-700 {
+  border-color: #374151;
 }
 
 body {
