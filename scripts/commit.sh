@@ -53,6 +53,80 @@ validate_scope() {
     return 1
 }
 
+# 변경사항 분석 함수
+analyze_changes() {
+    local body=""
+    local total_added=0
+    local total_deleted=0
+    local total_files=0
+    
+    # 스테이징된 변경사항 분석
+    if ! git diff --cached --quiet; then
+        log_info "변경사항 분석 중..."
+        
+        # git diff --cached --stat 결과를 파싱
+        while IFS= read -r line; do
+            # 파일명과 변경 통계가 있는 라인만 처리
+            if [[ $line =~ ^[[:space:]]*([^[:space:]]+)[[:space:]]+\|[[:space:]]+([0-9]+)[[:space:]]+([+-]+)$ ]]; then
+                file_path="${BASH_REMATCH[1]}"
+                changes="${BASH_REMATCH[2]}"
+                plus_minus="${BASH_REMATCH[3]}"
+                
+                # 파일 확장자 추출
+                file_ext="${file_path##*.}"
+                
+                # 파일 타입별 설명 생성
+                case "$file_ext" in
+                    "tsx"|"ts"|"jsx"|"js")
+                        file_type="TypeScript/JavaScript"
+                        ;;
+                    "css"|"scss"|"sass")
+                        file_type="CSS/Styling"
+                        ;;
+                    "md")
+                        file_type="Documentation"
+                        ;;
+                    "json"|"yaml"|"yml")
+                        file_type="Configuration"
+                        ;;
+                    "sh")
+                        file_type="Script"
+                        ;;
+                    *)
+                        file_type="File"
+                        ;;
+                esac
+                
+                # +/- 개수 계산
+                added=$(echo "$plus_minus" | tr -cd '+' | wc -c)
+                deleted=$(echo "$plus_minus" | tr -cd '-' | wc -c)
+                
+                total_added=$((total_added + added))
+                total_deleted=$((total_deleted + deleted))
+                total_files=$((total_files + 1))
+                
+                # 파일별 설명 생성
+                if [ $added -gt 0 ] && [ $deleted -gt 0 ]; then
+                    body+="- $file_type: $file_path (+$added/-$deleted lines)"$'\n'
+                elif [ $added -gt 0 ]; then
+                    body+="- $file_type: $file_path (+$added lines)"$'\n'
+                elif [ $deleted -gt 0 ]; then
+                    body+="- $file_type: $file_path (-$deleted lines)"$'\n'
+                else
+                    body+="- $file_type: $file_path (modified)"$'\n'
+                fi
+            fi
+        done < <(git diff --cached --stat)
+        
+        # 전체 통계 추가
+        if [ $total_files -gt 0 ]; then
+            body+=$'\n'"Total: $total_files files changed, +$total_added/-$total_deleted lines"
+        fi
+    fi
+    
+    echo "$body"
+}
+
 # 메인 함수
 main() {
     local input="$1"
@@ -107,8 +181,16 @@ main() {
         exit 1
     fi
     
+    # 변경사항 분석
+    local changes_body=$(analyze_changes)
+    
     # 커밋 메시지 생성
     local commit_message="$type($scope): $description"
+    
+    # 변경사항이 있으면 body에 추가
+    if [ ! -z "$changes_body" ]; then
+        commit_message+=$'\n\n'"$changes_body"
+    fi
     
     log_info "생성된 커밋 메시지:"
     echo "  $commit_message"
