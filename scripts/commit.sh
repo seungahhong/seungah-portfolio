@@ -53,6 +53,145 @@ validate_scope() {
     return 1
 }
 
+# 코드 로직 분석 함수
+analyze_code_changes() {
+    local logic_changes=""
+    
+    # 스테이징된 변경사항 분석
+    if ! git diff --cached --quiet; then
+        log_info "코드 로직 분석 중..."
+        
+        # 함수/메서드 추가 감지 및 이름 추출
+        local added_functions=$(git diff --cached | grep -E "^\+[[:space:]]*(export[[:space:]]+)?(function|const|let|var)[[:space:]]+[a-zA-Z_][a-zA-Z0-9_]*" | sed -E 's/^\+[[:space:]]*(export[[:space:]]+)?(function|const|let|var)[[:space:]]+([a-zA-Z_][a-zA-Z0-9_]*).*/\3/' | head -5)
+        
+        # React 컴포넌트 변경 감지 및 이름 추출
+        local react_components=$(git diff --cached | grep -E "(export[[:space:]]+)?(default[[:space:]]+)?function[[:space:]]+[A-Z][a-zA-Z]*" | sed -E 's/.*function[[:space:]]+([A-Z][a-zA-Z]*).*/\1/' | head -3)
+        
+        # 상태 관리 변경 감지 (useState, useEffect 등)
+        local state_hooks=$(git diff --cached | grep -E "(useState|useEffect|useContext|useReducer)" | sed -E 's/.*(use[A-Z][a-zA-Z]*).*/\1/' | sort | uniq)
+        
+        # 에러 처리 변경 감지
+        local error_handling=$(git diff --cached | grep -E "(try|catch|throw|error)" | wc -l)
+        
+        # 스타일링 변경 감지
+        local style_changes=$(git diff --cached | grep -E "(className|style|css|tailwind)" | wc -l)
+        
+        # API 호출 변경 감지
+        local api_calls=$(git diff --cached | grep -E "(fetch|axios)" | wc -l)
+        
+        # 유효성 검사 로직 감지
+        local validation_logic=$(git diff --cached | grep -E "(validate|validation|check|test)" | wc -l)
+        
+        # 조건문/분기 로직 감지
+        local conditional_logic=$(git diff --cached | grep -E "(if|else|switch|case)" | wc -l)
+        
+        # 이벤트 핸들러 감지
+        local event_handlers=$(git diff --cached | grep -E "(onClick|onChange|onSubmit|onBlur|onFocus)" | wc -l)
+        
+        # 실제 변경사항 설명 생성
+        if [ ! -z "$added_functions" ]; then
+            logic_changes+="- 새로 추가된 함수: "
+            local first=true
+            while IFS= read -r func; do
+                if [ ! -z "$func" ]; then
+                    if [ "$first" = true ]; then
+                        logic_changes+="$func"
+                        first=false
+                    else
+                        logic_changes+=", $func"
+                    fi
+                fi
+            done <<< "$added_functions"
+            logic_changes+=$'\n'
+        fi
+        
+        if [ ! -z "$react_components" ]; then
+            logic_changes+="- 수정된 React 컴포넌트: "
+            local first=true
+            while IFS= read -r comp; do
+                if [ ! -z "$comp" ]; then
+                    if [ "$first" = true ]; then
+                        logic_changes+="$comp"
+                        first=false
+                    else
+                        logic_changes+=", $comp"
+                    fi
+                fi
+            done <<< "$react_components"
+            logic_changes+=$'\n'
+        fi
+        
+        if [ ! -z "$state_hooks" ]; then
+            logic_changes+="- 상태 관리 훅 변경: "
+            local first=true
+            while IFS= read -r hook; do
+                if [ ! -z "$hook" ]; then
+                    if [ "$first" = true ]; then
+                        logic_changes+="$hook"
+                        first=false
+                    else
+                        logic_changes+=", $hook"
+                    fi
+                fi
+            done <<< "$state_hooks"
+            logic_changes+=$'\n'
+        fi
+        
+        if [ $error_handling -gt 0 ]; then
+            logic_changes+="- 에러 처리 로직 추가/수정"$'\n'
+        fi
+        
+        if [ $style_changes -gt 0 ]; then
+            logic_changes+="- UI 스타일링 변경"$'\n'
+        fi
+        
+        if [ $api_calls -gt 0 ]; then
+            logic_changes+="- API 호출 로직 변경"$'\n'
+        fi
+        
+        if [ $validation_logic -gt 0 ]; then
+            logic_changes+="- 데이터 유효성 검사 로직 추가"$'\n'
+        fi
+        
+        if [ $conditional_logic -gt 0 ]; then
+            logic_changes+="- 조건부 로직 추가/수정"$'\n'
+        fi
+        
+        if [ $event_handlers -gt 0 ]; then
+            logic_changes+="- 이벤트 핸들러 추가/수정"$'\n'
+        fi
+        
+        # 주요 기능 변경사항 요약
+        local major_changes=""
+        if [ ! -z "$react_components" ] || [ ! -z "$state_hooks" ] || [ $validation_logic -gt 0 ]; then
+            major_changes+="주요 변경사항: "
+            local changes=()
+            
+            if [ ! -z "$react_components" ]; then
+                changes+=("UI 컴포넌트")
+            fi
+            if [ ! -z "$state_hooks" ]; then
+                changes+=("상태 관리")
+            fi
+            if [ $validation_logic -gt 0 ]; then
+                changes+=("유효성 검사")
+            fi
+            if [ $error_handling -gt 0 ]; then
+                changes+=("에러 처리")
+            fi
+            
+            major_changes+=$(IFS=", "; echo "${changes[*]}")
+            major_changes+=$'\n'
+        fi
+        
+        if [ ! -z "$major_changes" ]; then
+            logic_changes="$major_changes$logic_changes"
+        fi
+    fi
+    
+    echo "$logic_changes"
+}
+
 # 변경사항 분석 함수
 analyze_changes() {
     local body=""
@@ -127,6 +266,135 @@ analyze_changes() {
     echo "$body"
 }
 
+# git diff 기반 commit 메시지 재작성 함수
+rewrite_commit_message() {
+    local original_message="$1"
+    local new_message=""
+    
+    log_info "git diff 기반으로 commit 메시지를 재작성합니다..."
+    
+    # 변경된 파일 목록 가져오기
+    local changed_files=$(git diff --cached --name-only)
+    local file_count=$(echo "$changed_files" | wc -l | tr -d ' ')
+    
+    # 파일별 변경사항 분석
+    local file_analysis=""
+    local total_added=0
+    local total_deleted=0
+    
+    while IFS= read -r file; do
+        if [ ! -z "$file" ]; then
+            # 파일별 추가/삭제 라인 수 계산
+            local file_stats=$(git diff --cached --numstat | grep "$file")
+            if [ ! -z "$file_stats" ]; then
+                local added=$(echo "$file_stats" | awk '{print $1}')
+                local deleted=$(echo "$file_stats" | awk '{print $2}')
+                
+                if [ "$added" = "-" ]; then added=0; fi
+                if [ "$deleted" = "-" ]; then deleted=0; fi
+                
+                total_added=$((total_added + added))
+                total_deleted=$((total_deleted + deleted))
+                
+                # 파일 확장자에 따른 설명
+                local file_ext="${file##*.}"
+                local file_type=""
+                
+                case "$file_ext" in
+                    "tsx"|"ts"|"jsx"|"js")
+                        file_type="TypeScript/JavaScript"
+                        ;;
+                    "css"|"scss"|"sass")
+                        file_type="CSS/Styling"
+                        ;;
+                    "md")
+                        file_type="Documentation"
+                        ;;
+                    "json"|"yaml"|"yml")
+                        file_type="Configuration"
+                        ;;
+                    "sh")
+                        file_type="Script"
+                        ;;
+                    *)
+                        file_type="File"
+                        ;;
+                esac
+                
+                # 파일별 변경사항 설명
+                if [ $added -gt 0 ] && [ $deleted -gt 0 ]; then
+                    file_analysis+="- $file_type: $file (+$added/-$deleted lines)"$'\n'
+                elif [ $added -gt 0 ]; then
+                    file_analysis+="- $file_type: $file (+$added lines)"$'\n'
+                elif [ $deleted -gt 0 ]; then
+                    file_analysis+="- $file_type: $file (-$deleted lines)"$'\n'
+                else
+                    file_analysis+="- $file_type: $file (modified)"$'\n'
+                fi
+            fi
+        fi
+    done <<< "$changed_files"
+    
+    # 주요 변경사항 감지
+    local major_changes=""
+    
+    # React 컴포넌트 변경 감지
+    local react_files=$(echo "$changed_files" | grep -E "\.(tsx|jsx)$" | wc -l)
+    if [ $react_files -gt 0 ]; then
+        major_changes+="React 컴포넌트, "
+    fi
+    
+    # API 관련 변경 감지
+    local api_files=$(echo "$changed_files" | grep -E "(api|route)" | wc -l)
+    if [ $api_files -gt 0 ]; then
+        major_changes+="API, "
+    fi
+    
+    # 스타일링 변경 감지
+    local style_files=$(echo "$changed_files" | grep -E "\.(css|scss|sass)$" | wc -l)
+    if [ $style_files -gt 0 ]; then
+        major_changes+="스타일링, "
+    fi
+    
+    # 설정 파일 변경 감지
+    local config_files=$(echo "$changed_files" | grep -E "\.(json|yaml|yml|config)" | wc -l)
+    if [ $config_files -gt 0 ]; then
+        major_changes+="설정, "
+    fi
+    
+    # 스크립트 변경 감지
+    local script_files=$(echo "$changed_files" | grep -E "\.(sh|js)$" | wc -l)
+    if [ $script_files -gt 0 ]; then
+        major_changes+="스크립트, "
+    fi
+    
+    # 문서 변경 감지
+    local doc_files=$(echo "$changed_files" | grep -E "\.(md|txt)$" | wc -l)
+    if [ $doc_files -gt 0 ]; then
+        major_changes+="문서, "
+    fi
+    
+    # 마지막 쉼표 제거
+    major_changes=${major_changes%, }
+    
+    # 새로운 commit 메시지 생성
+    if [ ! -z "$major_changes" ]; then
+        new_message="$major_changes 변경사항"
+    else
+        new_message="코드 변경사항"
+    fi
+    
+    # 파일 수와 라인 수 정보 추가
+    new_message+=" ($file_count files, +$total_added/-$total_deleted lines)"
+    
+    # 파일별 상세 분석 추가
+    if [ ! -z "$file_analysis" ]; then
+        new_message+=$'\n\n'"변경된 파일:"$'\n'"$file_analysis"
+    fi
+    
+    echo "$new_message"
+}
+
 # 메인 함수
 main() {
     local input="$1"
@@ -181,15 +449,29 @@ main() {
         exit 1
     fi
     
+    # git diff 기반으로 commit 메시지 재작성
+    local rewritten_message=$(rewrite_commit_message "$description")
+    
     # 변경사항 분석
     local changes_body=$(analyze_changes)
     
-    # 커밋 메시지 생성
-    local commit_message="$type($scope): $description"
+    # 코드 로직 분석
+    local logic_changes=$(analyze_code_changes)
     
-    # 변경사항이 있으면 body에 추가
+    # 커밋 메시지 생성
+    local commit_message="$type($scope): $rewritten_message"
+    
+    # 코드 로직 변경사항이 있으면 추가
+    if [ ! -z "$logic_changes" ]; then
+        commit_message+=$'\n\n'"$logic_changes"
+    fi
+    
+    # 파일 변경사항이 있으면 추가
     if [ ! -z "$changes_body" ]; then
-        commit_message+=$'\n\n'"$changes_body"
+        if [ ! -z "$logic_changes" ]; then
+            commit_message+=$'\n'
+        fi
+        commit_message+=$'\n'"$changes_body"
     fi
     
     log_info "생성된 커밋 메시지:"

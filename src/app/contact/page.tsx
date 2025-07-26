@@ -1,30 +1,69 @@
 'use client';
 import { useState } from "react";
 
+// 폼 유효성 검사 함수
+const validateForm = (form: { name: string; email: string; message: string }) => {
+  const errors: string[] = [];
+  
+  if (!form.name.trim()) {
+    errors.push("이름을 입력해주세요.");
+  }
+  
+  if (!form.email.trim()) {
+    errors.push("이메일을 입력해주세요.");
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+    errors.push("올바른 이메일 형식을 입력해주세요.");
+  }
+  
+  if (!form.message.trim()) {
+    errors.push("메시지를 입력해주세요.");
+  } else if (form.message.length < 10) {
+    errors.push("메시지는 최소 10자 이상 입력해주세요.");
+  }
+  
+  return errors;
+};
+
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
+  const [errors, setErrors] = useState<string[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    // 실시간 유효성 검사
+    if (errors.length > 0) {
+      const newErrors = validateForm({ ...form, [e.target.name]: e.target.value });
+      setErrors(newErrors);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // 폼 유효성 검사
+    const validationErrors = validateForm(form);
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    
     setLoading(true);
     setResult(null);
+    setErrors([]);
+    
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+      
       if (res.ok) {
         setResult("메일이 성공적으로 전송되었습니다!");
         setForm({ name: "", email: "", message: "" });
       } else {
-        console.error(res)
         setResult("메일 전송에 실패했습니다. 다시 시도해 주세요.");
       }
     } catch {
@@ -77,6 +116,18 @@ export default function Contact() {
             placeholder="보내고 싶은 메시지를 입력하세요"
           />
         </div>
+        
+        {/* 에러 메시지 표시 */}
+        {errors.length > 0 && (
+          <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+            <ul className="text-red-600 dark:text-red-400 text-sm space-y-1">
+              {errors.map((error, index) => (
+                <li key={index}>• {error}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        
         <button
           type="submit"
           className="w-full py-3 rounded-lg bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-bold text-lg shadow-md hover:scale-105 transition-transform disabled:opacity-60"
