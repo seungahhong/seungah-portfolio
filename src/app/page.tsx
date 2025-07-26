@@ -22,7 +22,7 @@ const projects = [
 ];
 
 export default function Home() {
-  // 홈페이지 메인 컴포넌트
+  // 홈페이지 메인 컴포넌트 - 프로젝트 목록 표시
   return (
     <section className="max-w-6xl mx-auto">
       <h1 className="text-4xl font-bold mb-10 text-gray-900 dark:text-white">Projects</h1>

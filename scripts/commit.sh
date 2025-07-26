@@ -271,8 +271,6 @@ rewrite_commit_message() {
     local original_message="$1"
     local new_message=""
     
-    log_info "git diff 기반으로 commit 메시지를 재작성합니다..."
-    
     # 변경된 파일 목록 가져오기
     local changed_files=$(git diff --cached --name-only)
     local file_count=$(echo "$changed_files" | wc -l | tr -d ' ')
@@ -449,8 +447,21 @@ main() {
         exit 1
     fi
     
+    # 스테이징된 변경사항이 있는지 최종 확인
+    if git diff --cached --quiet; then
+        log_warning "스테이징된 변경사항이 없습니다. 커밋할 내용이 없습니다."
+        exit 1
+    fi
+    
     # git diff 기반으로 commit 메시지 재작성
-    local rewritten_message=$(rewrite_commit_message "$description")
+    local rewritten_message=""
+    
+    # 실제 변경사항이 있는지 확인
+    if ! git diff --cached --quiet; then
+        rewritten_message=$(rewrite_commit_message "$description")
+    else
+        rewritten_message="$description"
+    fi
     
     # 변경사항 분석
     local changes_body=$(analyze_changes)
