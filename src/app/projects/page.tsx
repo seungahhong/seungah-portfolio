@@ -16,25 +16,7 @@ const projects = [
     description: "MDX 기반의 기술 블로그 플랫폼.",
     image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80",
     link: "/projects/blog",
-  },
-  {
-    title: "이커머스 사이트",
-    description: "상품 리스트, 장바구니, 결제까지 구현한 쇼핑몰.",
-    image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80",
-    link: "/projects/ecommerce",
-  },
-  {
-    title: "채팅 앱",
-    description: "실시간 WebSocket 기반 채팅 서비스.",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80",
-    link: "/projects/chat",
-  },
-  {
-    title: "포트폴리오 템플릿",
-    description: "다양한 테마로 커스터마이즈 가능한 포트폴리오 템플릿.",
-    image: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80",
-    link: "/projects/template",
-  },
+  }
 ];
 
 export default function Projects() {
