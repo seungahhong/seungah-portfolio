@@ -24,8 +24,9 @@ const projectDetails = {
   },
 };
 
-export default function ProjectDetail({ params }: { params: { slug: string } }) {
-  const project = projectDetails[params.slug as keyof typeof projectDetails];
+export default async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = projectDetails[slug as keyof typeof projectDetails];
   if (!project) return notFound();
   return (
     <section className="max-w-2xl mx-auto">
