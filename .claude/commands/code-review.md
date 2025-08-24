@@ -2,14 +2,23 @@
 
 ## 실행 방법
 
-1. PR 번호를 인자로 전달: `/code-review $ARGUMENTS`
-2. 리뷰 생성 후 자동으로 GitHub PR에 코멘트 추가
+1. Target 브랜치를 인자로 전달: `/code-review $ARGUMENTS` (예: `/code-review main`)
+2. 현재 브랜치에서 target 브랜치로의 PR을 자동으로 찾아 리뷰
+3. 리뷰 생성 후 자동으로 GitHub PR에 코멘트 추가
 
 ## 리뷰 프로세스
 
-1. GitHub PR #$ARGUMENTS 의 변경 사항을 분석
-2. 아래 지침에 따라 코드 리뷰 작성
-3. 작성된 리뷰를 자동으로 GitHub PR에 코멘트로 추가
+1. 현재 브랜치에서 $ARGUMENTS(target 브랜치)로의 PR 검색
+   ```bash
+   # 현재 브랜치 확인
+   CURRENT_BRANCH=$(git branch --show-current)
+   # 현재 브랜치에서 target 브랜치로의 PR 찾기
+   PR_NUMBER=$(gh pr list --head $CURRENT_BRANCH --base $ARGUMENTS --json number --jq '.[0].number')
+   ```
+2. PR이 존재하면 해당 PR의 변경 사항을 분석
+3. PR이 없으면 PR 생성 안내
+4. 아래 지침에 따라 코드 리뷰 작성
+5. 작성된 리뷰를 자동으로 GitHub PR에 코멘트로 추가
 
 ## 리뷰 지침
 
@@ -27,7 +36,7 @@
 ## 리뷰 형식
 
 ````markdown
-## 코드 리뷰: PR #[PR_NUMBER] - [PR_TITLE]
+## 코드 리뷰: PR #$PR_NUMBER - $PR_TITLE
 
 ### 개선된 사항
 
@@ -57,12 +66,26 @@
 리뷰 작성 후 다음 명령어로 자동 업로드:
 ```bash
 # PR에 일반 코멘트로 추가
-gh pr comment $ARGUMENTS --body "[리뷰 내용]"
+gh pr comment $PR_NUMBER --body "[리뷰 내용]"
 
 # PR 리뷰로 추가 (선택사항)
-gh pr review $ARGUMENTS --comment --body "[리뷰 내용]"  # 코멘트만
-gh pr review $ARGUMENTS --approve --body "[리뷰 내용]"   # 승인과 함께
-gh pr review $ARGUMENTS --request-changes --body "[리뷰 내용]"  # 변경 요청과 함께
+gh pr review $PR_NUMBER --comment --body "[리뷰 내용]"  # 코멘트만
+gh pr review $PR_NUMBER --approve --body "[리뷰 내용]"   # 승인과 함께
+gh pr review $PR_NUMBER --request-changes --body "[리뷰 내용]"  # 변경 요청과 함께
 ````
 
-Remember to use the GitHub CLI (`gh`) for all GitHub-related tasks and automatically post the review to GitHub after generation.
+## 실행 예시
+
+```bash
+# 현재 브랜치에서 main으로의 PR 리뷰
+/code-review main
+
+# 현재 브랜치에서 develop으로의 PR 리뷰
+/code-review develop
+```
+
+Remember to:
+1. First find the PR from current branch to target branch
+2. If no PR exists, prompt to create one first
+3. Use the GitHub CLI (`gh`) for all GitHub-related tasks
+4. Automatically post the review to GitHub after generation
