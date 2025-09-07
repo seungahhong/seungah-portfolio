@@ -40,8 +40,8 @@ export default function Home() {
           >
             <div className="aspect-[4/3] w-full overflow-hidden">
               <Image
-                width={400}
-                height={400}
+                width={300}
+                height={300}
                 src={project.image}
                 alt={project.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
