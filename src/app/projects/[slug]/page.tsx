@@ -44,6 +44,8 @@ export default async function ProjectDetail({
         {project.title}
       </h1>
       <Image
+        width={400}
+        height={400}
         src={project.image}
         alt={project.title}
         className="rounded-xl w-full mb-6 shadow-lg"
