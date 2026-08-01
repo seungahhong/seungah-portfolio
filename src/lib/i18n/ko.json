@@ -123,6 +123,13 @@
       "devops": "DevOps",
       "windows": "Windows"
     },
+    "roles": {
+      "frontend": "프론트엔드 개발자",
+      "frontendAiWorkflow": "프론트엔드 개발자 / AI 워크플로 엔지니어",
+      "fullstack": "풀스택 개발자",
+      "medicalWindows": "의료보험·청구 앱 윈도우 개발자",
+      "embedded": "임베디드 시스템 개발자"
+    },
     "companies": {
       "wadiz": {
         "title": "와디즈",

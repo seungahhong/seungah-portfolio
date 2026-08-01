@@ -169,6 +169,13 @@
       "devops": "DevOps",
       "windows": "Windows"
     },
+    "roles": {
+      "frontend": "Front-End Developer",
+      "frontendAiWorkflow": "Front-End Developer / AI Workflow Engineer",
+      "fullstack": "Full-Stack Developer",
+      "medicalWindows": "Medical Insurance & Charge App Windows Developer",
+      "embedded": "Embedded System Developer"
+    },
     "companies": {
       "wadiz": {
         "title": "Wadiz",

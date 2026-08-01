@@ -4,6 +4,7 @@ import { personalProjects, presentations } from '../../helpers/datas/projects';
 import { studyGroups } from '../../helpers/datas/studies';
 import { faqIds, faqParams } from '../../helpers/datas/faq';
 import { t, tList, hasTranslation } from '../i18n/t';
+import { careerMetaValue } from '../i18n/career-meta';
 import { blogHomeUrl, blogPostUrl } from '../blog';
 import { localizedPath, type Locale } from '../i18n/constants';
 
@@ -63,7 +64,7 @@ ${careers
             .map((point) => `  - ${point}`)
             .join('\n');
           const meta = (item.meta ?? [])
-            .map((entry) => `  - ${t(lc, `career.labels.${entry.labelKey}`)}: ${entry.value}`)
+            .map((entry) => `  - ${t(lc, `career.labels.${entry.labelKey}`)}: ${careerMetaValue(lc, entry)}`)
             .join('\n');
           const reference = item.blogSlug ? blogPostUrl(lc, item.blogSlug) : item.link;
           const link = reference

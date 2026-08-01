@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { careers, getCareerDetail } from '@/helpers';
 import { t, tList, hasTranslation } from '@/lib/i18n/t';
+import { careerMetaValue } from '@/lib/i18n/career-meta';
 import { localizedPath, type Locale } from '@/lib/i18n/constants';
 import { blogPostUrl } from '@/lib/blog';
 import SkillBadge from '@/components/ui/SkillBadge';
@@ -170,7 +171,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
                           {t(locale, `career.labels.${meta.labelKey}`)}
                         </dt>
                         <dd className="text-[#6e6e73] dark:text-[#a1a1a6] flex-1 min-w-0">
-                          {meta.value}
+                          {careerMetaValue(locale, meta)}
                         </dd>
                       </div>
                     ))}

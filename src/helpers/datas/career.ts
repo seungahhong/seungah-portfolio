@@ -10,6 +10,9 @@ const today = dayjs().format('YYYY.MM');
  * 회사명·요약·항목 제목·불릿·이미지 대체 텍스트는 모두
  * `src/lib/i18n/{ko,en}.json`의 `career.companies.{slug}` 아래에 있다.
  *
+ * 메타의 직무명도 번역 대상이라 `valueKey`(→ `career.roles.{key}`)로 참조한다.
+ * `value`에 직접 적을 수 있는 것은 기술명처럼 언어와 무관한 값뿐이다.
+ *
  * 사내 식별 정보(티켓 번호·저장소명·사내 코드네임)는 담지 않는다.
  */
 export const careers: ICareerDetail[] = [
@@ -35,7 +38,7 @@ export const careers: ICareerDetail[] = [
         images: ['/wadiz-develop-process-logo.webp'],
         blogSlug: '2023-01-01-fe-process',
         meta: [
-          { labelKey: 'role', value: 'Front-End Developer' },
+          { labelKey: 'role', valueKey: 'frontend' },
           { labelKey: 'frontend', value: 'React, Scss, Redux, React-query, Storybook, Vitest, MSW, Playwright, Typescript' },
         ],
       },
@@ -45,7 +48,7 @@ export const careers: ICareerDetail[] = [
         images: ['/wadiz-msw-logo1.webp', '/wadiz-msw-logo2.webp'],
         blogSlug: '2022-07-25-msw',
         meta: [
-          { labelKey: 'role', value: 'Front-End Developer' },
+          { labelKey: 'role', valueKey: 'frontend' },
           { labelKey: 'frontend', value: 'React, Storybook, Vitest, Playwright, MSW' },
         ],
       },
@@ -54,7 +57,7 @@ export const careers: ICareerDetail[] = [
         date: '2022.01 ~ 2025.12',
         blogSlug: '2024-11-16-vite',
         meta: [
-          { labelKey: 'role', value: 'Front-End Developer' },
+          { labelKey: 'role', valueKey: 'frontend' },
           { labelKey: 'frontend', value: 'React, Vite, pnpm, FSD, Typescript' },
         ],
       },
@@ -62,7 +65,7 @@ export const careers: ICareerDetail[] = [
         id: 'standardization',
         date: '2025.01 ~ 2026.07',
         meta: [
-          { labelKey: 'role', value: 'Front-End Developer' },
+          { labelKey: 'role', valueKey: 'frontend' },
           { labelKey: 'frontend', value: 'ESLint 9, Prettier, stylelint, husky, GitHub Actions, Claude Code' },
         ],
       },
@@ -72,7 +75,7 @@ export const careers: ICareerDetail[] = [
         images: ['/wadiz-develop-playwright.png'],
         blogSlug: '2023-04-02-playwright',
         meta: [
-          { labelKey: 'role', value: 'Front-End Developer' },
+          { labelKey: 'role', valueKey: 'frontend' },
           { labelKey: 'frontend', value: 'Vitest, Playwright, Cypress, Storybook, MSW, Sentry, Typescript' },
         ],
       },
@@ -81,7 +84,7 @@ export const careers: ICareerDetail[] = [
         date: '2022.08 ~ 2025.06',
         blogSlug: '2025-02-09-git-to-mp4-convert',
         meta: [
-          { labelKey: 'role', value: 'Front-End Developer' },
+          { labelKey: 'role', valueKey: 'frontend' },
           { labelKey: 'frontend', value: 'React, Vite, Web Performance, Core Web Vitals' },
         ],
       },
@@ -90,7 +93,7 @@ export const careers: ICareerDetail[] = [
         date: '2025.06 ~ 2026.07',
         blogSlug: '2026-06-04-fe-harness',
         meta: [
-          { labelKey: 'role', value: 'Front-End Developer / AI Workflow Engineer' },
+          { labelKey: 'role', valueKey: 'frontendAiWorkflow' },
           { labelKey: 'frontend', value: 'Claude Code, MCP, FastMCP, Qdrant, FastAPI, Docker Compose' },
         ],
       },
@@ -98,7 +101,7 @@ export const careers: ICareerDetail[] = [
         id: 'legacy-monolith',
         date: '2020.12 ~ 2026.07',
         meta: [
-          { labelKey: 'role', value: 'Front-End Developer' },
+          { labelKey: 'role', valueKey: 'frontend' },
           { labelKey: 'frontend', value: 'JSP, Spring MVC, React, Typescript, JSON-LD' },
         ],
       },
@@ -106,7 +109,7 @@ export const careers: ICareerDetail[] = [
         id: 'fullstack-devops',
         date: '2024.01 ~ 2026.07',
         meta: [
-          { labelKey: 'role', value: 'Full-Stack Developer' },
+          { labelKey: 'role', valueKey: 'fullstack' },
           { labelKey: 'backend', value: 'Java, Spring Boot, Spring Cloud, MyBatis, MySQL' },
           { labelKey: 'devops', value: 'AWS EKS, Kubernetes, Helm, Docker, GitHub Actions(OIDC)' },
         ],
@@ -117,7 +120,7 @@ export const careers: ICareerDetail[] = [
         images: ['/wadiz-store-detail-log1.webp', '/wadiz-store-detail-log2.png'],
         link: 'https://www.wadiz.kr/web/wboard/newsBoardDetail/7812',
         meta: [
-          { labelKey: 'role', value: 'Front-End Developer' },
+          { labelKey: 'role', valueKey: 'frontend' },
           { labelKey: 'frontend', value: 'React, Scss, Redux, Redux Toolkit, React-query, Storybook, Jest, MSW' },
         ],
       },
@@ -127,7 +130,7 @@ export const careers: ICareerDetail[] = [
         images: ['/wadiz-supporterclub-log1.png', '/wadiz-supporterclub-log2.webp'],
         link: 'https://m.blog.naver.com/m0i0n0e/222580572002',
         meta: [
-          { labelKey: 'role', value: 'Front-End Developer' },
+          { labelKey: 'role', valueKey: 'frontend' },
           { labelKey: 'frontend', value: 'React, Scss, React-query, React-hook-form, Storybook, Jest, MSW' },
         ],
       },
@@ -137,7 +140,7 @@ export const careers: ICareerDetail[] = [
         images: ['/wadiz-option-change-log1.png', '/wadiz-option-change-log2.png'],
         link: 'https://www.wadiz.kr/web/wboard/newsBoardDetail/8253',
         meta: [
-          { labelKey: 'role', value: 'Front-End Developer' },
+          { labelKey: 'role', valueKey: 'frontend' },
           { labelKey: 'frontend', value: 'React, Scss, React-query, Storybook, Jest, Playwright, MSW' },
         ],
       },
@@ -147,7 +150,7 @@ export const careers: ICareerDetail[] = [
         images: ['/wadiz-operation-log1.webp', '/wadiz-operation-log2.webp'],
         link: 'https://www.wadiz.kr/web/wboard/newsBoardDetail/6918',
         meta: [
-          { labelKey: 'role', value: 'Front-End Developer' },
+          { labelKey: 'role', valueKey: 'frontend' },
           { labelKey: 'frontend', value: 'React, Scss, React-query, Redux(Redux Toolkit), React-hook-form, Storybook, Vitest, Playwright, MSW, Typescript' },
         ],
       },
@@ -176,7 +179,7 @@ export const careers: ICareerDetail[] = [
         date: '2016.12 ~ 2020.11',
         images: ['/hancom_webhwpctrl_logo.png'],
         meta: [
-          { labelKey: 'role', value: 'Front-End Developer' },
+          { labelKey: 'role', valueKey: 'frontend' },
           { labelKey: 'frontend', value: 'HTML, CSS, Javascript, Markdown' },
         ],
       },
@@ -185,7 +188,7 @@ export const careers: ICareerDetail[] = [
         date: '2016.12 ~ 2020.11',
         images: ['/hancom_webhwp_logo.png'],
         meta: [
-          { labelKey: 'role', value: 'Front-End Developer' },
+          { labelKey: 'role', valueKey: 'frontend' },
           { labelKey: 'frontend', value: 'HTML, CSS, Javascript, Canvas' },
         ],
       },
@@ -206,7 +209,7 @@ export const careers: ICareerDetail[] = [
         date: '2015.09 ~ 2016.12',
         images: ['/osstem_elecchart_logo.png'],
         meta: [
-          { labelKey: 'role', value: 'Medical Insurance & Charge App Windows Developer' },
+          { labelKey: 'role', valueKey: 'medicalWindows' },
           { labelKey: 'windows', value: 'C#, WPF' },
         ],
       },
@@ -215,7 +218,7 @@ export const careers: ICareerDetail[] = [
         date: '2013.04 ~ 2016.12',
         images: ['/osstem_oldinsurechart_logo.png'],
         meta: [
-          { labelKey: 'role', value: 'Medical Insurance & Charge App Windows Developer' },
+          { labelKey: 'role', valueKey: 'medicalWindows' },
           { labelKey: 'windows', value: 'C/C++, MFC' },
         ],
       },
@@ -235,7 +238,7 @@ export const careers: ICareerDetail[] = [
         date: '2010.08 ~ 2012.05',
         images: ['/bluebird_modemdevelop_logo.png'],
         meta: [
-          { labelKey: 'role', value: 'Embedded System Developer' },
+          { labelKey: 'role', valueKey: 'embedded' },
           { labelKey: 'windows', value: 'C, C++, API, MFC' },
         ],
       },
@@ -244,7 +247,7 @@ export const careers: ICareerDetail[] = [
         date: '2010.06 ~ 2012.05',
         images: ['/bluebird_windowsce_device_logo.png'],
         meta: [
-          { labelKey: 'role', value: 'Embedded System Developer' },
+          { labelKey: 'role', valueKey: 'embedded' },
           { labelKey: 'windows', value: 'C, C++, API, MFC' },
         ],
       },

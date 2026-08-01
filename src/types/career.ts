@@ -10,12 +10,21 @@
  * - 해시 앵커:   `/career/{slug}#{item.id}`
  */
 
-/** 상세 항목 메타 (Role, 기술 스택 등) — 라벨은 i18n, 값은 고유명사라 데이터에 둔다 */
-export interface ICareerMeta {
-  /** i18n 키 — `career.labels.{labelKey}` */
-  labelKey: 'role' | 'frontend' | 'backend' | 'devops' | 'windows';
-  value: string;
-}
+/** 메타 라벨 i18n 키 — `career.labels.{labelKey}` */
+type CareerMetaLabelKey = 'role' | 'frontend' | 'backend' | 'devops' | 'windows';
+
+/**
+ * 상세 항목 메타 (Role, 기술 스택 등). 라벨은 항상 i18n이고, 값은 둘 중 하나다.
+ *
+ * - `value`   — 기술명처럼 **언어와 무관한** 고유명사 (`React, Vite, Typescript`)
+ * - `valueKey` — 직무명처럼 **번역이 필요한** 값. `career.roles.{valueKey}`에서 읽는다
+ *
+ * 둘을 동시에 쓸 수 없다. 값을 데이터에 직접 적으면 한/영 어느 한쪽이 반쪽이 되므로,
+ * 문장으로 읽히는 값은 반드시 `valueKey`를 쓴다.
+ */
+export type ICareerMeta =
+  | { labelKey: CareerMetaLabelKey; value: string; valueKey?: never }
+  | { labelKey: CareerMetaLabelKey; valueKey: string; value?: never };
 
 /** 기술내용 / 대표 프로젝트 단위 상세 항목 */
 export interface ICareerProjectItem {

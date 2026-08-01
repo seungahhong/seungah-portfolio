@@ -40,6 +40,10 @@
 **경력 항목(`items[]`) 추가**: `id`는 URL 해시가 된다(`/career/wadiz#msw`). 바꾸면 외부 링크가 깨진다.
 `imageAlts` 배열 길이는 `images` 길이와 맞춘다. 블로그 근거는 `blogSlug`, 그 외는 `link`.
 
+`meta[]`의 값은 둘 중 하나만 쓴다 — 기술명처럼 언어와 무관하면 `value`, 직무명처럼 번역이 필요하면
+`valueKey`(두 JSON의 `career.roles.{key}`)다. 직무명을 `value`에 적으면 한/영 중 한쪽이 반대말로 노출된다.
+화면과 AI 챗 프롬프트는 모두 `careerMetaValue(locale, meta)`로 값을 읽는다.
+
 **FAQ 추가**: `faqIds`에 id → 두 JSON의 `faq.items.{id}`. 수치는 문자열에 직접 쓰지 말고
 `{years}` 같은 자리표시자로 두고 `faqParams()`에 넣는다. 화면과 FAQPage JSON-LD가 같은 출처를 쓴다.
 
