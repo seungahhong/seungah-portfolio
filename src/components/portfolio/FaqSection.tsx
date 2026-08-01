@@ -26,7 +26,7 @@ export default function FaqSection({ locale }: FaqSectionProps) {
       >
         {t(locale, 'faq.title')}
       </h2>
-      <p className="text-[#86868b] mb-12 animate-fade-in-up stagger-1">
+      <p className="text-[var(--text-muted)] mb-12 animate-fade-in-up stagger-1">
         {t(locale, 'faq.subtitle')}
       </p>
 
@@ -61,7 +61,7 @@ export default function FaqSection({ locale }: FaqSectionProps) {
                     strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="shrink-0 text-[#86868b] transition-transform duration-200 group-open/details:rotate-90"
+                    className="shrink-0 text-[var(--text-muted)] transition-transform duration-200 group-open/details:rotate-90"
                     aria-hidden="true"
                   >
                     <path d="m9 18 6-6-6-6" />

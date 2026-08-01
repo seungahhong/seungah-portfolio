@@ -8,10 +8,15 @@
  * 화면 로케일에 맞는 주소를 런타임에 만든다.
  */
 
+import type { Locale } from '@/lib/i18n/constants';
+
 export interface IPersonalProject {
   /** i18n 키(`projects.items.{key}`) 겸 해시 앵커 id */
   key: string;
-  image: string;
+  /** 대표 이미지 경로. 로케일별 이미지가 다르면 `localizedImage`를 대신 쓴다 */
+  image?: string;
+  /** 기술블로그처럼 언어별 대표 이미지가 따로 있는 경우 */
+  localizedImage?: Record<Locale, string>;
   /** 절대 URL. 블로그처럼 로케일별 주소가 있으면 `localizedUrl`을 대신 쓴다 */
   url?: string;
   /** 기술블로그 홈처럼 로케일별 주소가 있는 경우 */

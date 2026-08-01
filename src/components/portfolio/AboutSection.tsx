@@ -51,7 +51,7 @@ export default function AboutSection({ locale }: AboutSectionProps) {
             >
               {name}
             </h1>
-            <p className="text-xl text-[#86868b] font-medium">{role}</p>
+            <p className="text-xl text-[var(--text-muted)] font-medium">{role}</p>
           </div>
         </div>
 
@@ -69,7 +69,7 @@ export default function AboutSection({ locale }: AboutSectionProps) {
             className="apple-surface px-6 py-4 text-center min-w-28 flex flex-col"
           >
             {/* 시각적으로는 수치가 먼저 오지만, 마크업은 dt(항목명) → dd(값) 순서를 지킨다 */}
-            <dt className="text-xs text-[#86868b] order-2 mt-1">{stat.label}</dt>
+            <dt className="text-xs text-[var(--text-muted)] order-2 mt-1">{stat.label}</dt>
             <dd className="text-2xl font-bold tracking-tight order-1">{stat.value}</dd>
           </div>
         ))}
@@ -95,7 +95,7 @@ export default function AboutSection({ locale }: AboutSectionProps) {
         <div className="space-y-5">
           {profileData.skillGroupKeys.map((groupKey) => (
             <div key={groupKey}>
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-[#86868b] mb-3">
+              <h3 className="text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">
                 {t(locale, `about.skillGroups.${groupKey}.label`)}
               </h3>
               <div className="flex flex-wrap gap-2">
@@ -129,7 +129,7 @@ export default function AboutSection({ locale }: AboutSectionProps) {
             >
               <div className="w-10 h-10 rounded-xl bg-[var(--surface)] flex items-center justify-center shadow-sm">
                 {link.icon === 'email' && (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#86868b] group-hover:text-[var(--accent)] transition-colors" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors" aria-hidden="true">
                     <rect width="20" height="16" x="2" y="4" rx="2" />
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </svg>
@@ -138,7 +138,7 @@ export default function AboutSection({ locale }: AboutSectionProps) {
                   <Image src="/github.svg" alt="" width={18} height={18} aria-hidden className="opacity-50 group-hover:opacity-100 transition-opacity" />
                 )}
                 {link.icon === 'blog' && (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#86868b] group-hover:text-[var(--accent)] transition-colors" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors" aria-hidden="true">
                     <path d="M4 11a9 9 0 0 1 9 9" /><path d="M4 4a16 16 0 0 1 16 16" /><circle cx="5" cy="19" r="1" />
                   </svg>
                 )}

@@ -63,7 +63,7 @@ export function SectionNav() {
                   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]',
                   isActive
                     ? 'text-[var(--accent)] bg-[var(--surface-secondary)]'
-                    : 'text-[#86868b] hover:text-[var(--foreground)]',
+                    : 'text-[var(--text-muted)] hover:text-[var(--foreground)]',
                 ].join(' ')}
               >
                 {t(section.labelKey)}

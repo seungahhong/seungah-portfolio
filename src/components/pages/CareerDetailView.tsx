@@ -35,7 +35,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
 
       {/* Breadcrumb */}
       <nav aria-label={t(locale, 'career.breadcrumb')} className="mb-8">
-        <ol className="flex flex-wrap items-center gap-1.5 text-xs text-[#86868b]">
+        <ol className="flex flex-wrap items-center gap-1.5 text-xs text-[var(--text-muted)]">
           <li>
             <Link href={localizedPath(locale, '/')} className="hover:text-[var(--foreground)] transition-colors">
               {t(locale, 'nav.home')}
@@ -74,7 +74,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
             >
               {name}
             </h1>
-            <p className="text-sm text-[#86868b] mt-1.5">
+            <p className="text-sm text-[var(--text-muted)] mt-1.5">
               {t(locale, `${base}.role`)} · {career.period}
             </p>
           </div>
@@ -86,7 +86,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
         </p>
 
         <div className="mt-6">
-          <h2 className="text-[10px] font-semibold uppercase tracking-widest text-[#86868b] mb-2.5">
+          <h2 className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-2.5">
             {t(locale, 'career.techStack')}
           </h2>
           <div className="flex flex-wrap gap-1.5">
@@ -124,7 +124,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
                 <div className="flex items-start justify-between gap-3 mb-4">
                   <h3 className="text-lg font-bold tracking-tight">{title}</h3>
                   <div className="flex items-center gap-2 shrink-0">
-                    <span className="text-xs text-[#86868b]">{item.date}</span>
+                    <span className="text-xs text-[var(--text-muted)]">{item.date}</span>
                     <AnchorLink
                       href={`#${item.id}`}
                       label={`${title} ${t(locale, 'career.anchorLabel')}`}
@@ -155,7 +155,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
                   {tList(locale, `${itemBase}.points`).map((point, index) => (
                     <li
                       key={index}
-                      className="text-sm text-[#424245] dark:text-[#a1a1a6] leading-relaxed pl-4 relative before:content-['·'] before:absolute before:left-0 before:text-[#86868b]"
+                      className="text-sm text-[#424245] dark:text-[#a1a1a6] leading-relaxed pl-4 relative before:content-['·'] before:absolute before:left-0 before:text-[var(--text-muted)]"
                     >
                       {point}
                     </li>
@@ -166,7 +166,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
                   <dl className="mt-5 pt-4 border-t border-[var(--border)] space-y-2">
                     {item.meta?.map((meta) => (
                       <div key={meta.labelKey} className="flex flex-wrap gap-x-3 gap-y-1 text-xs">
-                        <dt className="font-semibold uppercase tracking-wider text-[#86868b] min-w-16">
+                        <dt className="font-semibold uppercase tracking-wider text-[var(--text-muted)] min-w-16">
                           {t(locale, `career.labels.${meta.labelKey}`)}
                         </dt>
                         <dd className="text-[#6e6e73] dark:text-[#a1a1a6] flex-1 min-w-0">
@@ -176,7 +176,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
                     ))}
                     {referenceUrl && (
                       <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs">
-                        <dt className="font-semibold uppercase tracking-wider text-[#86868b] min-w-16">
+                        <dt className="font-semibold uppercase tracking-wider text-[var(--text-muted)] min-w-16">
                           {t(locale, 'career.labels.url')}
                         </dt>
                         <dd className="text-[#6e6e73] dark:text-[#a1a1a6] flex-1 min-w-0">
@@ -226,7 +226,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <h3 className="text-base font-bold tracking-tight">{title}</h3>
                     <div className="flex items-center gap-2 shrink-0">
-                      {work.period && <span className="text-xs text-[#86868b]">{work.period}</span>}
+                      {work.period && <span className="text-xs text-[var(--text-muted)]">{work.period}</span>}
                       <AnchorLink
                         href={`#${work.id}`}
                         label={`${title} ${t(locale, 'career.anchorLabel')}`}
@@ -237,7 +237,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
                     {tList(locale, `${workBase}.points`).map((point, index) => (
                       <li
                         key={index}
-                        className="text-sm text-[#6e6e73] dark:text-[#a1a1a6] leading-relaxed pl-4 relative before:content-['·'] before:absolute before:left-0 before:text-[#86868b]"
+                        className="text-sm text-[#6e6e73] dark:text-[#a1a1a6] leading-relaxed pl-4 relative before:content-['·'] before:absolute before:left-0 before:text-[var(--text-muted)]"
                       >
                         {point}
                       </li>
@@ -254,7 +254,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
       <nav aria-labelledby="related-heading" className="border-t border-[var(--border)] pt-10">
         <h2
           id="related-heading"
-          className="text-sm font-semibold uppercase tracking-widest text-[#86868b] mb-5"
+          className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-5"
         >
           {t(locale, 'career.related')}
         </h2>
@@ -279,7 +279,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
                   <span className="block text-sm font-semibold truncate">
                     {t(locale, `career.companies.${company.slug}.title`)}
                   </span>
-                  <span className="block text-xs text-[#86868b]">{company.period}</span>
+                  <span className="block text-xs text-[var(--text-muted)]">{company.period}</span>
                 </span>
               </Link>
             </li>

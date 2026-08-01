@@ -78,7 +78,7 @@ export default function ContactSection({ locale }: ContactSectionProps) {
     'w-full px-4 py-3 rounded-xl text-sm',
     'bg-[var(--surface-secondary)] border border-[var(--border)]',
     'text-[var(--foreground)]',
-    'placeholder:text-[#86868b]',
+    'placeholder:text-[var(--text-muted)]',
     'focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent',
     'transition-all duration-200',
   ].join(' ');
@@ -92,7 +92,7 @@ export default function ContactSection({ locale }: ContactSectionProps) {
       >
         {t('contact.title')}
       </h2>
-      <p className="text-[#86868b] mb-12 animate-fade-in-up stagger-1">
+      <p className="text-[var(--text-muted)] mb-12 animate-fade-in-up stagger-1">
         {t('contact.subtitle')}
       </p>
 

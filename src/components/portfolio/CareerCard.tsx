@@ -43,8 +43,8 @@ export default function CareerCard({ career, locale }: CareerCardProps) {
               {t(locale, `${base}.title`)}
             </Link>
           </h3>
-          <p className="text-sm text-[#86868b]">{t(locale, `${base}.role`)}</p>
-          <p className="text-xs text-[#86868b] mt-0.5">{career.period}</p>
+          <p className="text-sm text-[var(--text-muted)]">{t(locale, `${base}.role`)}</p>
+          <p className="text-xs text-[var(--text-muted)] mt-0.5">{career.period}</p>
         </div>
       </div>
 
@@ -56,7 +56,7 @@ export default function CareerCard({ career, locale }: CareerCardProps) {
       {/* Tech stack */}
       {techStack.length > 0 && (
         <div className="mb-5">
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-[#86868b] mb-2">
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-2">
             {t(locale, 'career.techStack')}
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -70,7 +70,7 @@ export default function CareerCard({ career, locale }: CareerCardProps) {
       {/* 대표 항목 — 각 항목은 상세 페이지의 해시 앵커로 직접 연결된다 */}
       {previewItems.length > 0 && (
         <div className="flex-1 mb-5">
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-[#86868b] mb-2">
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-2">
             {t(locale, 'career.highlights')}
           </p>
           <ul className="space-y-1.5">
@@ -78,7 +78,7 @@ export default function CareerCard({ career, locale }: CareerCardProps) {
               <li key={item.id}>
                 <Link
                   href={`${detailHref}#${item.id}`}
-                  className="block text-sm text-[#6e6e73] dark:text-[#a1a1a6] hover:text-[var(--accent)] transition-colors leading-relaxed pl-4 relative before:content-['·'] before:absolute before:left-0 before:text-[#86868b]"
+                  className="block text-sm text-[#6e6e73] dark:text-[#a1a1a6] hover:text-[var(--accent)] transition-colors leading-relaxed pl-4 relative before:content-['·'] before:absolute before:left-0 before:text-[var(--text-muted)]"
                 >
                   {t(locale, `${base}.items.${item.id}.title`)}
                 </Link>
@@ -86,7 +86,7 @@ export default function CareerCard({ career, locale }: CareerCardProps) {
             ))}
           </ul>
           {remainingCount > 0 && (
-            <p className="text-xs text-[#86868b] mt-2 pl-4">
+            <p className="text-xs text-[var(--text-muted)] mt-2 pl-4">
               {t(locale, 'career.more', { count: remainingCount })}
             </p>
           )}

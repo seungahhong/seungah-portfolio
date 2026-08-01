@@ -9,7 +9,7 @@ import type { IPersonalProject, IPresentation } from '../../types';
 export const personalProjects: IPersonalProject[] = [
   {
     key: 'portfolio',
-    image: '/works_portfolio_1_logo.webp',
+    image: '/og-portfolio.png',
     url: 'https://seungah-portfolio.vercel.app/',
     repo: 'https://github.com/seungahhong/seungah-portfolio',
     period: '2022.11 ~',
@@ -25,7 +25,7 @@ export const personalProjects: IPersonalProject[] = [
   },
   {
     key: 'blog',
-    image: '/works_blog_1_logo.webp',
+    localizedImage: { ko: '/og-blog-ko.png', en: '/og-blog-en.png' },
     localizedUrl: 'blog',
     repo: 'https://github.com/seungahhong/seungahhong.github.io',
     period: '2022.11 ~',
@@ -52,7 +52,7 @@ export const presentations: IPresentation[] = [
   },
   {
     key: 'wadizPerf',
-    image: '/works_portfolio_2_logo.webp',
+    image: '/wadiz-perf-cover.png',
     date: '2022.08',
     publishedAt: '2022-08',
     url: 'https://blog.wadiz.kr/%ed%8e%80%eb%94%a9%ed%95%98%ea%b8%b0-%ec%83%81%ec%84%b8-%ed%8e%98%ec%9d%b4%ec%a7%80-%ec%84%b1%eb%8a%a5-%ea%b0%9c%ec%84%a0%ed%95%98%ea%b8%b0/',

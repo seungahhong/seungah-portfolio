@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/*
+ * `dark:` 변형을 테마 클래스에 연결한다.
+ *
+ * Tailwind v4의 `dark` 기본값은 `@media (prefers-color-scheme: dark)`인데,
+ * 이 사이트의 테마는 next-themes가 `<html>`에 붙이는 `.dark` 클래스로 바뀐다.
+ * 이 선언이 없으면 OS가 라이트인 상태에서 테마만 다크로 바꿨을 때
+ * CSS 변수(배경)만 어두워지고 `dark:text-*`는 전부 무시되어 글자가 보이지 않는다.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #fbfbfd;
   --foreground: #1d1d1f;
@@ -8,6 +18,11 @@
   --border: rgba(0, 0, 0, 0.06);
   --accent: #0071e3;
   --accent-hover: #0077ed;
+  /*
+   * 보조 문구(기간·역할·라벨·메타) 색.
+   * 라이트 회색을 다크에서 그대로 쓰면 어두운 표면 위에서 가라앉으므로 값을 밝게 보정한다.
+   */
+  --text-muted: #86868b;
   /*
    * 세그먼티드 컨트롤(탭) — 선택된 알약이 트랙 위로 "떠 보여야" 한다.
    * 다크 모드에서는 --surface가 --surface-secondary보다 어두워 이 관계가 뒤집히므로
@@ -25,6 +40,7 @@
   --border: rgba(255, 255, 255, 0.08);
   --accent: #2997ff;
   --accent-hover: #40a9ff;
+  --text-muted: #98989d;
   --segment-track: #1c1c1e;
   --segment-active: #48484a;
 }

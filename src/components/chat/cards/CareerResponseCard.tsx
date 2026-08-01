@@ -32,7 +32,7 @@ export function CareerResponseCard() {
                 <p className="text-sm font-bold tracking-tight text-[var(--foreground)]">
                   {t(`${base}.title`)}
                 </p>
-                <p className="text-xs text-[#86868b]">
+                <p className="text-xs text-[var(--text-muted)]">
                   {t(`${base}.role`)} · {career.period}
                 </p>
               </div>

@@ -13,12 +13,12 @@ export function ProfileResponseCard() {
     <div className="apple-surface p-6 mt-2 mb-2 animate-fade-in-up">
       {/* Profile header */}
       <div className="flex items-center gap-4 mb-4">
-        <div className="w-12 h-12 rounded-2xl bg-[var(--surface-secondary)] flex items-center justify-center text-lg font-bold text-[#86868b]">
+        <div className="w-12 h-12 rounded-2xl bg-[var(--surface-secondary)] flex items-center justify-center text-lg font-bold text-[var(--text-muted)]">
           {name.charAt(0)}
         </div>
         <div>
           <p className="text-base font-bold tracking-tight text-[var(--foreground)]">{name}</p>
-          <p className="text-sm text-[#86868b]">{role}</p>
+          <p className="text-sm text-[var(--text-muted)]">{role}</p>
         </div>
       </div>
 
@@ -61,12 +61,12 @@ export function ProfileResponseCard() {
 
       {/* Skills */}
       <div className="space-y-3 border-t border-[var(--border)] pt-4">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-[#86868b]">
+        <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)]">
           {t('about.skills')}
         </p>
         {profileData.skillGroupKeys.map((groupKey) => (
           <div key={groupKey}>
-            <p className="text-[10px] uppercase tracking-wide text-[#86868b] mb-1.5">
+            <p className="text-[10px] uppercase tracking-wide text-[var(--text-muted)] mb-1.5">
               {t(`about.skillGroups.${groupKey}.label`)}
             </p>
             <div className="flex flex-wrap gap-1.5">

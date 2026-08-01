@@ -39,7 +39,7 @@ export default function ProjectSection({ locale }: ProjectSectionProps) {
       >
         {t(locale, 'projects.title')}
       </h2>
-      <p className="text-[#86868b] mb-12 animate-fade-in-up stagger-1">
+      <p className="text-[var(--text-muted)] mb-12 animate-fade-in-up stagger-1">
         {t(locale, 'projects.subtitle')}
       </p>
 
@@ -54,8 +54,9 @@ export default function ProjectSection({ locale }: ProjectSectionProps) {
         {personalProjects.map((project, i) => {
           const anchorId = `project-${project.key}`;
           const title = t(locale, `projects.items.${project.key}.title`);
-          // 기술블로그처럼 언어별 주소가 있는 경우 화면 로케일에 맞춘다
+          // 기술블로그처럼 언어별 주소·이미지가 있는 경우 화면 로케일에 맞춘다
           const visitUrl = project.localizedUrl === 'blog' ? blogHomeUrl(locale) : project.url;
+          const imageSrc = project.localizedImage?.[locale] ?? project.image;
 
           return (
             <article
@@ -63,20 +64,22 @@ export default function ProjectSection({ locale }: ProjectSectionProps) {
               id={anchorId}
               className={`${CARD_CLASS} animate-fade-in-up stagger-${i + 2}`}
             >
-              <div className="aspect-video w-full overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={t(locale, 'projects.screenshotAlt', { title })}
-                  width={600}
-                  height={338}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
+              {imageSrc && (
+                <div className="aspect-video w-full overflow-hidden bg-[var(--surface-secondary)]">
+                  <Image
+                    src={imageSrc}
+                    alt={t(locale, 'projects.screenshotAlt', { title })}
+                    width={600}
+                    height={338}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+              )}
               <div className="p-7 flex flex-col flex-1">
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <h4 className="text-lg font-bold tracking-tight">{title}</h4>
                   <div className="flex items-center gap-2 shrink-0">
-                    <span className="text-xs text-[#86868b]">{project.period}</span>
+                    <span className="text-xs text-[var(--text-muted)]">{project.period}</span>
                     <AnchorLink
                       href={`#${anchorId}`}
                       label={`${title} ${t(locale, 'career.anchorLabel')}`}
@@ -94,14 +97,14 @@ export default function ProjectSection({ locale }: ProjectSectionProps) {
 
                 {/* 링크 영역은 카드 높이와 무관하게 항상 하단에 고정한다 */}
                 <div className="mt-auto pt-4 border-t border-[var(--border)] flex items-center justify-between gap-3">
-                  <span className="text-xs text-[#86868b]">{project.deploy}</span>
+                  <span className="text-xs text-[var(--text-muted)]">{project.deploy}</span>
                   <div className="flex items-center gap-4">
                     {project.repo && (
                       <a
                         href={project.repo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm font-medium text-[#86868b] hover:text-[var(--accent)] transition-colors"
+                        className="inline-flex items-center gap-1 text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors"
                       >
                         {t(locale, 'projects.repo')}
                         <ExternalIcon />
@@ -156,7 +159,7 @@ export default function ProjectSection({ locale }: ProjectSectionProps) {
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <h4 className="text-lg font-bold tracking-tight">{title}</h4>
                   <div className="flex items-center gap-2 shrink-0">
-                    <span className="text-xs text-[#86868b]">{pres.date}</span>
+                    <span className="text-xs text-[var(--text-muted)]">{pres.date}</span>
                     <AnchorLink
                       href={`#${anchorId}`}
                       label={`${title} ${t(locale, 'career.anchorLabel')}`}
@@ -188,7 +191,7 @@ export default function ProjectSection({ locale }: ProjectSectionProps) {
                 )}
 
                 <div className="mt-auto pt-4 border-t border-[var(--border)] flex items-center justify-between gap-3">
-                  <span className="text-xs text-[#86868b]">
+                  <span className="text-xs text-[var(--text-muted)]">
                     {pres.links
                       ? t(locale, 'projects.articleCount', { count: pres.links.length })
                       : ''}

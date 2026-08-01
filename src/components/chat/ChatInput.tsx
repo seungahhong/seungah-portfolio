@@ -64,7 +64,7 @@ export function ChatInput({ onSend, disabled, value, onChange, locale }: ChatInp
           'bg-[var(--surface-secondary)]',
           'border border-[var(--border)]',
           'text-[var(--foreground)]',
-          'placeholder:text-[#86868b]',
+          'placeholder:text-[var(--text-muted)]',
           'focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent',
           'disabled:opacity-50 disabled:cursor-not-allowed',
           'transition-all duration-200',

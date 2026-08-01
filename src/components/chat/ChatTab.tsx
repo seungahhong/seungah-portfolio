@@ -57,7 +57,7 @@ export function ChatTab({ locale }: ChatTabProps) {
               >
                 {t('chat.tab.welcomeTitle')}
               </h2>
-              <p className="text-base text-[#86868b] leading-relaxed">
+              <p className="text-base text-[var(--text-muted)] leading-relaxed">
                 {t('chat.tab.welcomeSubtitle')}
               </p>
             </div>
@@ -93,7 +93,7 @@ export function ChatTab({ locale }: ChatTabProps) {
 
       {/* Unavailable notice */}
       {isUnavailable && (
-        <div className="text-center py-3 text-sm text-[#86868b]">
+        <div className="text-center py-3 text-sm text-[var(--text-muted)]">
           {t('chat.unavailable')}
         </div>
       )}

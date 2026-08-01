@@ -17,7 +17,7 @@ export default function CareerSection({ locale }: CareerSectionProps) {
       >
         {t(locale, 'career.title')}
       </h2>
-      <p className="text-[#86868b] mb-12 animate-fade-in-up stagger-1">
+      <p className="text-[var(--text-muted)] mb-12 animate-fade-in-up stagger-1">
         {t(locale, 'career.subtitle', {
           years: experienceYears,
           companies: careers.length,

@@ -24,7 +24,7 @@ export function SuggestionChips({ onSelect, locale }: SuggestionChipsProps) {
 
   return (
     <div className="px-2">
-      <p className="text-xs font-medium text-[#86868b] mb-4 text-center">
+      <p className="text-xs font-medium text-[var(--text-muted)] mb-4 text-center">
         {t('chat.welcome')}
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">

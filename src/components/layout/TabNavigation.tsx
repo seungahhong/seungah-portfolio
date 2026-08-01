@@ -100,7 +100,7 @@ export function TabNavigation() {
               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]',
               isActive
                 ? 'bg-[var(--segment-active)] text-[var(--foreground)] shadow-sm'
-                : 'text-[#86868b] hover:text-[var(--foreground)]',
+                : 'text-[var(--text-muted)] hover:text-[var(--foreground)]',
             ].join(' ')}
           >
             <TabIcon id={tab.id} />

@@ -14,7 +14,7 @@ export default function AnchorLink({ href, label }: AnchorLinkProps) {
     <a
       href={href}
       aria-label={label}
-      className="shrink-0 text-[#86868b] opacity-0 group-hover:opacity-100 focus:opacity-100 hover:text-[var(--accent)] transition-opacity duration-200"
+      className="shrink-0 text-[var(--text-muted)] opacity-0 group-hover:opacity-100 focus:opacity-100 hover:text-[var(--accent)] transition-opacity duration-200"
     >
       <svg
         width="14"

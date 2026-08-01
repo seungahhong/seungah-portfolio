@@ -45,7 +45,7 @@ export function SiteHeader() {
             ) : (
               <Link
                 href={homeHref}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full text-[#86868b] hover:text-[var(--foreground)] hover:bg-[var(--surface-secondary)] transition-all duration-200"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full text-[var(--text-muted)] hover:text-[var(--foreground)] hover:bg-[var(--surface-secondary)] transition-all duration-200"
               >
                 <svg
                   width="14"

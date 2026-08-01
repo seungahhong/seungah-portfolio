@@ -14,7 +14,7 @@ export const contentType = 'image/png';
  */
 export default function OpengraphImage() {
   const stats = [
-    `${experienceYears}+ yrs`,
+    `${experienceYears}+ years`,
     `${careers.length} companies`,
     `${blogStats.articles} articles`,
   ].join('   ·   ');

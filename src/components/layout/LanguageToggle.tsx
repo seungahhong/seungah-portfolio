@@ -21,7 +21,7 @@ export function LanguageToggle() {
     <Link
       href={href}
       hrefLang={target}
-      className="h-8 px-3 inline-flex items-center rounded-full text-xs font-medium text-[#86868b] hover:text-[var(--foreground)] transition-colors duration-200"
+      className="h-8 px-3 inline-flex items-center rounded-full text-xs font-medium text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors duration-200"
       aria-label={t('lang.switchTo')}
       lang={target}
     >

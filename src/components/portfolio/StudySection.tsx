@@ -25,7 +25,7 @@ export default function StudySection({ locale }: StudySectionProps) {
         {t(locale, 'study.title')}
       </h2>
 
-      <p className="text-[#86868b] mb-4 animate-fade-in-up stagger-1 max-w-3xl leading-relaxed">
+      <p className="text-[var(--text-muted)] mb-4 animate-fade-in-up stagger-1 max-w-3xl leading-relaxed">
         {t(locale, 'study.subtitle', {
           since: blogStats.since,
           articles: blogStats.articles,
@@ -61,7 +61,7 @@ export default function StudySection({ locale }: StudySectionProps) {
               <div className="flex items-baseline justify-between gap-2 mb-3">
                 <h3 className="text-base font-bold tracking-tight">{label}</h3>
                 <div className="flex items-center gap-2 shrink-0">
-                  <span className="text-xs text-[#86868b]">{group.links.length}</span>
+                  <span className="text-xs text-[var(--text-muted)]">{group.links.length}</span>
                   <AnchorLink
                     href={`#${anchorId}`}
                     label={`${label} ${t(locale, 'career.anchorLabel')}`}
