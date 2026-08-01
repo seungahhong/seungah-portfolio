@@ -9,6 +9,7 @@
 - **Portfolio** — About, 경력(4개 회사), 프로젝트, 학습 아카이브, FAQ, Contact 섹션
 - **Career 상세 페이지** — `/career/[slug]`·`/en/career/[slug]` SSG 페이지와 항목 단위 `#anchor` 딥링크
 - **SEO / GEO** — JSON-LD(Person·WebSite·ProfilePage·FAQPage·BreadcrumbList·ItemList), sitemap, AI 봇 허용 robots, `/llms.txt`, 동적 OG 이미지
+- **Analytics** — GA4(gtag.js) 페이지뷰·커스텀 이벤트 계측, Google·Naver 서치 콘솔 소유권 확인 메타(모든 페이지에 주입)
 - **i18n** — 한국어(`/`)·영어(`/en`) 전용 URL. 모든 표시 문구를 `ko.json` / `en.json`에서 관리하고, 데이터 파일에는 구조만 둡니다
 - **hreflang** — 두 언어 버전이 canonical·hreflang·사이트맵으로 서로 연결됩니다. 기술블로그 링크도 로케일에 맞는 번역본(`/ko/posts` ↔ `/en/posts`)으로 연결됩니다
 - **Dark Mode** — next-themes 기반 FOUC-free 다크모드
@@ -55,7 +56,15 @@ GMAIL_PASS=your_gmail_app_password
 
 # 배포 도메인 (canonical / sitemap / JSON-LD 기준값, 미설정 시 기본값 사용)
 NEXT_PUBLIC_SITE_URL=https://seungah-portfolio.vercel.app
+
+# Google Analytics 4 측정 ID (미설정 시 계측 스크립트를 넣지 않음)
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+
 ```
+
+> 검색 콘솔(구글·네이버) 소유권 확인 토큰은 `src/lib/seo/config.ts`의 `SITE_VERIFICATION`에
+> 고정되어 있습니다. 다른 도메인으로 미리보기 배포할 때만
+> `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` / `NEXT_PUBLIC_NAVER_SITE_VERIFICATION`으로 덮어쓰세요.
 
 > Groq API key 없이도 포트폴리오는 정상 동작합니다. AI Chat 탭이 비활성화됩니다.
 > Gmail 설정 없이도 포트폴리오는 정상 동작합니다. Contact 폼이 mailto: 링크로 대체됩니다.

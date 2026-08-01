@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import '@/app/globals.css';
 import { ClientProviders } from '@/components/providers/ClientProviders';
 import { SiteHeader } from '@/components/layout/SiteHeader';
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import type { Locale } from '@/lib/i18n/constants';
 
 const geistSans = Geist({
@@ -39,6 +40,8 @@ export function RootShell({
             </main>
           </div>
         </ClientProviders>
+        {/* GA4 — `NEXT_PUBLIC_GA_ID`가 없거나 development면 아무것도 렌더링하지 않는다 */}
+        <GoogleAnalytics />
       </body>
     </html>
   );

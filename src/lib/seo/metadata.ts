@@ -10,6 +10,7 @@ import {
   SITE_NAME,
   SITE_TITLE,
   SITE_URL,
+  SITE_VERIFICATION,
   alternatesFor,
   localizedUrl,
 } from './config';
@@ -60,6 +61,18 @@ export function buildRootMetadata(locale: Locale): Metadata {
       },
     },
     formatDetection: { email: false, telephone: false },
+    /**
+     * 검색 콘솔 소유권 확인.
+     *
+     * 네이버는 Metadata API에 전용 키가 없어 `other`로 임의 이름의 메타를 직접 내보낸다
+     * (`<meta name="naver-site-verification" ...>`). 토큰이 비면 그 태그만 빠진다.
+     */
+    verification: {
+      ...(SITE_VERIFICATION.google ? { google: SITE_VERIFICATION.google } : {}),
+      ...(SITE_VERIFICATION.naver
+        ? { other: { 'naver-site-verification': SITE_VERIFICATION.naver } }
+        : {}),
+    },
   };
 }
 
