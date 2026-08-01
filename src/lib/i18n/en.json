@@ -1,82 +1,725 @@
 {
-  "site.title": "Seungah Hong Portfolio",
-  "site.description": "A challenging, hardworking, and sharing frontend developer — Seungah Hong.",
-  "nav.about": "About",
-  "nav.career": "Career",
-  "nav.projects": "Projects",
-  "nav.contact": "Contact",
-  "nav.chat": "AI Chat",
-  "nav.tab.portfolio": "Portfolio",
-  "nav.tab.chat": "AI Chat",
-  "chat.tab.welcome.title": "Ask me anything",
-  "chat.tab.welcome.subtitle": "Ask AI about Seungah's career, projects, and skills",
-  "theme.toggle": "Toggle theme",
-  "lang.toggle": "KO",
-  "about.title": "About Me",
-  "about.greeting": "Hello, I'm a frontend developer",
-  "about.name": "Seungah Hong",
-  "about.intro": "A developer who challenges, strives, and shares.",
-  "about.description.1": "I have a passion for keeping up with evolving technologies and continuously learning.",
-  "about.description.2": "Understanding the importance of sharing knowledge, I actively share technical insights through my personal blog and Notion.",
-  "about.description.3": "I proactively work to resolve any obstacles encountered during development.",
-  "about.skills": "Tech Stack",
-  "about.contact": "Contact",
-  "career.title": "Career",
-  "career.present": "Present",
-  "career.techStack": "Tech Stack",
-  "career.details": "View Details",
-  "career.wadiz.title": "Wadiz",
-  "career.wadiz.role": "Frontend Developer",
-  "career.wadiz.description": "Funding/Store FE development, dev process introduction, MSW mock server, test automation (Jest, Playwright), React v18 migration, build performance optimization",
-  "career.hancom.title": "Hancom",
-  "career.hancom.role": "Frontend Developer",
-  "career.hancom.description": "WebHwp/WebHwp Drafter Canvas-based rendering, engine porting (C++ → JavaScript), OpenAPI development",
-  "career.osstem.title": "Osstem Implant",
-  "career.osstem.role": "Windows App Developer",
-  "career.osstem.description": "Global/domestic dental program development, electronic/insurance chart modules, insurance claim development",
-  "career.bluebird.title": "Bluebird Soft",
-  "career.bluebird.role": "Embedded Developer",
-  "career.bluebird.description": "WinCE/WM terminal modem device development, carrier quality assurance (SKT, KT)",
-  "projects.title": "Projects",
-  "projects.personal": "Personal Projects",
-  "projects.portfolio.title": "Personal Portfolio",
-  "projects.portfolio.description": "Next.js based personal portfolio website. SSG, E2E testing (Playwright), GitHub Actions CI/CD.",
-  "projects.blog.title": "Tech Blog",
-  "projects.blog.description": "Gatsby based tech blog. Sharing 40+ technical articles with category/tag navigation.",
-  "projects.presentation": "Presentations & Articles",
-  "projects.wadizPerf.title": "Wadiz Funding Detail Page Performance Optimization",
-  "projects.wadizPerf.description": "Image lazy loading, content reflow prevention, image preloading for faster page load",
-  "projects.patent.title": "Web Document Editing Method Patent",
-  "projects.patent.description": "Module communication data/structure modeling, rendering architecture patent",
-  "contact.title": "Contact",
-  "contact.name": "Name",
-  "contact.name.placeholder": "Enter your name",
-  "contact.email": "Email",
-  "contact.email.placeholder": "Enter your email address",
-  "contact.message": "Message",
-  "contact.message.placeholder": "Enter your message",
-  "contact.submit": "Send Message",
-  "contact.sending": "Sending...",
-  "contact.success": "Message sent successfully!",
-  "contact.error": "Failed to send message. Please try again.",
-  "contact.networkError": "An error occurred while sending the message.",
-  "contact.fallback": "Or send an email directly",
-  "contact.validation.name": "Please enter your name.",
-  "contact.validation.email": "Please enter your email.",
-  "contact.validation.emailFormat": "Please enter a valid email address.",
-  "contact.validation.message": "Please enter a message.",
-  "contact.validation.messageLength": "Message must be at least 10 characters.",
-  "chat.title": "AI Portfolio Assistant",
-  "chat.placeholder": "Ask me anything about the portfolio...",
-  "chat.send": "Send",
-  "chat.chip.wadiz": "What did you do at Wadiz?",
-  "chat.chip.hancom": "What technologies were used at Hancom?",
-  "chat.chip.skills": "What are the main tech stacks?",
-  "chat.chip.process": "What is the FE development process?",
-  "chat.chip.test": "How was test automation built?",
-  "chat.chip.performance": "Any performance optimization experience?",
-  "chat.unavailable": "AI Chat is currently unavailable.",
-  "chat.error": "An error occurred while fetching the response.",
-  "chat.rateLimit": "Too many requests. Please try again later.",
-  "chat.welcome": "Hello! Ask me anything about Seungah Hong's portfolio."
+  "site": {
+    "title": "Seungah Hong Portfolio",
+    "description": "A developer who grew from frontend into full-stack and AI workflow engineering — Seungah Hong."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "career": "Career",
+    "projects": "Projects",
+    "study": "Study Archive",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "sections": "Section navigation",
+    "tablist": "Portfolio / AI Chat tabs",
+    "skipToContent": "Skip to content",
+    "backToPortfolio": "Back to portfolio",
+    "tab": {
+      "portfolio": "Portfolio",
+      "chat": "AI Chat"
+    }
+  },
+  "theme": {
+    "toggle": "Toggle theme"
+  },
+  "lang": {
+    "toggle": "KO",
+    "switchTo": "Switch to 한국어"
+  },
+  "profile": {
+    "name": "Seungah Hong",
+    "nameAlt": "홍승아",
+    "role": "Frontend Developer",
+    "headline": "A developer who grew from frontend into full-stack and AI workflow engineering — leading legacy modernization, global expansion, and cloud migration for a commerce platform.",
+    "location": "Seoul, South Korea",
+    "photoAlt": "profile photo"
+  },
+  "about": {
+    "skills": "Tech Stack",
+    "contact": "Contact",
+    "stats": {
+      "years": "Experience",
+      "yearsUnit": " yrs",
+      "companies": "Companies",
+      "articles": "Articles"
+    },
+    "descriptions": [
+      "For years I owned the entire maker service surface — funding, store, and maker studio — driving the generational shift from a legacy JSP stack to React, Vite, and pnpm, from a domestic service to a global one, and from IDC servers to the cloud.",
+      "I codified our development process itself into a Claude-based harness, raising the team's engineering and quality culture.",
+      "I stay curious about evolving technologies and keep learning continuously.",
+      "Because sharing matters, I publish consistently on my tech blog and Notion.",
+      "When something blocks development, I take it on and resolve it rather than work around it."
+    ],
+    "skillGroups": {
+      "frontend": {
+        "label": "Frontend",
+        "items": [
+          "React",
+          "TypeScript",
+          "Next.js",
+          "Gatsby",
+          "Redux",
+          "Redux Toolkit",
+          "Recoil",
+          "Zustand",
+          "Jotai",
+          "SWR",
+          "Tanstack Query",
+          "React Hook Form",
+          "i18next",
+          "MSW",
+          "Tailwind CSS",
+          "Styled-Components",
+          "SCSS",
+          "CSS Modules",
+          "HTML5",
+          "CSS3",
+          "JavaScript"
+        ]
+      },
+      "build": {
+        "label": "Build & Tooling",
+        "items": [
+          "Vite",
+          "Webpack",
+          "esbuild",
+          "pnpm",
+          "FSD (Feature-Sliced Design)",
+          "ESLint 9 (flat config)",
+          "Prettier",
+          "stylelint",
+          "husky",
+          "Tree Shaking"
+        ]
+      },
+      "test": {
+        "label": "Test",
+        "items": [
+          "Vitest",
+          "Jest",
+          "Playwright",
+          "Cypress",
+          "Storybook"
+        ]
+      },
+      "devops": {
+        "label": "DevOps & Infra",
+        "items": [
+          "AWS (EKS, S3, SES, ECR)",
+          "Kubernetes",
+          "Helm",
+          "Docker",
+          "GitHub Actions",
+          "OIDC deployment auth",
+          "Qdrant",
+          "FastAPI"
+        ]
+      },
+      "ai": {
+        "label": "AI Tooling",
+        "items": [
+          "Claude Code",
+          "Harness engineering",
+          "RAG (hybrid search)",
+          "MCP",
+          "FastMCP",
+          "Figma MCP"
+        ]
+      },
+      "monitoring": {
+        "label": "Monitoring",
+        "items": [
+          "Sentry"
+        ]
+      },
+      "collaboration": {
+        "label": "Collaboration",
+        "items": [
+          "Git",
+          "Jira",
+          "Confluence",
+          "Slack",
+          "Figma",
+          "Notion"
+        ]
+      }
+    }
+  },
+  "career": {
+    "title": "Career",
+    "subtitle": "{years} years of development experience across {companies} companies. Select a company to open its detail page.",
+    "present": "Present",
+    "techStack": "Tech Stack",
+    "highlights": "Highlights",
+    "more": "+{count} more",
+    "details": "View details",
+    "anchorLabel": "item link",
+    "breadcrumb": "Breadcrumb",
+    "related": "Other roles",
+    "section": {
+      "technical": "Engineering",
+      "work": "Product Work"
+    },
+    "labels": {
+      "role": "Role",
+      "url": "URL",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "devops": "DevOps",
+      "windows": "Windows"
+    },
+    "companies": {
+      "wadiz": {
+        "title": "Wadiz",
+        "logoAlt": "Wadiz logo",
+        "role": "Frontend Developer",
+        "description": "Covered the entire funding, store, and Maker Studio domain — built the store detail page and the global Maker Studio from scratch, drove the incremental React migration of the legacy JSP monolith, led the move to the AWS EKS cloud, and established a Claude Code-based AI development workflow.",
+        "summary": "Owned every area of the maker services — funding, store, and the maker page studio — and carried out a generational shift from legacy (JSP) to a modern stack (React, Vite, pnpm), from domestic to global, and from IDC to the cloud.",
+        "items": {
+          "fe-process": {
+            "title": "Proposed and Introduced the FE Development Process",
+            "linkTitle": "FE development process article",
+            "imageAlts": [
+              "FE development process diagram"
+            ],
+            "points": [
+              "Established planning/design/API review, technology adoption review, development schedule estimation, and follow-up task management as a single development process and rolled it out to the team.",
+              "Proposed it directly to the team to make development schedule estimation practical and to catch missing items; it is now used as the standard for running projects.",
+              "Introduced Storybook, API interface sharing, and MSW so work could proceed in parallel with other departments, improving development speed and efficiency.",
+              "Continued follow-up work such as performance and web accessibility improvements even after development was complete, raising service quality and stability."
+            ]
+          },
+          "msw": {
+            "title": "Introduced MSW (Mocking Service) and Built a Mock Data System",
+            "linkTitle": "MSW (mocking library) adoption article",
+            "imageAlts": [
+              "MSW mock server architecture diagram",
+              "Screen with MSW mock data applied"
+            ],
+            "points": [
+              "Built an FE-only mock server with MSW so the frontend could carry out data integration and validation even before the BE APIs were finished.",
+              "Received API interfaces in advance during the development phase to define mock data, enabling parallel BE/FE development and early planning and design review.",
+              "Reused the same mock data across the mock server, Storybook, unit tests, and Playwright to lower maintenance cost."
+            ]
+          },
+          "productivity": {
+            "title": "Development Productivity Improvements",
+            "linkTitle": "CRA to Vite migration article",
+            "imageAlts": [],
+            "points": [
+              "Upgraded packages (React v16.8 → v18.2) to make the latest ecosystem based on concurrent rendering available.",
+              "Migrated the build system from webpack (CRA) to Vite 6.0, improving dev server startup and build speed.",
+              "Switched from yarn classic to pnpm, resolving phantom dependency and storage space issues.",
+              "Applied FSD (Feature-Sliced Design) architecture to make layer boundaries explicit."
+            ]
+          },
+          "standardization": {
+            "title": "Development Standardization and Automation of Repetitive Work",
+            "imageAlts": [],
+            "points": [
+              "Standardized ESLint 9 (flat config), Prettier, stylelint, and husky across the entire studio in one pass, eliminating code style debates.",
+              "Automated the commit convention as a skill, enforcing issue key and type formats.",
+              "Removed repetitive work with scheduled workflows — automatic merging of localization branches, automatic design token synchronization, stale branch cleanup, and regular release branch preparation.",
+              "Kept automated PR code review (Claude Code Action) resident in CI, shortening review lead time."
+            ]
+          },
+          "stability": {
+            "title": "Service Stability Improvements (Test Automation · Observability)",
+            "linkTitle": "Playwright adoption article",
+            "imageAlts": [
+              "Playwright E2E test run results"
+            ],
+            "points": [
+              "Introduced Vitest unit/integration tests and Playwright E2E tests to quickly identify and respond to live issues that increased as the service expanded.",
+              "Wrote test code based on the QA team's verification scenarios and built the developer verification flow into an automation server.",
+              "Wired up GitHub Actions scheduled runs, live-environment run guards, and Slack notifications so failures are detected immediately.",
+              "Set up Storybook with MSW and react-query integrated, creating a development environment where screens can be verified without APIs.",
+              "Started with Cypress sanity tests, migrated to Playwright E2E, and built independent E2E workspaces per app.",
+              "Improved test robustness — replaced data-testid-dependent selectors with role queries and locale-agnostic label matchers, and changed immediate assertions to waitFor-based waits so tests do not break across languages and environments.",
+              "Improved type safety by removing ts-ignore, and added a check for the existence of i18n localization keys to prevent runtime errors caused by missing translation keys.",
+              "Operated Sentry-based frontend error monitoring, managing release attributes in code and separating attributes per environment."
+            ]
+          },
+          "performance": {
+            "title": "Performance Optimization",
+            "linkTitle": "gif to mp4 conversion article",
+            "imageAlts": [],
+            "points": [
+              "Improved loading speed and CLS (Cumulative Layout Shift) through image lazy loading, preloading, and reflow prevention, and wrote about the process on the tech blog.",
+              "Converted gifs to mp4 and applied playback control based on viewport and iOS low power mode to cut media costs.",
+              "Improved the bundle splitting strategy with per-tab rendering optimization and design system chunk merging."
+            ]
+          },
+          "ai-workflow": {
+            "title": "Built an AI Development Workflow (Claude Code-based Plugins · Skills · Harnesses)",
+            "linkTitle": "Frontend harness engineering article",
+            "imageAlts": [],
+            "points": [
+              "Codified the entire development process into an executable pipeline (research → prd → develop → review → verify orchestrator).",
+              "Designed a cost-optimal order — five static analyses run in parallel up front, and the expensive E2E verification runs only when they pass.",
+              "meta-harness — built a meta loop that diagnoses and improves defects in the harness itself (docs, agents, hooks). It preserves signals as raw traces without summarization, fans out failure diagnosis in parallel, and enforces additive-first patches that do not regress what already exists, along with user approval gates.",
+              "product-spec — a 7-stage harness running from planning draft → PRD → adversarial validation → acceptance criteria (Given-When-Then) that validates planning quality before development begins.",
+              "Enforced deterministic guardrails as hooks — blocking dangerous commands, blocking creation of sensitive files, and automatic linting. Applied the branching principle that \"anything requiring judgment is a rule, anything that must be obeyed is a hook.\"",
+              "Design-to-code automation — built a skill that automatically generates design system components and email templates from Figma.",
+              "In-house code RAG — composed of semantic + keyword hybrid search (combined with RRF), reranker re-ranking, structural chunking at the function/class level, Git diff-based incremental synchronization, and dual REST and MCP interfaces."
+            ]
+          },
+          "legacy-monolith": {
+            "title": "Maintenance and Incremental Modernization of the Legacy Monolith (Spring MVC + JSP)",
+            "imageAlts": [],
+            "points": [
+              "Operated the SSR monolith without interruption for 5 years and 8 months, modernizing it incrementally in parallel with new projects.",
+              "Ran a hybrid structure that mounts React components inside JSP screens.",
+              "Owned the ongoing reflection of legal and policy revisions (including terms version management) for 5 years.",
+              "Completed the migration that handed URL mapping from the legacy system over to the new frontend/cloud, alongside JSON-LD-based SEO cleanup."
+            ]
+          },
+          "fullstack-devops": {
+            "title": "Full-stack / DevOps Expansion",
+            "imageAlts": [],
+            "points": [
+              "Developed Spring Boot backend APIs directly — tiered admin permissions and stored before/after snapshot audit logs to secure traceability.",
+              "Reduced the attack surface by removing risky APIs and consolidated account issuance into a single controlled procedure (handling security on both the \"add features\" and \"remove risk\" sides / ISMS compliance).",
+              "Migrated from the IDC environment to the AWS EKS cloud — injected common and per-service ConfigMaps separately with Spring Cloud Kubernetes Config.",
+              "Adjusted the Spring Cloud BOM to a compatible train to fit the Java 8 runtime constraint (a decision that prioritized stability over upgrading to the latest version).",
+              "Built a multi-environment deployment pipeline based on GitHub Actions OIDC, eliminating long-lived access keys.",
+              "Configured service environments with Helm charts and moved secrets out of code, externalizing them into environment variables.",
+              "Handled the cloud migration on the frontend side by externalizing host URLs into environment variables and reorganizing CORS."
+            ]
+          },
+          "store-detail": {
+            "title": "Built the Wadiz Store Detail Page from Scratch",
+            "linkTitle": "Wadiz Store launch news",
+            "imageAlts": [
+              "Wadiz store detail page main screen",
+              "Wadiz store detail page purchase process screen"
+            ],
+            "points": [
+              "The first large-scale ownership project taken end to end from a blank slate — component design, API integration, the payment flow, responsive and image optimization, and post-launch stabilization.",
+              "Developed the store detail page main UI and its tabs (story, satisfaction reviews, returns/exchanges).",
+              "Implemented the purchase process including product option selection and inventory quantity management."
+            ]
+          },
+          "supporter-club": {
+            "title": "Launched Wadiz Membership (Supporter Club)",
+            "linkTitle": "Wadiz Membership (Supporter Club) introduction",
+            "imageAlts": [
+              "Wadiz Supporter Club introduction screen",
+              "Wadiz Supporter Club sign-up process screen"
+            ],
+            "points": [
+              "Owned the Supporter Club UI and the entire supporter side, which delivers a range of membership content and benefits within the Wadiz service.",
+              "Developed funding/store payments, the Supporter Club sign-up process, and Supporter Club event pages."
+            ]
+          },
+          "reward-option": {
+            "title": "3-Depth Product Sub-options and Reward Option Improvements",
+            "linkTitle": "Wadiz product option improvement news",
+            "imageAlts": [
+              "Wadiz funding product option improvement screen 1",
+              "Wadiz funding product option improvement screen 2"
+            ],
+            "points": [
+              "Extended the existing 1-depth sub-options to support up to 3 depths, and implemented adding, changing, and deleting single and set-composition products.",
+              "Revamped legacy features and designs such as products without options and direct input to the React and design system standard.",
+              "Revamped the reward selection, funding payment, and scheduled payment flows across three phases, P1 through P3."
+            ]
+          },
+          "maker-studio": {
+            "title": "Operating the Funding/Store Maker Studio",
+            "linkTitle": "Reward Maker Studio revamp announcement",
+            "imageAlts": [
+              "Wadiz funding Maker Studio screen",
+              "Wadiz funding detail page screen"
+            ],
+            "points": [
+              "Developed the Maker Studio features and UI required to create funding projects.",
+              "Continuously owned maintenance and operational issue response for the supporter (funding, store) and maker (studio) services."
+            ]
+          }
+        },
+        "works": {
+          "work-global": {
+            "title": "Global Service Transition",
+            "points": [
+              "Converted a domestic-only service into an i18next-based global multilingual service (Korean text extraction → AI translation → localization, with an automated translation synchronization pipeline in operation).",
+              "Built the global Maker Studio from scratch — global settings for exchange rate, currency, and country, reward design, settlement information/settlement history, maker information, and global 1:1 inquiries."
+            ]
+          },
+          "work-pricing": {
+            "title": "Pricing Plan Revamp and Maker Home (Dashboard) Revamp",
+            "points": [
+              "Completely revamped the maker pricing plan system and the maker home dashboard."
+            ]
+          },
+          "work-commerce-ops": {
+            "title": "Built Commerce Operations Tools",
+            "points": [
+              "Built a consignment shipping service (home, sales management, inbound requests) from scratch with support for bulk Excel registration.",
+              "Implemented bulk shipping management and bulk product price editing.",
+              "Implemented the new \"open a store without funding\" flow across the studio, admin, and supporter surfaces."
+            ]
+          },
+          "work-story": {
+            "title": "Built the Story Domain from Scratch",
+            "points": [
+              "Built the story domain from scratch, including story detail/home, story translation, and multilingual support."
+            ]
+          },
+          "work-preorder": {
+            "title": "Built Pre-order and Global/Encore Funding from Scratch",
+            "points": [
+              "Built the pre-order service and the global/encore funding services from scratch."
+            ]
+          },
+          "work-cloud": {
+            "title": "Cloud Migration Support",
+            "points": [
+              "Handled the frontend cloud migration work, including domain switching and dynamic URL generation."
+            ]
+          }
+        }
+      },
+      "hancom": {
+        "title": "Hancom",
+        "logoAlt": "Hancom logo",
+        "role": "Frontend Developer",
+        "description": "Developed the Canvas-based rendering and engine models for WebHwp and WebHwp Drafter, and ported the Hancom C++ engine to JavaScript.",
+        "summary": "Developed the Canvas-based rendering and engine models for WebHwp and WebHwp Drafter, and ported the C++ Hancom engine to JavaScript.",
+        "items": {
+          "webhwp-drafter": {
+            "title": "WebHwp Drafter Development",
+            "imageAlts": [
+              "WebHwp Drafter logo"
+            ],
+            "points": [
+              "Developed engine model and rendering related actions and features for WebHwp Drafter.",
+              "Built the engine integration and UI features for frame-related toolbars, context menus, dialogs, and keyboard shortcuts.",
+              "Developed the OpenAPI provisioning feature for customer support controls."
+            ]
+          },
+          "webhwp": {
+            "title": "WebHwp Development",
+            "imageAlts": [
+              "WebHwp logo"
+            ],
+            "points": [
+              "Developed the rendering logic that draws to the Canvas View based on mouse and keyboard events.",
+              "Owned the data and structure modeling for communication between frames (toolbars, menus, modals) and the WebHwp engine.",
+              "Ported Hancom C++ engine code into WebHwp JavaScript engine code.",
+              "Supported WebHwp collaborative editing actions and UI work, and added the status indicator features required for the web service."
+            ]
+          }
+        }
+      },
+      "osstem": {
+        "title": "Osstem Implant",
+        "logoAlt": "Osstem Implant logo",
+        "role": "Windows App Developer",
+        "description": "Built treatment-entry features for electronic charts and insurance charts in domestic and global dental software, along with the HIRA (Health Insurance Review and Assessment Service) insurance claim (EDI) module.",
+        "summary": "Built treatment-entry features for electronic charts and insurance charts in domestic and global dental software, along with the HIRA (Health Insurance Review and Assessment Service) insurance claim (EDI) module.",
+        "items": {
+          "global-dental": {
+            "title": "Global Dental Software Development",
+            "imageAlts": [
+              "Global dental software logo"
+            ],
+            "points": [
+              "Built a WPF and C#-based Windows application module providing treatment entry, editing, and deletion for electronic charts and insurance charts.",
+              "Built the insurance claim (EDI) module that files insurance claims with HIRA based on dental treatment entries."
+            ]
+          },
+          "domestic-dental": {
+            "title": "Domestic Dental Software Development",
+            "imageAlts": [
+              "Domestic dental software logo"
+            ],
+            "points": [
+              "Built treatment and claim features in a C/C++ and MFC-based Windows application with each revision of the insurance system.",
+              "Built the feature that parses electronic documents (EDI) received from HIRA and presents them to users."
+            ]
+          }
+        }
+      },
+      "bluebird": {
+        "title": "Bluebird Soft",
+        "logoAlt": "Bluebird Soft logo",
+        "role": "Embedded Developer",
+        "description": "Developed modem devices for industrial PDA terminals and owned mobile carrier (SKT, KT) quality assurance.",
+        "summary": "Developed modem devices for industrial PDA terminals and owned mobile carrier (SKT, KT) quality assurance.",
+        "items": {
+          "modem-device": {
+            "title": "Terminal Modem Device Development / Mobile Carrier Quality Assurance",
+            "imageAlts": [
+              "BPL-10 modem device logo"
+            ],
+            "points": [
+              "Developed the modem device embedded in the WindowsCE 5.0 terminal (BPL-10) and owned mobile carrier (SKT, KT) quality assurance.",
+              "Developed modem devices for WindowsCE 5.0 and Windows Mobile 6.5 terminals (BIP-7000lite, BM-170)."
+            ]
+          },
+          "wince-device": {
+            "title": "WinCE · Windows Mobile Terminal Development",
+            "imageAlts": [
+              "WinCE 5.0 terminal logo"
+            ],
+            "points": [
+              "Developed on-site payment features using the WindowsCE 5.0 terminal (BPL-10) and maintained the terminals.",
+              "Developed terminals running Windows Mobile 5.1/6.1/6.5."
+            ]
+          }
+        }
+      }
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Products I build and operate myself, plus talks and articles published externally.",
+    "personal": "Personal Projects",
+    "presentation": "Presentations & Articles",
+    "visit": "Visit site",
+    "view": "Read more",
+    "repo": "Repository",
+    "articleCount": "{count} articles",
+    "screenshotAlt": "{title} screenshot",
+    "coverAlt": "{title} cover image",
+    "items": {
+      "portfolio": {
+        "title": "Personal Portfolio",
+        "description": "A hybrid two-tab architecture that switches between an SSR portfolio and a client-side AI chat. Built on Next.js 16 App Router, React 19, TypeScript 5, and Tailwind CSS 4, with a Groq (Llama 3.3 70B) streaming chatbot, keyword-detected data cards, ko/en localization, dark mode, and WAI-ARIA tabs."
+      },
+      "blog": {
+        "title": "Tech Blog",
+        "description": "A Gatsby (SSG) tech blog with 69 articles written in both Korean and English — 138 documents in total — tracing a learning path from frontend frameworks through build tooling and testing to AI harnesses."
+      },
+      "harness": {
+        "title": "AI Harness Engineering Series",
+        "description": "Six articles covering how a team development process was codified into an executable pipeline, and how a harness can diagnose and repair itself through a meta loop.",
+        "links": {
+          "fe-harness": "Frontend Harness Engineering",
+          "meta-harness": "Self-healing Harness Engineering (meta-harness)",
+          "product-spec": "Product Spec Harness (product-spec-harness)",
+          "rag": "Building a Semantic + Keyword Hybrid Search RAG",
+          "llm-wiki": "LLM Wiki — Curating Knowledge Ahead of Retrieval",
+          "marketplace": "Building a Claude Code Plugin Marketplace"
+        }
+      },
+      "wadizPerf": {
+        "title": "Wadiz Funding Detail Page Performance Optimization",
+        "description": "Image lazy loading, content reflow prevention, and broad image preloading improved load time and CLS; the work was published on the company tech blog."
+      },
+      "patent": {
+        "title": "Web Document Editing Method Patent",
+        "description": "A patent filing covering data and structure modeling for inter-module communication and the actor/updator/render architecture. (Search application no. 1020674990000)"
+      }
+    }
+  },
+  "study": {
+    "title": "Study Archive",
+    "subtitle": "Since {since} I have published {articles} technical articles in both Korean and English, totaling {documents} documents. The {links} links below are grouped by topic — each major release, from React 17→18→19 to Next.js 13→14→15 and Vite 6→7→8, was verified hands-on and written up.",
+    "visitBlog": "Browse the full blog",
+    "groups": {
+      "ai-harness": {
+        "label": "AI & Harness",
+        "links": {
+          "rag": "Semantic + Keyword Hybrid Search RAG",
+          "llm-wiki": "LLM Wiki",
+          "marketplace": "Claude Code Marketplace",
+          "fe-harness": "Frontend Harness",
+          "meta-harness": "meta-harness",
+          "product-spec": "product-spec Harness",
+          "figma-mcp": "Figma MCP Integration"
+        }
+      },
+      "react": {
+        "label": "React",
+        "links": {
+          "v19": "React v19",
+          "v19-next": "React Next (v19)",
+          "v18": "React v18",
+          "v18-migration": "React v18 migration",
+          "v17": "React v17",
+          "router-v6": "react-router v6"
+        }
+      },
+      "nextjs": {
+        "label": "Next.js",
+        "links": {
+          "v15-migration": "Next.js v15 migration",
+          "v14": "Next.js v14",
+          "v14-migration": "Next.js v14 migration",
+          "v13": "Next.js v13"
+        }
+      },
+      "state": {
+        "label": "State Management",
+        "links": {
+          "overview": "React State Management Overview",
+          "redux": "Redux",
+          "redux-toolkit": "Redux Toolkit",
+          "redux-saga": "Redux-Saga",
+          "react-query": "react-query",
+          "react-query-v4": "react-query v4",
+          "react-query-v5": "react-query v5",
+          "recoil": "Recoil",
+          "jotai": "Jotai",
+          "zustand": "Zustand",
+          "mobx": "MobX",
+          "swr": "SWR"
+        }
+      },
+      "build": {
+        "label": "Build & Bundlers",
+        "links": {
+          "vite6": "Vite 6.0",
+          "vite7": "Vite 7.0",
+          "vite8": "Vite 8.0",
+          "cra-to-vite": "CRA To Vite Migration",
+          "pnpm": "pnpm",
+          "esbuild": "esbuild",
+          "treeshaking": "Tree Shaking",
+          "unused-deps": "Removing Unused Dependencies",
+          "dev-improvements": "Dev Productivity & Build Performance"
+        }
+      },
+      "test": {
+        "label": "Testing",
+        "links": {
+          "playwright": "Playwright",
+          "cypress": "Cypress",
+          "jest": "Jest",
+          "storybook": "Storybook",
+          "msw": "MSW"
+        }
+      },
+      "form": {
+        "label": "Forms",
+        "links": {
+          "basic": "Basic Form",
+          "rhf-v7": "react-hook-form v7",
+          "rhf-inside": "Inside react-hook-form"
+        }
+      },
+      "language": {
+        "label": "Languages & Runtimes",
+        "links": {
+          "typescript": "TypeScript",
+          "typescript7": "TypeScript 7.0",
+          "javascript": "JavaScript",
+          "ecmascript": "ECMAScript",
+          "nodejs": "Node.js",
+          "deno": "Deno",
+          "webassembly": "WebAssembly"
+        }
+      },
+      "styling": {
+        "label": "Styling & Performance",
+        "links": {
+          "css-in-js": "CSS-in-JS",
+          "emotion": "Emotion",
+          "fe-performance": "Front-End Performance",
+          "gif-to-mp4": "gif to mp4 Conversion"
+        }
+      },
+      "etc": {
+        "label": "Process & Others",
+        "links": {
+          "fe-process": "FE Development Process",
+          "cors": "CORS",
+          "graphql": "GraphQL",
+          "rxjs": "RxJS",
+          "svelte": "Svelte",
+          "canvas": "Canvas",
+          "gatsby-v5": "Gatsby v5"
+        }
+      }
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "The questions I get asked most about my career, skills, and how to reach me.",
+    "items": {
+      "who": {
+        "question": "Who is Seungah Hong?",
+        "answer": "Seungah Hong is a frontend developer with {years} years of experience, currently building the funding, store, and maker studio services at Wadiz. Starting from frontend, the scope expanded into Spring Boot backend APIs, AWS EKS cloud migration, and Claude Code based AI development workflows."
+      },
+      "experience": {
+        "question": "How many years of experience and which companies?",
+        "answer": "{years} years across {companies} companies: Wadiz (Nov 2020 – present, frontend), Hancom (Dec 2016 – Nov 2020, WebHwp Canvas rendering), Osstem Implant (Apr 2013 – Dec 2016, Windows dental software), and Bluebird Soft (Jun 2010 – May 2012, embedded terminals)."
+      },
+      "skills": {
+        "question": "What is the main tech stack?",
+        "answer": "React, TypeScript, and Next.js form the core. State management uses Redux Toolkit and Tanstack Query; testing uses Vitest, Playwright, Storybook, and MSW; builds run on Vite and pnpm. Backend work uses Java and Spring Boot, infrastructure uses AWS EKS, Kubernetes, and Helm, and AI tooling covers Claude Code, RAG, and MCP."
+      },
+      "wadiz": {
+        "question": "What was the role at Wadiz?",
+        "answer": "Ownership covered the entire maker service surface — funding, store, and maker studio. New builds included the store detail page and the global maker studio; the legacy JSP monolith ran for 5 years and 8 months while being incrementally migrated to React; and the IDC environment moved to AWS EKS. Details are at /career/wadiz."
+      },
+      "test": {
+        "question": "How was test automation built?",
+        "answer": "It started with Cypress sanity tests, moved to Playwright E2E, and grew into per-app independent E2E workspaces. MSW mock data is shared across server mocking, Storybook, unit tests, and E2E, and data-testid selectors were replaced with role queries and locale-agnostic label matchers so tests survive multi-language and multi-environment runs."
+      },
+      "ai-workflow": {
+        "question": "How was the AI development workflow built?",
+        "answer": "The whole development cycle is codified as a research → prd → develop → review → verify orchestrator. Five static analyses run in parallel first, and expensive E2E verification runs only after they pass. Alongside it run meta-harness, which diagnoses and repairs the harness itself, and product-spec, which validates planning quality before implementation starts."
+      },
+      "performance": {
+        "question": "Any web performance optimization experience?",
+        "answer": "Yes. The Wadiz funding and pre-order detail pages were optimized and the work was published on the company tech blog in August 2022. Image lazy loading, content reflow prevention, and broad image preloading improved load time and CLS, and later work on gif-to-mp4 conversion and bundle splitting reduced media and bundle cost."
+      },
+      "blog": {
+        "question": "How is technical knowledge shared?",
+        "answer": "Since {since}, {articles} articles have been published in both Korean and English, totaling {documents} documents. {links} of them are organized by topic in this portfolio. Major releases — React 17→18→19, Next.js 13→14→15, Vite 6→7→8 — are verified hands-on and written up each time."
+      },
+      "contact": {
+        "question": "How can I get in touch?",
+        "answer": "Email {email} or use the contact form at the bottom of this page. Work is also visible on GitHub ({github}) and the tech blog ({blog})."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Feel free to reach out with an opportunity or a question.",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email address",
+    "message": "Message",
+    "messagePlaceholder": "Enter your message",
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "Failed to send message. Please try again.",
+    "networkError": "An error occurred while sending the message.",
+    "fallback": "Or send an email directly",
+    "validation": {
+      "name": "Please enter your name.",
+      "email": "Please enter your email.",
+      "emailFormat": "Please enter a valid email address.",
+      "message": "Please enter a message.",
+      "messageLength": "Message must be at least 10 characters."
+    }
+  },
+  "chat": {
+    "title": "AI Portfolio Assistant",
+    "placeholder": "Ask me anything about the portfolio...",
+    "send": "Send",
+    "unavailable": "AI Chat is currently unavailable.",
+    "error": "An error occurred while fetching the response.",
+    "rateLimit": "Too many requests. Please try again later.",
+    "welcome": "Hello! Ask me anything about Seungah Hong's portfolio.",
+    "tab": {
+      "welcomeTitle": "Ask me anything",
+      "welcomeSubtitle": "Ask AI about Seungah's career, projects, and skills"
+    },
+    "chips": {
+      "wadiz": "What did you do at Wadiz?",
+      "hancom": "What technologies were used at Hancom?",
+      "skills": "What are the main tech stacks?",
+      "process": "What is the FE development process?",
+      "test": "How was test automation built?",
+      "performance": "Any performance optimization experience?"
+    }
+  }
 }

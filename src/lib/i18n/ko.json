@@ -1,82 +1,640 @@
 {
-  "site.title": "홍승아 포트폴리오",
-  "site.description": "도전하고 노력하며 공유하는 프론트엔드 개발자, 홍승아입니다.",
-  "nav.about": "소개",
-  "nav.career": "경력",
-  "nav.projects": "프로젝트",
-  "nav.contact": "연락하기",
-  "nav.chat": "AI 채팅",
-  "nav.tab.portfolio": "포트폴리오",
-  "nav.tab.chat": "AI 채팅",
-  "chat.tab.welcome.title": "무엇이든 물어보세요",
-  "chat.tab.welcome.subtitle": "승아의 경력, 프로젝트, 기술에 대해 AI에게 질문하세요",
-  "theme.toggle": "테마 전환",
-  "lang.toggle": "EN",
-  "about.title": "About Me",
-  "about.greeting": "안녕하세요, 프론트엔드 개발자",
-  "about.name": "홍승아",
-  "about.intro": "도전하고 노력하며 공유하는 개발자입니다.",
-  "about.description.1": "변화하는 기술에 대해서 관심을 가지고 끊임없이 배우려고 노력하는 자세를 가졌습니다.",
-  "about.description.2": "개발 공유에 대한 중요성을 알고 있기에 현재도 개인 기술블로그, Notion에 기술을 공유하고 있습니다.",
-  "about.description.3": "개발 시 걸림돌이 되는 업무에 대해서는 적극적으로 해결하기 위해서 노력하고 있습니다.",
-  "about.skills": "기술 스택",
-  "about.contact": "연락처",
-  "career.title": "경력",
-  "career.present": "재직 중",
-  "career.techStack": "기술 스택",
-  "career.details": "상세 보기",
-  "career.wadiz.title": "와디즈",
-  "career.wadiz.role": "프론트엔드 개발자",
-  "career.wadiz.description": "펀딩/스토어 서비스 FE 개발, 개발 프로세스 도입, MSW 모킹 서버 구축, 테스트 자동화(Jest, Playwright), React v18 마이그레이션, 빌드 성능 개선",
-  "career.hancom.title": "한글과컴퓨터",
-  "career.hancom.role": "프론트엔드 개발자",
-  "career.hancom.description": "웹한글/웹한글기안기 Canvas 기반 렌더링 개발, 엔진 포팅(C++ → JavaScript), OpenAPI 기능 개발",
-  "career.osstem.title": "오스템임플란트",
-  "career.osstem.role": "윈도우 앱 개발자",
-  "career.osstem.description": "글로벌/국내 치과용 프로그램 개발, 전자차트/보험차트 진료 업무, 보험청구 모듈 개발",
-  "career.bluebird.title": "블루버드소프트",
-  "career.bluebird.role": "임베디드 개발자",
-  "career.bluebird.description": "WinCE/WM 단말기 모뎀 디바이스 개발, 이동통신사 품질보증(SKT, KT)",
-  "projects.title": "프로젝트",
-  "projects.personal": "개인 프로젝트",
-  "projects.portfolio.title": "개인 포트폴리오",
-  "projects.portfolio.description": "NextJS 기반 개인 포트폴리오 웹사이트. SSG, E2E 테스트(Playwright), GitHub Actions CI/CD.",
-  "projects.blog.title": "개인 기술블로그",
-  "projects.blog.description": "Gatsby 기반 기술블로그. 40개 이상의 기술 정보 공유, 카테고리/태그 기반 탐색.",
-  "projects.presentation": "발표 & 기고",
-  "projects.wadizPerf.title": "와디즈 펀딩/프리오더 상세페이지 성능 개선",
-  "projects.wadizPerf.description": "이미지 지연 로딩, 콘텐츠 리플로우 방지, 이미지 프리로딩으로 로딩 속도 개선",
-  "projects.patent.title": "웹 전자 문서 편집 동작 방법 특허",
-  "projects.patent.description": "모듈간 통신 데이터/구조 모델링, 렌더링 구조 특허 출원",
-  "contact.title": "연락하기",
-  "contact.name": "이름",
-  "contact.name.placeholder": "이름을 입력하세요",
-  "contact.email": "이메일",
-  "contact.email.placeholder": "이메일 주소를 입력하세요",
-  "contact.message": "메시지",
-  "contact.message.placeholder": "보내고 싶은 메시지를 입력하세요",
-  "contact.submit": "메시지 보내기",
-  "contact.sending": "전송 중...",
-  "contact.success": "메일이 성공적으로 전송되었습니다!",
-  "contact.error": "메일 전송에 실패했습니다. 다시 시도해 주세요.",
-  "contact.networkError": "메일 전송 중 오류가 발생했습니다.",
-  "contact.fallback": "또는 직접 이메일 보내기",
-  "contact.validation.name": "이름을 입력해주세요.",
-  "contact.validation.email": "이메일을 입력해주세요.",
-  "contact.validation.emailFormat": "올바른 이메일 형식을 입력해주세요.",
-  "contact.validation.message": "메시지를 입력해주세요.",
-  "contact.validation.messageLength": "메시지는 최소 10자 이상 입력해주세요.",
-  "chat.title": "AI 포트폴리오 어시스턴트",
-  "chat.placeholder": "포트폴리오에 대해 궁금한 점을 물어보세요...",
-  "chat.send": "전송",
-  "chat.chip.wadiz": "와디즈에서 어떤 업무를 했나요?",
-  "chat.chip.hancom": "한글과컴퓨터에서는 어떤 기술을 사용했나요?",
-  "chat.chip.skills": "주요 기술 스택은 무엇인가요?",
-  "chat.chip.process": "FE 개발 프로세스란 무엇인가요?",
-  "chat.chip.test": "테스트 자동화는 어떻게 구축했나요?",
-  "chat.chip.performance": "성능 개선 경험이 있나요?",
-  "chat.unavailable": "AI 채팅이 현재 사용할 수 없습니다.",
-  "chat.error": "응답을 가져오는 중 오류가 발생했습니다.",
-  "chat.rateLimit": "요청이 너무 많습니다. 잠시 후 다시 시도해주세요.",
-  "chat.welcome": "안녕하세요! 홍승아의 포트폴리오에 대해 궁금한 점을 물어보세요."
+  "site": {
+    "title": "홍승아 포트폴리오",
+    "description": "프론트엔드에서 풀스택·AI 워크플로까지 반경을 넓혀온 개발자, 홍승아입니다."
+  },
+  "nav": {
+    "home": "홈",
+    "about": "소개",
+    "career": "경력",
+    "projects": "프로젝트",
+    "study": "학습 아카이브",
+    "faq": "FAQ",
+    "contact": "연락하기",
+    "sections": "섹션 목차",
+    "tablist": "포트폴리오 / AI 채팅 탭",
+    "skipToContent": "본문 바로가기",
+    "backToPortfolio": "포트폴리오로 돌아가기",
+    "tab": {
+      "portfolio": "포트폴리오",
+      "chat": "AI 채팅"
+    }
+  },
+  "theme": {
+    "toggle": "테마 전환"
+  },
+  "lang": {
+    "toggle": "EN",
+    "switchTo": "English로 전환"
+  },
+  "profile": {
+    "name": "홍승아",
+    "nameAlt": "Seungah Hong",
+    "role": "프론트엔드 개발자",
+    "headline": "프론트엔드에서 시작해 풀스택과 AI 워크플로까지 반경을 넓혀온 개발자입니다. 커머스 서비스의 레거시 현대화, 글로벌 전환, 클라우드 이전을 직접 수행했습니다.",
+    "location": "대한민국 서울",
+    "photoAlt": "프로필 사진"
+  },
+  "about": {
+    "skills": "기술 스택",
+    "contact": "연락처",
+    "stats": {
+      "years": "경력",
+      "yearsUnit": "년",
+      "companies": "재직 회사",
+      "articles": "기술 아티클"
+    },
+    "descriptions": [
+      "펀딩·스토어·메이커페이지 스튜디오 등 메이커 서비스 전 영역을 다년간 책임지며, 레거시(JSP)에서 모던 스택(React·Vite·pnpm)으로, 국내에서 글로벌로, IDC 환경에서 클라우드로 이어지는 세대 교체를 실제로 수행했습니다.",
+      "개발 프로세스 자체를 Claude 기반 하네스로 코드화해 팀의 개발·품질 문화를 끌어올렸습니다.",
+      "변화하는 기술에 관심을 가지고 끊임없이 배우려는 자세를 가졌습니다.",
+      "개발 공유의 중요성을 알기에 기술블로그와 Notion에 지속적으로 공유하고 있습니다.",
+      "개발 시 걸림돌이 되는 업무는 적극적으로 해결하려 노력합니다."
+    ],
+    "skillGroups": {
+      "frontend": {
+        "label": "Frontend",
+        "items": [
+          "React", "TypeScript", "Next.js", "Gatsby",
+          "Redux", "Redux Toolkit", "Recoil", "Zustand", "Jotai", "SWR",
+          "Tanstack Query", "React Hook Form",
+          "i18next", "MSW",
+          "Tailwind CSS", "Styled-Components", "SCSS", "CSS Modules",
+          "HTML5", "CSS3", "JavaScript"
+        ]
+      },
+      "build": {
+        "label": "Build & Tooling",
+        "items": [
+          "Vite", "Webpack", "esbuild", "pnpm",
+          "FSD (Feature-Sliced Design)",
+          "ESLint 9 (flat config)", "Prettier", "stylelint", "husky",
+          "Tree Shaking"
+        ]
+      },
+      "test": {
+        "label": "Test",
+        "items": ["Vitest", "Jest", "Playwright", "Cypress", "Storybook"]
+      },
+      "devops": {
+        "label": "DevOps & Infra",
+        "items": [
+          "AWS (EKS, S3, SES, ECR)", "Kubernetes", "Helm", "Docker",
+          "GitHub Actions", "OIDC 배포 인증", "Qdrant", "FastAPI"
+        ]
+      },
+      "ai": {
+        "label": "AI Tooling",
+        "items": [
+          "Claude Code", "하네스 엔지니어링", "RAG (하이브리드 검색)",
+          "MCP", "FastMCP", "Figma MCP"
+        ]
+      },
+      "monitoring": {
+        "label": "Monitoring",
+        "items": ["Sentry"]
+      },
+      "collaboration": {
+        "label": "Collaboration",
+        "items": ["Git", "Jira", "Confluence", "Slack", "Figma", "Notion"]
+      }
+    }
+  },
+  "career": {
+    "title": "경력",
+    "subtitle": "{companies}개 회사에서 쌓은 {years}년의 개발 경력입니다. 회사를 선택하면 상세 페이지로 이동합니다.",
+    "present": "재직 중",
+    "techStack": "기술 스택",
+    "highlights": "주요 업무",
+    "more": "외 {count}건",
+    "details": "상세 보기",
+    "anchorLabel": "항목 링크",
+    "breadcrumb": "현재 위치",
+    "related": "다른 경력 보기",
+    "section": {
+      "technical": "기술내용",
+      "work": "업무내용"
+    },
+    "labels": {
+      "role": "Role",
+      "url": "URL",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "devops": "DevOps",
+      "windows": "Windows"
+    },
+    "companies": {
+      "wadiz": {
+        "title": "와디즈",
+        "logoAlt": "와디즈 로고",
+        "role": "프론트엔드 개발자",
+        "description": "펀딩·스토어·메이커 스튜디오 전 영역을 담당하며 스토어 상세페이지와 글로벌 메이커 스튜디오를 신규 구축했고, 레거시 JSP 모놀리스의 점진적 React 전환과 AWS EKS 클라우드 이전, Claude Code 기반 AI 개발 워크플로 구축을 수행했습니다.",
+        "summary": "펀딩·스토어·메이커페이지 스튜디오 등 메이커 서비스 전 영역을 담당하며, 레거시(JSP)에서 모던 스택(React·Vite·pnpm)으로, 국내에서 글로벌로, IDC에서 클라우드로 이어지는 세대 교체를 수행했습니다.",
+        "items": {
+          "fe-process": {
+            "title": "FE 개발 프로세스 제안 및 도입",
+            "linkTitle": "FE 개발 프로세스 아티클",
+            "imageAlts": ["FE 개발 프로세스 다이어그램"],
+            "points": [
+              "기획·디자인·API 검토, 도입기술 검토, 개발 일정 산정, 후속과제 관리를 하나의 개발 프로세스로 정립해 팀에 도입했습니다.",
+              "실질적인 개발 일정 산정과 누락 항목 점검을 위해 팀에 직접 제안했고, 현재 프로젝트 진행의 기준으로 활용되고 있습니다.",
+              "타부서와 병렬로 업무를 진행하기 위해 스토리북·API 인터페이스 공유·MSW를 도입해 개발 속도와 효율성을 높였습니다.",
+              "개발 완료 이후에도 성능 개선·웹접근성 개선 등 후속 작업을 이어가며 서비스 품질과 안정성을 끌어올렸습니다."
+            ]
+          },
+          "msw": {
+            "title": "MSW(모킹 서비스) 도입 및 모킹 데이터 체계 구축",
+            "linkTitle": "MSW(모킹 라이브러리) 도입 아티클",
+            "imageAlts": ["MSW 모킹 서버 구성도", "MSW 모킹 데이터 적용 화면"],
+            "points": [
+              "BE API 완성 전에도 FE가 데이터 연동과 검증을 진행할 수 있도록 FE 전용 모킹 서버를 MSW로 구축했습니다.",
+              "개발 단계에서 API 인터페이스를 미리 공유받아 모킹 데이터를 정의하고, BE/FE 병렬 개발과 기획·디자인 조기 검토를 가능하게 했습니다.",
+              "동일한 모킹 데이터를 서버 모킹·스토리북·유닛테스트·Playwright에서 공통으로 재사용해 유지 비용을 낮췄습니다."
+            ]
+          },
+          "productivity": {
+            "title": "개발 생산성 향상",
+            "linkTitle": "CRA to Vite 마이그레이션 아티클",
+            "imageAlts": [],
+            "points": [
+              "패키지 업그레이드(React v16.8 → v18.2)로 동시성 렌더링 기반의 최신 생태계를 사용할 수 있게 했습니다.",
+              "빌드 시스템을 webpack(CRA)에서 Vite 6.0으로 전환해 개발 서버 기동 및 빌드 속도를 개선했습니다.",
+              "yarn classic에서 pnpm으로 전환해 유령 의존성과 저장 공간 문제를 해결했습니다.",
+              "FSD(Feature-Sliced Design) 아키텍처를 적용해 레이어 경계를 명확히 했습니다."
+            ]
+          },
+          "standardization": {
+            "title": "개발 표준화 및 반복 업무 자동화",
+            "imageAlts": [],
+            "points": [
+              "ESLint 9(flat config)·Prettier·stylelint·husky를 스튜디오 전반에 일괄 표준화해 코드 스타일 논쟁을 제거했습니다.",
+              "커밋 컨벤션을 스킬로 자동화해 이슈키·타입 형식을 강제했습니다.",
+              "스케줄 워크플로로 반복 업무를 제거했습니다 — 다국어 브랜치 자동 병합, 디자인 토큰 자동 동기화, 오래된 브랜치 정리, 정기 배포 브랜치 준비.",
+              "PR 자동 코드리뷰(Claude Code Action)를 CI에 상주시켜 리뷰 리드타임을 단축했습니다."
+            ]
+          },
+          "stability": {
+            "title": "서비스 안정성 향상 (테스트 자동화 · 관측성)",
+            "linkTitle": "Playwright 도입 아티클",
+            "imageAlts": ["Playwright E2E 테스트 실행 결과"],
+            "points": [
+              "서비스 확장으로 늘어난 라이브 이슈를 빠르게 파악·대응하기 위해 Vitest 유닛/통합 테스트와 Playwright E2E 테스트를 도입했습니다.",
+              "QA팀 검증 시나리오를 기반으로 테스트 코드를 작성하고, 개발자 검증 Flow를 자동화 서버로 구축했습니다.",
+              "GitHub Actions 스케줄 실행·라이브 환경 실행 가드·Slack 알림을 연동해 실패를 즉시 감지하도록 했습니다.",
+              "Storybook에 MSW·react-query를 통합 구성해 API 없이도 화면 검증이 가능한 개발 환경을 마련했습니다.",
+              "Cypress sanity 테스트로 출발해 Playwright E2E로 전환하고, 앱별 독립 E2E 워크스페이스를 구축했습니다.",
+              "테스트 견고성을 개선했습니다 — data-testid 의존 셀렉터를 role 쿼리·로케일 무관 라벨 매처로 전환하고, 즉시 검사를 waitFor 기반 대기로 변경해 다국어·다환경에서 깨지지 않게 만들었습니다.",
+              "ts-ignore 제거로 타입 안정성을 개선하고, i18n 다국어 키 존재 여부 검증 장치를 추가해 번역 키 누락으로 인한 런타임 오류를 사전에 차단했습니다.",
+              "Sentry 기반 프론트엔드 에러 모니터링을 운영하며 릴리스 속성을 코드 기반으로 관리하고 환경별 속성을 분리했습니다."
+            ]
+          },
+          "performance": {
+            "title": "성능 최적화",
+            "linkTitle": "gif to mp4 변환 아티클",
+            "imageAlts": [],
+            "points": [
+              "이미지 지연 로딩·프리로딩·리플로우 방지로 로딩 속도와 CLS(Cumulative Layout Shift)를 개선했고, 그 과정을 기술블로그에 기고했습니다.",
+              "gif를 mp4로 변환하고 뷰포트·iOS 저전력 모드 기반 재생 제어를 적용해 미디어 비용을 절감했습니다.",
+              "탭별 렌더링 최적화와 디자인시스템 청크 병합 등 번들 분할 전략을 개선했습니다."
+            ]
+          },
+          "ai-workflow": {
+            "title": "AI 개발 워크플로 구축 (Claude Code 기반 플러그인 · 스킬 · 하네스)",
+            "linkTitle": "Frontend 하네스 엔지니어링 아티클",
+            "imageAlts": [],
+            "points": [
+              "개발 전 과정을 실행 가능한 파이프라인으로 코드화했습니다 (research → prd → develop → review → verify 오케스트레이터).",
+              "비용 최적 순서를 설계했습니다 — 정적 분석 5종을 병렬 선행하고, 통과한 경우에만 비용이 큰 E2E 검증을 실행합니다.",
+              "meta-harness — 하네스 자체(문서·에이전트·훅)의 결함을 진단·개선하는 메타 루프를 만들었습니다. 신호를 요약 없이 원형 trace로 보존하고, 실패 진단을 병렬 팬아웃하며, 기존을 후퇴시키지 않는 가산적(additive-first) 패치와 사용자 승인 게이트를 강제합니다.",
+              "product-spec — 기획 초안 → PRD → 적대적 검증 → 인수조건(Given-When-Then)에 이르는 7단계 하네스로 개발 착수 전 기획 품질을 검증합니다.",
+              "결정론적 가드레일을 hook으로 강제했습니다 — 위험 명령 차단·민감 파일 생성 차단·자동 린트. \"판단이 필요한 것은 rule, 반드시 지켜야 하는 것은 hook\"이라는 분기 원칙을 적용했습니다.",
+              "디자인-투-코드 자동화 — Figma에서 디자인 시스템 컴포넌트와 이메일 템플릿을 자동 생성하는 스킬을 만들었습니다.",
+              "사내 코드 RAG — 시맨틱+키워드 하이브리드 검색(RRF 결합)과 리랭커 재순위화, 함수/클래스 단위 구조적 청킹, Git diff 기반 증분 동기화, REST·MCP 이중 인터페이스로 구성했습니다."
+            ]
+          },
+          "legacy-monolith": {
+            "title": "레거시 모놀리스(Spring MVC + JSP) 유지보수 및 점진적 현대화",
+            "imageAlts": [],
+            "points": [
+              "5년 8개월간 SSR 모놀리스를 중단 없이 운영하면서 신규 프로젝트와 병행해 점진적으로 현대화했습니다.",
+              "JSP 화면 안에 React 컴포넌트를 얹는 하이브리드 구조를 운영했습니다.",
+              "법무·정책 개정의 상시 반영(약관 버전 관리 포함)을 5년간 담당했습니다.",
+              "레거시에서 신규 프론트엔드/클라우드로 URL 매핑을 넘기는 이관을 마무리하고 JSON-LD 기반 SEO 정비를 병행했습니다."
+            ]
+          },
+          "fullstack-devops": {
+            "title": "풀스택 / DevOps 확장",
+            "imageAlts": [],
+            "points": [
+              "Spring Boot 백엔드 API를 직접 개발했습니다 — 관리자 권한을 등급화하고 변경 전/후 스냅샷 감사 로그를 적재해 추적성을 확보했습니다.",
+              "위험 API를 제거해 공격 표면을 축소하고 계정 발급 창구를 통제된 절차로 일원화했습니다(보안을 \"기능 추가\"와 \"위험 제거\" 양면으로 처리 / ISMS 대응).",
+              "IDC 환경에서 AWS EKS 클라우드로 이전했습니다 — Spring Cloud Kubernetes Config로 공통/서비스별 ConfigMap을 분리 주입했습니다.",
+              "Java 8 런타임 제약에 맞춰 Spring Cloud BOM을 호환 트레인으로 조정했습니다 (최신 버전 상향보다 안정성을 우선한 판단).",
+              "GitHub Actions OIDC 기반 다환경 배포 파이프라인을 구성해 장기 액세스 키를 제거했습니다.",
+              "Helm 차트로 서비스 환경을 구성하고 시크릿을 코드에서 걷어내 환경변수로 외부화했습니다.",
+              "프론트 측 클라우드 대응으로 호스트 URL을 환경변수로 외부화하고 CORS를 정비했습니다."
+            ]
+          },
+          "store-detail": {
+            "title": "와디즈 스토어 상세페이지 신규 구축",
+            "linkTitle": "와디즈 스토어 오픈 뉴스",
+            "imageAlts": ["와디즈 스토어 상세페이지 메인 화면", "와디즈 스토어 상세페이지 구매 프로세스 화면"],
+            "points": [
+              "백지 상태에서 컴포넌트 설계부터 API 연동, 결제 동선, 반응형·이미지 최적화, 출시 후 안정화까지 완결한 첫 대형 오너십 프로젝트입니다.",
+              "스토어 상세페이지 메인 UI와 탭(스토리·만족도평가·반품/교환) 기능을 개발했습니다.",
+              "상품 옵션 선택과 재고수량 관리를 포함한 구매 프로세스를 구현했습니다."
+            ]
+          },
+          "supporter-club": {
+            "title": "와디즈 멤버십(서포터클럽) 신규 오픈",
+            "linkTitle": "와디즈 멤버십(서포터클럽) 소개",
+            "imageAlts": ["와디즈 서포터클럽 소개 화면", "와디즈 서포터클럽 가입 프로세스 화면"],
+            "points": [
+              "와디즈 서비스 안에서 다양한 멤버십 콘텐츠와 혜택을 제공하는 서포터클럽 UI와 서포터 사이드 전반을 담당했습니다.",
+              "펀딩/스토어 결제, 서포터클럽 가입 프로세스, 서포터클럽 이벤트 페이지를 개발했습니다."
+            ]
+          },
+          "reward-option": {
+            "title": "상품 3 depth 서브옵션 및 리워드 옵션 개선",
+            "linkTitle": "와디즈 상품 옵션 개선 뉴스",
+            "imageAlts": ["와디즈 펀딩 상품옵션 개선 화면 1", "와디즈 펀딩 상품옵션 개선 화면 2"],
+            "points": [
+              "기존 1depth 서브옵션을 3depth까지 지원하도록 확장하고, 단일/세트 구성 상품의 추가·변경·삭제를 구현했습니다.",
+              "옵션 없는 상품·직접입력 등 레거시 기능과 디자인을 React 및 디자인시스템 기준으로 개편했습니다.",
+              "리워드 선택·펀딩 결제·결제 예약 동선을 P1~P3 3단계에 걸쳐 개편했습니다."
+            ]
+          },
+          "maker-studio": {
+            "title": "펀딩/스토어 메이커 스튜디오 운영",
+            "linkTitle": "리워드 메이커 스튜디오 개편 안내",
+            "imageAlts": ["와디즈 펀딩 메이커 스튜디오 화면", "와디즈 펀딩 상세페이지 화면"],
+            "points": [
+              "펀딩 프로젝트 개설에 필요한 메이커스튜디오 기능과 UI를 개발했습니다.",
+              "서포터(펀딩·스토어) / 메이커(스튜디오) 서비스의 유지보수와 운영 이슈 대응을 상시 담당했습니다."
+            ]
+          }
+        },
+        "works": {
+          "work-global": {
+            "title": "글로벌 서비스 전환",
+            "points": [
+              "국내 전용 서비스를 i18next 기반 글로벌 다국어 서비스로 전환했습니다 (한글 추출 → AI 번역 → 다국어 반영, 번역 자동 동기화 파이프라인 운영).",
+              "글로벌 메이커 스튜디오를 신규 구축했습니다 — 환율·화폐·국가 전역 설정, 리워드 설계, 정산정보/정산내역, 메이커 정보, 글로벌 1:1 문의."
+            ]
+          },
+          "work-pricing": {
+            "title": "요금제 개편 및 메이커 홈(대시보드) 개편",
+            "points": ["메이커 요금제 체계와 메이커 홈 대시보드를 전면 개편했습니다."]
+          },
+          "work-commerce-ops": {
+            "title": "커머스 운영 도구 구축",
+            "points": [
+              "위탁 배송 서비스(홈·판매관리·입고요청)를 신규 구축하고 엑셀 일괄 등록을 지원했습니다.",
+              "배송 일괄 관리와 상품금액 일괄 수정 기능을 구현했습니다.",
+              "\"펀딩 없이 스토어 입점하기\" 신규 동선을 스튜디오·어드민·서포터 전반에서 구현했습니다."
+            ]
+          },
+          "work-story": {
+            "title": "스토리 도메인 신규 구축",
+            "points": ["스토리 상세/홈, 스토리 번역, 다국어 대응을 포함한 스토리 도메인을 신규 구축했습니다."]
+          },
+          "work-preorder": {
+            "title": "예약구매(프리오더) 및 글로벌·앵콜 펀딩 신규 구축",
+            "points": ["예약구매(프리오더)와 글로벌/앵콜 펀딩 서비스를 신규 구축했습니다."]
+          },
+          "work-cloud": {
+            "title": "클라우드 이전 대응",
+            "points": ["도메인 전환과 동적 URL 생성을 포함한 프론트엔드 클라우드 이전 작업을 대응했습니다."]
+          }
+        }
+      },
+      "hancom": {
+        "title": "한글과컴퓨터",
+        "logoAlt": "한글과컴퓨터 로고",
+        "role": "프론트엔드 개발자",
+        "description": "웹한글·웹한글기안기의 Canvas 기반 렌더링과 엔진 모델을 개발하고, 한글 C++ 엔진을 JavaScript로 포팅했습니다.",
+        "summary": "웹한글·웹한글기안기의 Canvas 기반 렌더링과 엔진 모델을 개발했으며, C++ 한글 엔진을 JavaScript로 포팅했습니다.",
+        "items": {
+          "webhwp-drafter": {
+            "title": "웹한글기안기 개발",
+            "imageAlts": ["웹한글기안기 로고"],
+            "points": [
+              "웹한글기안기의 엔진모델·렌더링 관련 액션과 기능을 개발했습니다.",
+              "프레임 관련 툴바·컨텍스트메뉴·다이얼로그·단축키의 엔진 연동과 UI 기능을 개발했습니다.",
+              "고객지원 컨트롤 OpenAPI 제공 기능을 개발했습니다."
+            ]
+          },
+          "webhwp": {
+            "title": "웹한글 개발",
+            "imageAlts": ["웹한글 로고"],
+            "points": [
+              "이벤트(마우스·키보드)를 바탕으로 Canvas View에 그리는 렌더링 로직을 개발했습니다.",
+              "프레임(툴바·메뉴·모달)과 웹한글 엔진 간 통신을 위한 데이터/구조 모델링을 담당했습니다.",
+              "한글 C++ 엔진 코드를 웹한글 JavaScript 엔진 코드로 포팅했습니다.",
+              "웹한글 동시편집 액션·UI 업무를 지원하고 웹서비스에 필요한 상태표시 기능을 추가했습니다."
+            ]
+          }
+        }
+      },
+      "osstem": {
+        "title": "오스템임플란트",
+        "logoAlt": "오스템임플란트 로고",
+        "role": "윈도우 앱 개발자",
+        "description": "국내·글로벌 치과용 프로그램의 전자차트/보험차트 진료 입력과 심사평가원 보험청구(EDI) 모듈을 개발했습니다.",
+        "summary": "국내·글로벌 치과용 프로그램의 전자차트/보험차트 진료 입력과 심사평가원 보험청구(EDI) 모듈을 개발했습니다.",
+        "items": {
+          "global-dental": {
+            "title": "글로벌 치과용 프로그램 개발",
+            "imageAlts": ["글로벌 치과용 프로그램 로고"],
+            "points": [
+              "WPF·C# 기반 윈도우 애플리케이션으로 전자차트/보험차트의 진료 입력과 수정·삭제 기능을 제공하는 모듈을 개발했습니다.",
+              "치과 진료 입력 내용을 바탕으로 심사평가원에 보험을 청구하는 모듈(보험청구·EDI)을 개발했습니다."
+            ]
+          },
+          "domestic-dental": {
+            "title": "국내 치과용 프로그램 개발",
+            "imageAlts": ["국내 치과용 프로그램 로고"],
+            "points": [
+              "C/C++·MFC 기반 윈도우 애플리케이션으로 보험제도 개정 때마다 진료·청구 기능을 개발했습니다.",
+              "심사평가원에서 수신한 전자문서(EDI)를 파싱해 사용자에게 보여주는 기능을 개발했습니다."
+            ]
+          }
+        }
+      },
+      "bluebird": {
+        "title": "블루버드소프트",
+        "logoAlt": "블루버드소프트 로고",
+        "role": "임베디드 개발자",
+        "description": "산업용 PDA 단말기의 모뎀 디바이스를 개발하고 이동통신사(SKT·KT) 품질보증 업무를 담당했습니다.",
+        "summary": "산업용 PDA 단말기의 모뎀 디바이스를 개발하고 이동통신사(SKT·KT) 품질보증 업무를 담당했습니다.",
+        "items": {
+          "modem-device": {
+            "title": "단말기 모뎀 디바이스 개발 / 이동통신사 품질보증",
+            "imageAlts": ["BPL-10 모뎀 디바이스 로고"],
+            "points": [
+              "WindowsCE 5.0 단말기(BPL-10)에 내장된 모뎀 디바이스를 개발하고 이동통신사(SKT·KT) 품질보증 업무를 담당했습니다.",
+              "WindowsCE 5.0, Windows Mobile 6.5 단말기(BIP-7000lite, BM-170)의 모뎀 디바이스를 개발했습니다."
+            ]
+          },
+          "wince-device": {
+            "title": "WinCE · Windows Mobile 단말기 개발",
+            "imageAlts": ["WinCE 5.0 단말기 로고"],
+            "points": [
+              "WindowsCE 5.0 단말기(BPL-10)를 이용한 현장 결제 기능을 개발하고 단말기를 유지보수했습니다.",
+              "Windows Mobile 5.1/6.1/6.5 버전 단말기를 개발했습니다."
+            ]
+          }
+        }
+      }
+    }
+  },
+  "projects": {
+    "title": "프로젝트",
+    "subtitle": "직접 만들고 운영 중인 결과물과 외부에 공개한 발표·기고입니다.",
+    "personal": "개인 프로젝트",
+    "presentation": "발표 & 기고",
+    "visit": "사이트 방문",
+    "view": "보러 가기",
+    "repo": "저장소",
+    "articleCount": "아티클 {count}편",
+    "screenshotAlt": "{title} 스크린샷",
+    "coverAlt": "{title} 대표 이미지",
+    "items": {
+      "portfolio": {
+        "title": "개인 포트폴리오",
+        "description": "하이브리드 2탭 아키텍처 — SSR 포트폴리오와 클라이언트 AI 챗을 한 화면에서 전환합니다. Next.js 16 App Router / React 19 / TypeScript 5 / Tailwind CSS 4 기반이며, Groq(Llama 3.3 70B) 스트리밍 챗봇과 키워드 감지 데이터 카드, ko/en 다국어, 다크모드, WAI-ARIA Tabs 접근성을 갖췄습니다."
+      },
+      "blog": {
+        "title": "개인 기술블로그",
+        "description": "Gatsby(SSG) 기반 기술블로그입니다. 69편의 아티클을 한/영 이중 언어로 작성해 총 138개 문서를 운영하며, 프론트엔드 → 빌드/번들러 → 테스트 → AI 하네스로 확장된 학습 궤적을 축적하고 있습니다."
+      },
+      "harness": {
+        "title": "AI 하네스 엔지니어링 시리즈",
+        "description": "팀 개발 프로세스를 실행 가능한 파이프라인으로 코드화한 과정과, 하네스가 스스로를 진단·개선하는 메타 루프 설계를 6편의 아티클로 정리했습니다.",
+        "links": {
+          "fe-harness": "Frontend 하네스 엔지니어링",
+          "meta-harness": "자가치유 하네스 엔지니어링 (meta-harness)",
+          "product-spec": "제품 스펙 하네스 (product-spec-harness)",
+          "rag": "시맨틱 + 키워드 하이브리드 검색 RAG 구축",
+          "llm-wiki": "LLM Wiki — 지식을 미리 정리해 두는 위키 패턴",
+          "marketplace": "Claude Code 플러그인 마켓플레이스 구축"
+        }
+      },
+      "wadizPerf": {
+        "title": "와디즈 펀딩/프리오더 상세페이지 성능 개선",
+        "description": "이미지 지연 로딩, 콘텐츠 리플로우 방지, 넓은 범위의 이미지 프리로딩으로 로딩 속도와 CLS를 개선하고 사내 기술블로그에 기고했습니다."
+      },
+      "patent": {
+        "title": "웹 전자 문서 편집 동작 방법 특허",
+        "description": "모듈 간 통신을 위한 데이터/구조 모델링과 actor·updator·render 렌더링 구조에 대한 특허를 출원했습니다. (출원번호 1020674990000 입력 후 검색)"
+      }
+    }
+  },
+  "study": {
+    "title": "학습 아카이브",
+    "subtitle": "{since}년부터 {articles}편의 기술 아티클을 한/영 이중 언어로 작성해 총 {documents}개 문서를 운영하고 있습니다. 아래 {links}개 링크는 주제군별로 정리한 것으로, React 17→18→19, Next.js 13→14→15, Vite 6→7→8처럼 릴리스마다 직접 검증해 기록했습니다.",
+    "visitBlog": "기술블로그 전체 보기",
+    "groups": {
+      "ai-harness": {
+        "label": "AI · 하네스",
+        "links": {
+          "rag": "시맨틱+키워드 하이브리드 검색 RAG 구축",
+          "llm-wiki": "LLM Wiki",
+          "marketplace": "Claude Code 마켓플레이스",
+          "fe-harness": "Frontend 하네스",
+          "meta-harness": "meta-harness",
+          "product-spec": "product-spec 하네스",
+          "figma-mcp": "Figma MCP 연동"
+        }
+      },
+      "react": {
+        "label": "React",
+        "links": {
+          "v19": "React v19",
+          "v19-next": "React Next (v19)",
+          "v18": "React v18",
+          "v18-migration": "React v18 migration",
+          "v17": "React v17",
+          "router-v6": "react-router v6"
+        }
+      },
+      "nextjs": {
+        "label": "Next.js",
+        "links": {
+          "v15-migration": "Next.js v15 migration",
+          "v14": "Next.js v14",
+          "v14-migration": "Next.js v14 migration",
+          "v13": "Next.js v13"
+        }
+      },
+      "state": {
+        "label": "상태관리",
+        "links": {
+          "overview": "리액트 상태관리 정리",
+          "redux": "Redux",
+          "redux-toolkit": "Redux Toolkit",
+          "redux-saga": "Redux-Saga",
+          "react-query": "react-query",
+          "react-query-v4": "react-query v4",
+          "react-query-v5": "react-query v5",
+          "recoil": "Recoil",
+          "jotai": "Jotai",
+          "zustand": "Zustand",
+          "mobx": "MobX",
+          "swr": "SWR"
+        }
+      },
+      "build": {
+        "label": "빌드 · 번들러 · 패키지",
+        "links": {
+          "vite6": "Vite 6.0",
+          "vite7": "Vite 7.0",
+          "vite8": "Vite 8.0",
+          "cra-to-vite": "CRA To Vite Migration",
+          "pnpm": "pnpm",
+          "esbuild": "esbuild",
+          "treeshaking": "Tree Shaking",
+          "unused-deps": "미사용 의존성 제거",
+          "dev-improvements": "개발 생산성 & 빌드 성능 개선"
+        }
+      },
+      "test": {
+        "label": "테스트",
+        "links": {
+          "playwright": "Playwright",
+          "cypress": "Cypress",
+          "jest": "Jest",
+          "storybook": "Storybook",
+          "msw": "MSW"
+        }
+      },
+      "form": {
+        "label": "폼",
+        "links": {
+          "basic": "Basic Form",
+          "rhf-v7": "react-hook-form v7",
+          "rhf-inside": "react-hook-form 톺아보기"
+        }
+      },
+      "language": {
+        "label": "언어 · 런타임",
+        "links": {
+          "typescript": "TypeScript",
+          "typescript7": "TypeScript 7.0",
+          "javascript": "JavaScript",
+          "ecmascript": "ECMAScript",
+          "nodejs": "Node.js",
+          "deno": "Deno",
+          "webassembly": "WebAssembly"
+        }
+      },
+      "styling": {
+        "label": "스타일링 · 성능",
+        "links": {
+          "css-in-js": "CSS-in-JS",
+          "emotion": "Emotion",
+          "fe-performance": "Front-End Performance",
+          "gif-to-mp4": "gif to mp4 변환"
+        }
+      },
+      "etc": {
+        "label": "프로세스 · 그외",
+        "links": {
+          "fe-process": "FE 개발 프로세스",
+          "cors": "CORS",
+          "graphql": "GraphQL",
+          "rxjs": "RxJS",
+          "svelte": "Svelte",
+          "canvas": "Canvas",
+          "gatsby-v5": "Gatsby v5"
+        }
+      }
+    }
+  },
+  "faq": {
+    "title": "자주 묻는 질문",
+    "subtitle": "경력·기술·연락에 대해 가장 많이 받는 질문을 정리했습니다.",
+    "items": {
+      "who": {
+        "question": "홍승아는 어떤 개발자인가요?",
+        "answer": "홍승아는 {years}년차 프론트엔드 개발자로, 현재 와디즈에서 펀딩·스토어·메이커 스튜디오 서비스를 담당하고 있습니다. 프론트엔드에서 출발해 Spring Boot 백엔드 API, AWS EKS 클라우드 이전, Claude Code 기반 AI 개발 워크플로까지 반경을 넓혀왔습니다."
+      },
+      "experience": {
+        "question": "총 경력과 재직 회사는 어떻게 되나요?",
+        "answer": "총 {years}년의 개발 경력을 {companies}개 회사에서 쌓았습니다. 와디즈(2020.11~현재) 프론트엔드, 한글과컴퓨터(2016.12~2020.11) 웹한글 Canvas 렌더링, 오스템임플란트(2013.04~2016.12) 치과용 윈도우 프로그램, 블루버드소프트(2010.06~2012.05) 임베디드 단말기 순입니다."
+      },
+      "skills": {
+        "question": "주요 기술 스택은 무엇인가요?",
+        "answer": "React·TypeScript·Next.js를 중심으로 합니다. 상태관리는 Redux Toolkit과 Tanstack Query, 테스트는 Vitest·Playwright·Storybook·MSW, 빌드는 Vite와 pnpm을 사용합니다. 백엔드는 Java·Spring Boot, 인프라는 AWS EKS·Kubernetes·Helm, AI 도구는 Claude Code와 RAG·MCP를 다룹니다."
+      },
+      "wadiz": {
+        "question": "와디즈에서 담당한 업무는 무엇인가요?",
+        "answer": "펀딩·스토어·메이커페이지 스튜디오 등 메이커 서비스 전 영역을 담당했습니다. 스토어 상세페이지와 글로벌 메이커 스튜디오를 신규 구축했고, 레거시 JSP 모놀리스를 5년 8개월간 운영하며 React로 점진 전환했으며, IDC 환경을 AWS EKS로 이전했습니다. 자세한 내용은 /career/wadiz 페이지에서 확인할 수 있습니다."
+      },
+      "test": {
+        "question": "테스트 자동화는 어떻게 구축했나요?",
+        "answer": "Cypress sanity 테스트에서 출발해 Playwright E2E로 전환하고 앱별 독립 E2E 워크스페이스를 구축했습니다. MSW 모킹 데이터를 서버 모킹·스토리북·유닛테스트·E2E에서 공통으로 재사용하고, data-testid 의존 셀렉터를 role 쿼리와 로케일 무관 라벨 매처로 바꿔 다국어·다환경에서도 깨지지 않도록 만들었습니다."
+      },
+      "ai-workflow": {
+        "question": "AI 개발 워크플로는 어떻게 구축했나요?",
+        "answer": "개발 전 과정을 research → prd → develop → review → verify 오케스트레이터로 코드화했습니다. 정적 분석 5종을 병렬 선행하고 통과한 경우에만 비용이 큰 E2E 검증을 실행하는 비용 최적 순서를 설계했으며, 하네스 자체를 진단·개선하는 meta-harness와 기획 품질을 검증하는 product-spec 하네스를 함께 운영합니다."
+      },
+      "performance": {
+        "question": "성능 개선 경험이 있나요?",
+        "answer": "있습니다. 와디즈 펀딩/프리오더 상세페이지의 성능을 개선해 2022년 8월 사내 기술블로그에 기고했습니다. 이미지 지연 로딩, 콘텐츠 리플로우 방지, 넓은 범위의 이미지 프리로딩을 적용해 로딩 속도와 CLS(Cumulative Layout Shift)를 개선했고, 이후 gif→mp4 변환과 번들 분할 전략 개선으로 미디어·번들 비용을 줄였습니다."
+      },
+      "blog": {
+        "question": "기술 공유 활동은 어떻게 하고 있나요?",
+        "answer": "{since}년부터 기술블로그에 {articles}편의 아티클을 한/영 이중 언어로 작성해 총 {documents}개 문서를 운영하고 있습니다. 이 포트폴리오에는 그중 {links}개 링크를 주제군별로 정리해 두었습니다. React 17→18→19, Next.js 13→14→15, Vite 6→7→8처럼 릴리스마다 직접 검증해 정리합니다."
+      },
+      "contact": {
+        "question": "연락은 어떻게 하면 되나요?",
+        "answer": "이메일 {email} 또는 이 페이지 하단의 연락 폼으로 문의할 수 있습니다. GitHub({github})과 기술블로그({blog})에서도 작업 내역을 확인할 수 있습니다."
+      }
+    }
+  },
+  "contact": {
+    "title": "연락하기",
+    "subtitle": "제안이나 궁금한 점이 있다면 편하게 남겨주세요.",
+    "name": "이름",
+    "namePlaceholder": "이름을 입력하세요",
+    "email": "이메일",
+    "emailPlaceholder": "이메일 주소를 입력하세요",
+    "message": "메시지",
+    "messagePlaceholder": "보내고 싶은 메시지를 입력하세요",
+    "submit": "메시지 보내기",
+    "sending": "전송 중...",
+    "success": "메일이 성공적으로 전송되었습니다!",
+    "error": "메일 전송에 실패했습니다. 다시 시도해 주세요.",
+    "networkError": "메일 전송 중 오류가 발생했습니다.",
+    "fallback": "또는 직접 이메일 보내기",
+    "validation": {
+      "name": "이름을 입력해주세요.",
+      "email": "이메일을 입력해주세요.",
+      "emailFormat": "올바른 이메일 형식을 입력해주세요.",
+      "message": "메시지를 입력해주세요.",
+      "messageLength": "메시지는 최소 10자 이상 입력해주세요."
+    }
+  },
+  "chat": {
+    "title": "AI 포트폴리오 어시스턴트",
+    "placeholder": "포트폴리오에 대해 궁금한 점을 물어보세요...",
+    "send": "전송",
+    "unavailable": "AI 채팅이 현재 사용할 수 없습니다.",
+    "error": "응답을 가져오는 중 오류가 발생했습니다.",
+    "rateLimit": "요청이 너무 많습니다. 잠시 후 다시 시도해주세요.",
+    "welcome": "안녕하세요! 홍승아의 포트폴리오에 대해 궁금한 점을 물어보세요.",
+    "tab": {
+      "welcomeTitle": "무엇이든 물어보세요",
+      "welcomeSubtitle": "승아의 경력, 프로젝트, 기술에 대해 AI에게 질문하세요"
+    },
+    "chips": {
+      "wadiz": "와디즈에서 어떤 업무를 했나요?",
+      "hancom": "한글과컴퓨터에서는 어떤 기술을 사용했나요?",
+      "skills": "주요 기술 스택은 무엇인가요?",
+      "process": "FE 개발 프로세스란 무엇인가요?",
+      "test": "테스트 자동화는 어떻게 구축했나요?",
+      "performance": "성능 개선 경험이 있나요?"
+    }
+  }
 }

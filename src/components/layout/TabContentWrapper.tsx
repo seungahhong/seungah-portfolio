@@ -5,9 +5,11 @@ import { ChatTab } from '@/components/chat/ChatTab';
 
 interface TabContentWrapperProps {
   children: React.ReactNode;
+  /** 서버가 결정한 로케일 — 하이드레이션 전에도 챗 탭이 올바른 언어로 렌더링되도록 전달한다 */
+  locale: string;
 }
 
-export function TabContentWrapper({ children }: TabContentWrapperProps) {
+export function TabContentWrapper({ children, locale }: TabContentWrapperProps) {
   const { activeTab } = useTab();
 
   return (
@@ -27,9 +29,9 @@ export function TabContentWrapper({ children }: TabContentWrapperProps) {
         id="tabpanel-chat"
         role="tabpanel"
         aria-labelledby="tab-chat"
-        className={activeTab === 'chat' ? 'flex flex-col h-[calc(100vh-3.5rem)]' : 'hidden'}
+        className={activeTab === 'chat' ? 'flex flex-col h-[calc(100dvh-3rem)]' : 'hidden'}
       >
-        <ChatTab />
+        <ChatTab locale={locale} />
       </div>
     </>
   );

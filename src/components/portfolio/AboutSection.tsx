@@ -1,48 +1,88 @@
 import Image from 'next/image';
-import { t } from '@/lib/i18n/t';
-import { profileData } from '@/helpers';
+import type { Locale } from '@/lib/i18n/constants';
+import { t, tList } from '@/lib/i18n/t';
+import { blogStats, careers, experienceYears, profileData } from '@/helpers';
 import SkillBadge from '@/components/ui/SkillBadge';
+import { blogHomeUrl } from '@/lib/blog';
 
 interface AboutSectionProps {
-  locale: string;
+  locale: Locale;
 }
 
 export default function AboutSection({ locale }: AboutSectionProps) {
-  const name = locale === 'ko' ? profileData.name.ko : profileData.name.en;
-  const role = locale === 'ko' ? profileData.role.ko : profileData.role.en;
+  const name = t(locale, 'profile.name');
+  const role = t(locale, 'profile.role');
+
+  /** GEO 원칙 — 구체 수치를 상단에 노출해 AI 검색이 인용할 근거를 만든다 */
+  const stats = [
+    {
+      value: `${experienceYears}${t(locale, 'about.stats.yearsUnit')}`,
+      label: t(locale, 'about.stats.years'),
+    },
+    { value: `${careers.length}`, label: t(locale, 'about.stats.companies') },
+    { value: `${blogStats.articles}`, label: t(locale, 'about.stats.articles') },
+  ];
 
   return (
-    <section id="about" aria-labelledby="about-heading" className="pt-20 pb-16">
+    <section id="about" aria-labelledby="about-heading" className="pt-16 pb-16 scroll-mt-28">
       {/* Hero */}
-      <div className="animate-fade-in-up text-center mb-16">
-        <div className="mb-6">
-          <Image
-            src="/profile_logo.webp"
-            alt={`${name} profile photo`}
-            width={120}
-            height={120}
-            className="rounded-full object-cover mx-auto shadow-lg"
-            priority
-          />
+      <div className="animate-fade-in-up mb-10">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
+          {/*
+            프로필 사진은 어떤 뷰포트에서도 정원을 유지해야 한다.
+            flex 컨테이너 안에서 늘어나거나 찌그러지지 않도록 shrink-0 + 고정 크기 + aspect-square를 함께 건다.
+          */}
+          <div className="shrink-0 w-[7.5rem] h-[7.5rem] sm:w-36 sm:h-36 aspect-square rounded-full overflow-hidden shadow-lg">
+            <Image
+              src="/profile_logo.webp"
+              alt={`${name} ${t(locale, 'profile.photoAlt')}`}
+              width={144}
+              height={144}
+              className="w-full h-full object-cover"
+              priority
+            />
+          </div>
+
+          <div className="min-w-0 text-center sm:text-left">
+            <h1
+              id="about-heading"
+              className="text-5xl sm:text-6xl font-bold tracking-tight mb-3"
+              style={{ letterSpacing: '-0.03em' }}
+            >
+              {name}
+            </h1>
+            <p className="text-xl text-[#86868b] font-medium">{role}</p>
+          </div>
         </div>
-        <h1
-          id="about-heading"
-          className="text-5xl sm:text-6xl font-bold tracking-tight mb-3"
-          style={{ letterSpacing: '-0.03em' }}
-        >
-          {name}
-        </h1>
-        <p className="text-xl text-[#86868b] font-medium mb-6">{role}</p>
-        <p className="text-lg text-[#6e6e73] dark:text-[#a1a1a6] max-w-xl mx-auto leading-relaxed">
-          {t(locale, 'about.intro')}
+
+        {/* 답변 우선(answer-first) — "이 사람은 누구인가"에 대한 결론을 최상단에 둔다 */}
+        <p className="mt-8 text-lg text-[#424245] dark:text-[#a1a1a6] max-w-3xl leading-relaxed text-center sm:text-left">
+          {t(locale, 'profile.headline')}
         </p>
       </div>
 
+      {/* Stats */}
+      <dl className="animate-fade-in-up stagger-1 flex flex-wrap justify-center sm:justify-start gap-4 sm:gap-6 mb-8">
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            className="apple-surface px-6 py-4 text-center min-w-28 flex flex-col"
+          >
+            {/* 시각적으로는 수치가 먼저 오지만, 마크업은 dt(항목명) → dd(값) 순서를 지킨다 */}
+            <dt className="text-xs text-[#86868b] order-2 mt-1">{stat.label}</dt>
+            <dd className="text-2xl font-bold tracking-tight order-1">{stat.value}</dd>
+          </div>
+        ))}
+      </dl>
+
       {/* Description */}
-      <div className="animate-fade-in-up stagger-1 max-w-2xl mx-auto mb-16 space-y-4">
-        {['about.description.1', 'about.description.2', 'about.description.3'].map((key) => (
-          <p key={key} className="text-[#424245] dark:text-[#a1a1a6] leading-relaxed text-center">
-            {t(locale, key)}
+      <div className="animate-fade-in-up stagger-1 max-w-3xl mb-16 space-y-4">
+        {tList(locale, 'about.descriptions').map((description, index) => (
+          <p
+            key={index}
+            className="text-[#424245] dark:text-[#a1a1a6] leading-relaxed text-center sm:text-left"
+          >
+            {description}
           </p>
         ))}
       </div>
@@ -53,13 +93,13 @@ export default function AboutSection({ locale }: AboutSectionProps) {
           {t(locale, 'about.skills')}
         </h2>
         <div className="space-y-5">
-          {profileData.skills.map((skillGroup) => (
-            <div key={skillGroup.category}>
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#86868b] mb-3">
-                {skillGroup.category}
-              </p>
+          {profileData.skillGroupKeys.map((groupKey) => (
+            <div key={groupKey}>
+              <h3 className="text-xs font-semibold uppercase tracking-widest text-[#86868b] mb-3">
+                {t(locale, `about.skillGroups.${groupKey}.label`)}
+              </h3>
               <div className="flex flex-wrap gap-2">
-                {skillGroup.items.map((skill) => (
+                {tList(locale, `about.skillGroups.${groupKey}.items`).map((skill) => (
                   <SkillBadge key={skill} label={skill} />
                 ))}
               </div>
@@ -77,7 +117,7 @@ export default function AboutSection({ locale }: AboutSectionProps) {
           {[
             { href: `mailto:${profileData.email}`, label: profileData.email, icon: 'email' },
             { href: profileData.github, label: 'GitHub', icon: 'github' },
-            { href: profileData.blog, label: 'Blog', icon: 'blog' },
+            { href: blogHomeUrl(locale), label: 'Blog', icon: 'blog' },
             { href: profileData.notion, label: 'Notion', icon: 'notion' },
           ].map((link) => (
             <a

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { streamChatResponse } from '../../../lib/chat/gemini';
+import { isChatConfigured, streamChatResponse } from '../../../lib/chat/groq';
 
 // Simple in-memory rate limiting
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -25,8 +25,7 @@ function isRateLimited(ip: string): boolean {
 }
 
 export async function GET() {
-  const available = !!process.env.GEMINI_API_KEY || !!process.env.GROQ_API_KEY;
-  return NextResponse.json({ available });
+  return NextResponse.json({ available: isChatConfigured() });
 }
 
 export async function POST(req: NextRequest) {
@@ -43,7 +42,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!process.env.GEMINI_API_KEY && !process.env.GROQ_API_KEY) {
+    if (!isChatConfigured()) {
       return NextResponse.json({ available: false }, { status: 503 });
     }
 
@@ -75,7 +74,7 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('Chat API error:', error);
 
-    // Forward Gemini quota/rate limit errors as 429
+    // Forward upstream quota/rate limit errors as 429
     const errMsg = error instanceof Error ? error.message : String(error);
     if (errMsg.includes('429') || errMsg.includes('quota') || errMsg.includes('Too Many Requests')) {
       return NextResponse.json(

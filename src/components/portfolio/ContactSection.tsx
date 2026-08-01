@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { useT } from '@/lib/i18n/useT';
+import type { Locale } from '@/lib/i18n/constants';
+import { t as translate } from '@/lib/i18n/t';
+import { profileData } from '@/helpers';
 
 const validateForm = (
   form: { name: string; email: string; message: string },
@@ -22,8 +24,17 @@ const validateForm = (
   return errors;
 };
 
-export default function ContactSection() {
-  const { t } = useT();
+interface ContactSectionProps {
+  /**
+   * 서버가 결정한 로케일.
+   * 클라이언트 컴포넌트지만 서버 렌더링 시점에도 올바른 언어가 나오도록 prop으로 받는다
+   * (컨텍스트만 쓰면 하이드레이션 전까지 기본 로케일로 렌더링되어 언어가 섞인다).
+   */
+  locale: Locale;
+}
+
+export default function ContactSection({ locale }: ContactSectionProps) {
+  const t = (key: string) => translate(locale, key);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<{ text: string; isFallback?: boolean } | null>(null);
@@ -73,7 +84,7 @@ export default function ContactSection() {
   ].join(' ');
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="py-20">
+    <section id="contact" aria-labelledby="contact-heading" className="py-20 scroll-mt-28">
       <h2
         id="contact-heading"
         className="text-4xl font-bold tracking-tight mb-4 animate-fade-in-up"
@@ -82,7 +93,7 @@ export default function ContactSection() {
         {t('contact.title')}
       </h2>
       <p className="text-[#86868b] mb-12 animate-fade-in-up stagger-1">
-        {t('contact.message.placeholder')}
+        {t('contact.subtitle')}
       </p>
 
       <div className="max-w-xl animate-fade-in-up stagger-2">
@@ -102,7 +113,7 @@ export default function ContactSection() {
               required
               value={form.name}
               onChange={handleChange}
-              placeholder={t('contact.name.placeholder')}
+              placeholder={t('contact.namePlaceholder')}
               className={inputClass}
             />
           </div>
@@ -118,7 +129,7 @@ export default function ContactSection() {
               required
               value={form.email}
               onChange={handleChange}
-              placeholder={t('contact.email.placeholder')}
+              placeholder={t('contact.emailPlaceholder')}
               className={inputClass}
             />
           </div>
@@ -134,7 +145,7 @@ export default function ContactSection() {
               rows={5}
               value={form.message}
               onChange={handleChange}
-              placeholder={t('contact.message.placeholder')}
+              placeholder={t('contact.messagePlaceholder')}
               className={`${inputClass} resize-none`}
             />
           </div>
@@ -162,7 +173,7 @@ export default function ContactSection() {
               <p>{result.text}</p>
               {result.isFallback && (
                 <a
-                  href="mailto:gmm117@naver.com"
+                  href={`mailto:${profileData.email}`}
                   className="inline-block mt-2 text-[var(--accent)] font-medium hover:underline"
                 >
                   {t('contact.fallback')}

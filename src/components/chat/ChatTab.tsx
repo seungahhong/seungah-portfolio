@@ -2,14 +2,25 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useT } from '@/lib/i18n/useT';
+import { t as translate } from '@/lib/i18n/t';
 import { useChat } from '@/hooks/useChat';
 import { ChatMessage } from './ChatMessage';
 import { ChatInput } from './ChatInput';
 import { SuggestionChips } from './SuggestionChips';
 import { A2UICards } from './A2UICards';
 
-export function ChatTab() {
-  const { t } = useT();
+interface ChatTabProps {
+  /**
+   * 서버가 결정한 로케일.
+   * 컨텍스트만 쓰면 하이드레이션 전까지 기본 로케일로 렌더링되어 화면에 언어가 섞인다.
+   */
+  locale?: string;
+}
+
+export function ChatTab({ locale }: ChatTabProps) {
+  const { t: tContext, locale: contextLocale } = useT();
+  const activeLocale = locale ?? contextLocale;
+  const t = (key: string) => (locale ? translate(locale, key) : tContext(key));
   const { messages, inputValue, setInputValue, isStreaming, error, sendMessage } = useChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [available, setAvailable] = useState<boolean | null>(null);
@@ -44,14 +55,14 @@ export function ChatTab() {
                 className="text-3xl font-bold tracking-tight mb-3 text-[var(--foreground)]"
                 style={{ letterSpacing: '-0.03em' }}
               >
-                {t('chat.tab.welcome.title')}
+                {t('chat.tab.welcomeTitle')}
               </h2>
               <p className="text-base text-[#86868b] leading-relaxed">
-                {t('chat.tab.welcome.subtitle')}
+                {t('chat.tab.welcomeSubtitle')}
               </p>
             </div>
             <div className="max-w-lg w-full animate-fade-in-up stagger-1">
-              <SuggestionChips onSelect={sendMessage} />
+              <SuggestionChips onSelect={sendMessage} locale={activeLocale} />
             </div>
           </div>
         ) : (
@@ -90,6 +101,7 @@ export function ChatTab() {
       {/* Input area */}
       <div className="flex-shrink-0 max-w-3xl mx-auto w-full px-4 pb-4">
         <ChatInput
+            locale={activeLocale}
           value={inputValue}
           onChange={setInputValue}
           onSend={sendMessage}

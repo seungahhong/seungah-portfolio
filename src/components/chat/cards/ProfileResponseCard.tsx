@@ -5,9 +5,9 @@ import { profileData } from '@/helpers';
 import SkillBadge from '@/components/ui/SkillBadge';
 
 export function ProfileResponseCard() {
-  const { t, locale } = useT();
-  const name = locale === 'ko' ? profileData.name.ko : profileData.name.en;
-  const role = locale === 'ko' ? profileData.role.ko : profileData.role.en;
+  const { t, tList } = useT();
+  const name = t('profile.name');
+  const role = t('profile.role');
 
   return (
     <div className="apple-surface p-6 mt-2 mb-2 animate-fade-in-up">
@@ -64,13 +64,13 @@ export function ProfileResponseCard() {
         <p className="text-[10px] font-semibold uppercase tracking-widest text-[#86868b]">
           {t('about.skills')}
         </p>
-        {profileData.skills.map((group) => (
-          <div key={group.category}>
+        {profileData.skillGroupKeys.map((groupKey) => (
+          <div key={groupKey}>
             <p className="text-[10px] uppercase tracking-wide text-[#86868b] mb-1.5">
-              {group.category}
+              {t(`about.skillGroups.${groupKey}.label`)}
             </p>
             <div className="flex flex-wrap gap-1.5">
-              {group.items.map((skill) => (
+              {tList(`about.skillGroups.${groupKey}.items`).map((skill) => (
                 <SkillBadge key={skill} label={skill} />
               ))}
             </div>

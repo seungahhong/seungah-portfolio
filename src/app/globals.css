@@ -8,6 +8,13 @@
   --border: rgba(0, 0, 0, 0.06);
   --accent: #0071e3;
   --accent-hover: #0077ed;
+  /*
+   * 세그먼티드 컨트롤(탭) — 선택된 알약이 트랙 위로 "떠 보여야" 한다.
+   * 다크 모드에서는 --surface가 --surface-secondary보다 어두워 이 관계가 뒤집히므로
+   * 전용 토큰으로 분리한다.
+   */
+  --segment-track: #ececef;
+  --segment-active: #ffffff;
 }
 
 .dark {
@@ -18,6 +25,8 @@
   --border: rgba(255, 255, 255, 0.08);
   --accent: #2997ff;
   --accent-hover: #40a9ff;
+  --segment-track: #1c1c1e;
+  --segment-active: #48484a;
 }
 
 @theme inline {
@@ -111,6 +120,41 @@ html {
 .stagger-4 { animation-delay: 0.4s; }
 .stagger-5 { animation-delay: 0.5s; }
 .stagger-6 { animation-delay: 0.6s; }
+
+/*
+ * 모션 최소화 설정 존중.
+ * 등장 애니메이션은 `both` fill-mode라 시작 전까지 opacity: 0 이므로,
+ * 애니메이션을 끄면 콘텐츠가 보이지 않을 수 있다. 즉시 최종 상태로 고정한다.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-fade-in,
+  .animate-scale-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 헤더 섹션 목차처럼 좁은 화면에서 가로 스크롤되는 영역용 */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
 /* Apple-style surface */
 .apple-surface {

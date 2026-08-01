@@ -1,22 +1,26 @@
 'use client';
 
 import { useT } from '../../lib/i18n/useT';
+import { t as translate } from '../../lib/i18n/t';
 
 interface SuggestionChipsProps {
+  /** 서버가 결정한 로케일 — 없으면 컨텍스트 로케일을 쓴다 */
+  locale?: string;
   onSelect: (message: string) => void;
 }
 
 const CHIP_KEYS = [
-  'chat.chip.wadiz',
-  'chat.chip.hancom',
-  'chat.chip.skills',
-  'chat.chip.process',
-  'chat.chip.test',
-  'chat.chip.performance',
+  'chat.chips.wadiz',
+  'chat.chips.hancom',
+  'chat.chips.skills',
+  'chat.chips.process',
+  'chat.chips.test',
+  'chat.chips.performance',
 ] as const;
 
-export function SuggestionChips({ onSelect }: SuggestionChipsProps) {
-  const { t } = useT();
+export function SuggestionChips({ onSelect, locale }: SuggestionChipsProps) {
+  const { t: tContext } = useT();
+  const t = (key: string) => (locale ? translate(locale, key) : tContext(key));
 
   return (
     <div className="px-2">

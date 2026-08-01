@@ -1,38 +1,28 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useT } from '@/lib/i18n/useT';
-import { careerProjectValues } from '@/helpers';
+import { careers } from '@/helpers';
+import { localizedPath } from '@/lib/i18n/constants';
 import SkillBadge from '@/components/ui/SkillBadge';
-import { careerProjectDetailType } from '@/helpers';
 
 export function CareerResponseCard() {
-  const { t } = useT();
+  const { t, locale } = useT();
 
   return (
     <div className="space-y-3 mt-2 mb-2">
-      {careerProjectValues.map((career, i) => {
-        const detail = careerProjectDetailType[career.href];
-        const techStackSet = new Set<string>();
-        detail?.items.forEach((item) => {
-          item.description.labels.forEach((label) => {
-            if (label.name === 'Frontend' || label.name === 'Windows') {
-              label.value.data.split(',').forEach((tech) => techStackSet.add(tech.trim()));
-            }
-          });
-        });
-        const techStack = Array.from(techStackSet).slice(0, 6);
+      {careers.map((career, i) => {
+        const base = `career.companies.${career.slug}`;
+        const techStack = career.techStack.slice(0, 6);
 
         return (
-          <div
-            key={career.href}
-            className={`apple-surface p-5 animate-fade-in-up stagger-${i + 1}`}
-          >
+          <div key={career.slug} className={`apple-surface p-5 animate-fade-in-up stagger-${i + 1}`}>
             <div className="flex items-center gap-3 mb-3">
               <div className="shrink-0 w-10 h-10 rounded-xl overflow-hidden bg-[var(--surface-secondary)] flex items-center justify-center">
                 <Image
-                  src={career.image.src}
-                  alt={career.image.alt}
+                  src={career.logo}
+                  alt={t(`${base}.logoAlt`)}
                   width={40}
                   height={40}
                   className="object-contain"
@@ -40,23 +30,42 @@ export function CareerResponseCard() {
               </div>
               <div className="min-w-0">
                 <p className="text-sm font-bold tracking-tight text-[var(--foreground)]">
-                  {t(`career.${career.href}.title`)}
+                  {t(`${base}.title`)}
                 </p>
                 <p className="text-xs text-[#86868b]">
-                  {t(`career.${career.href}.role`)} · {career.date}
+                  {t(`${base}.role`)} · {career.period}
                 </p>
               </div>
             </div>
             <p className="text-xs text-[#6e6e73] dark:text-[#a1a1a6] mb-3 line-clamp-2 leading-relaxed">
-              {t(`career.${career.href}.description`)}
+              {t(`${base}.description`)}
             </p>
             {techStack.length > 0 && (
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-1.5 mb-3">
                 {techStack.map((tech) => (
                   <SkillBadge key={tech} label={tech} />
                 ))}
               </div>
             )}
+            <Link
+              href={localizedPath(locale, `/career/${career.slug}`)}
+              className="inline-flex items-center gap-1 text-xs font-medium text-[var(--accent)] hover:underline"
+            >
+              {t('career.details')}
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </Link>
           </div>
         );
       })}

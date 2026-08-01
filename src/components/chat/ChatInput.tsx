@@ -2,16 +2,20 @@
 
 import { useRef, KeyboardEvent, ChangeEvent } from 'react';
 import { useT } from '../../lib/i18n/useT';
+import { t as translate } from '../../lib/i18n/t';
 
 interface ChatInputProps {
+  /** 서버가 결정한 로케일 — 없으면 컨텍스트 로케일을 쓴다 */
+  locale?: string;
   onSend: (message: string) => void;
   disabled?: boolean;
   value: string;
   onChange: (value: string) => void;
 }
 
-export function ChatInput({ onSend, disabled, value, onChange }: ChatInputProps) {
-  const { t } = useT();
+export function ChatInput({ onSend, disabled, value, onChange, locale }: ChatInputProps) {
+  const { t: tContext } = useT();
+  const t = (key: string) => (locale ? translate(locale, key) : tContext(key));
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   function adjustHeight() {
