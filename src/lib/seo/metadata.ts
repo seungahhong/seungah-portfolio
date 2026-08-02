@@ -68,7 +68,7 @@ export function buildRootMetadata(locale: Locale): Metadata {
      * (`<meta name="naver-site-verification" ...>`). 토큰이 비면 그 태그만 빠진다.
      */
     verification: {
-      ...(SITE_VERIFICATION.google ? { google: SITE_VERIFICATION.google } : {}),
+      ...(SITE_VERIFICATION.google.length ? { google: SITE_VERIFICATION.google } : {}),
       ...(SITE_VERIFICATION.naver
         ? { other: { 'naver-site-verification': SITE_VERIFICATION.naver } }
         : {}),

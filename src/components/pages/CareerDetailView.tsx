@@ -5,6 +5,7 @@ import { careers, getCareerDetail } from '@/helpers';
 import { t, tList, hasTranslation } from '@/lib/i18n/t';
 import { careerMetaValue } from '@/lib/i18n/career-meta';
 import { localizedPath, type Locale } from '@/lib/i18n/constants';
+import { sectionPath } from '@/lib/sections';
 import { blogPostUrl } from '@/lib/blog';
 import SkillBadge from '@/components/ui/SkillBadge';
 import AnchorLink from '@/components/ui/AnchorLink';
@@ -44,7 +45,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <Link href={localizedPath(locale, '/#career')} className="hover:text-[var(--foreground)] transition-colors">
+            <Link href={sectionPath(locale, 'career')} className="hover:text-[var(--foreground)] transition-colors">
               {t(locale, 'career.title')}
             </Link>
           </li>

@@ -13,23 +13,33 @@ export const SITE_URL = (
 ).replace(/\/$/, '');
 
 /**
- * 검색 콘솔 소유권 확인 토큰.
+ * 구글 서치 콘솔 소유권 확인 토큰.
  *
- * Gatsby 시절 `<meta>`로 심어 두었던 값이며, 이 태그가 사라지면 확인이 풀려
- * 서치 콘솔의 색인 요청·사이트맵 제출이 실패한다. **삭제 금지.**
+ * 소유자·속성마다 토큰이 따로 발급되므로 **여러 개를 동시에 둘 수 있다**(태그가 각각 나간다).
+ * 토큰을 빼면 그 속성의 확인이 풀려 색인 요청·사이트맵 제출이 실패한다.
+ * 따라서 새 토큰은 원칙적으로 **추가**하고, 교체는 새 토큰으로 확인을 마친 뒤에만 한다.
+ */
+const GOOGLE_VERIFICATION_TOKENS = [
+  'FC05NvDOB-arKsf_Q9aSiELFIEGfTH-zyMezBFwIn5Q',
+];
+
+/**
+ * 검색 콘솔 소유권 확인 토큰.
  *
  * 두 로케일 루트 레이아웃 메타데이터를 통해 모든 페이지에 함께 나간다.
  * 환경변수로 덮어쓸 수 있게 둔 것은 다른 도메인에 미리보기 배포할 때를 위한 것이고,
- * 값을 비우면 해당 태그만 생략된다.
+ * 값을 비우면 해당 태그만 생략된다. 구글은 쉼표로 여러 토큰을 넘길 수 있다.
  */
-export const SITE_VERIFICATION = {
-  google:
-    process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ??
-    'DafIPWtLpIjdEIuERhMFfutDl2IoaF8b6CQTBYF6qsQ',
+export const SITE_VERIFICATION: { google: string[]; naver: string } = {
+  google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION.split(',')
+        .map((token) => token.trim())
+        .filter(Boolean)
+    : GOOGLE_VERIFICATION_TOKENS,
   naver:
     process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION ??
     'ab246841529a97bcf76ac7ed42d5a5c457a381bc',
-} as const;
+};
 
 export const SITE_NAME = {
   ko: '홍승아 포트폴리오',

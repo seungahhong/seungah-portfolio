@@ -227,7 +227,7 @@
             "points": [
               "Standardized ESLint 9 (flat config), Prettier, stylelint, and husky across the entire studio in one pass, eliminating code style debates.",
               "Automated the commit convention as a skill, enforcing issue key and type formats.",
-              "Removed repetitive work with scheduled workflows — automatic merging of localization branches, automatic design token synchronization, stale branch cleanup, and regular release branch preparation.",
+              "Removed repetitive work with scheduled workflows — automatic merging of localization branches and regular release branch preparation.",
               "Kept automated PR code review (Claude Code Action) resident in CI, shortening review lead time."
             ]
           },
@@ -276,7 +276,6 @@
             "title": "Maintenance and Incremental Modernization of the Legacy Monolith (Spring MVC + JSP)",
             "imageAlts": [],
             "points": [
-              "Operated the SSR monolith without interruption for 5 years and 8 months, modernizing it incrementally in parallel with new projects.",
               "Ran a hybrid structure that mounts React components inside JSP screens.",
               "Owned the ongoing reflection of legal and policy revisions (including terms version management) for 5 years.",
               "Completed the migration that handed URL mapping from the legacy system over to the new frontend/cloud, alongside JSON-LD-based SEO cleanup."
@@ -289,7 +288,6 @@
               "Developed Spring Boot backend APIs directly — tiered admin permissions and stored before/after snapshot audit logs to secure traceability.",
               "Reduced the attack surface by removing risky APIs and consolidated account issuance into a single controlled procedure (handling security on both the \"add features\" and \"remove risk\" sides / ISMS compliance).",
               "Migrated from the IDC environment to the AWS EKS cloud — injected common and per-service ConfigMaps separately with Spring Cloud Kubernetes Config.",
-              "Adjusted the Spring Cloud BOM to a compatible train to fit the Java 8 runtime constraint (a decision that prioritized stability over upgrading to the latest version).",
               "Built a multi-environment deployment pipeline based on GitHub Actions OIDC, eliminating long-lived access keys.",
               "Configured service environments with Helm charts and moved secrets out of code, externalizing them into environment variables.",
               "Handled the cloud migration on the frontend side by externalizing host URLs into environment variables and reorganizing CORS."

@@ -10,6 +10,7 @@ import {
 import type { ICareerDetail } from '@/types';
 import { t, tList } from '@/lib/i18n/t';
 import { SITE_NAME, SITE_DESCRIPTION, HTML_LANG, absoluteUrl, localizedUrl } from './config';
+import { sectionPath } from '@/lib/sections';
 import type { Locale } from '@/lib/i18n/constants';
 
 type Schema = Record<string, unknown>;
@@ -143,7 +144,8 @@ export function buildFaqSchema(locale: Locale = 'ko'): Schema {
 
 export function buildBreadcrumbSchema(
   locale: Locale,
-  trail: { name: string; path: string }[],
+  /** `url`은 섹션 링크처럼 경로만으로 조립할 수 없는 주소를 넘길 때 쓴다 */
+  trail: { name: string; path: string; url?: string }[],
   pagePath: string
 ): Schema {
   return {
@@ -153,7 +155,7 @@ export function buildBreadcrumbSchema(
       '@type': 'ListItem',
       position: index + 1,
       name: crumb.name,
-      item: localizedUrl(locale, crumb.path),
+      item: crumb.url ?? localizedUrl(locale, crumb.path),
     })),
   };
 }
@@ -244,7 +246,8 @@ export function buildCareerGraph(company: ICareerDetail, locale: Locale = 'ko'):
       locale,
       [
         { name: t(locale, 'nav.home'), path: '/' },
-        { name: t(locale, 'career.title'), path: '/#career' },
+        // 화면의 브레드크럼 링크와 같은 주소여야 하므로 섹션 링크를 그대로 절대화한다
+        { name: t(locale, 'career.title'), path: '/', url: absoluteUrl(sectionPath(locale, 'career')) },
         { name: t(locale, `career.companies.${company.slug}.title`), path },
       ],
       path

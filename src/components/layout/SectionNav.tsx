@@ -1,16 +1,27 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/lib/i18n/useT';
+import { SECTIONS, isSectionId, sectionPath, type SectionId } from '@/lib/sections';
 
-const SECTIONS = [
-  { id: 'about', labelKey: 'nav.about' },
-  { id: 'career', labelKey: 'nav.career' },
-  { id: 'projects', labelKey: 'nav.projects' },
-  { id: 'study', labelKey: 'nav.study' },
-  { id: 'faq', labelKey: 'nav.faq' },
-  { id: 'contact', labelKey: 'nav.contact' },
-] as const;
+/**
+ * 섹션으로 이동한다.
+ *
+ * 해시 링크와 달리 브라우저가 대신 스크롤해주지 않으므로 직접 옮긴다.
+ * 세로 오프셋은 각 섹션의 `scroll-mt-*`(sticky 헤더 92px 기준)가 담당한다 —
+ * `scroll-margin-top`은 `scrollIntoView`에도 그대로 적용된다.
+ */
+function scrollToSection(id: SectionId) {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+
+  // 해시 링크가 하던 포커스 이동을 대신한다. 없으면 키보드 사용자는 목차에 갇힌다.
+  el.setAttribute('tabindex', '-1');
+  el.focus({ preventScroll: true });
+}
 
 /**
  * 섹션 목차 — 헤더 두 번째 줄에 상주한다.
@@ -21,8 +32,21 @@ const SECTIONS = [
  * 스크롤 위치에 따라 현재 섹션을 표시해, 긴 문서에서 지금 어디를 보고 있는지 알 수 있게 한다.
  */
 export function SectionNav() {
-  const { t } = useT();
+  const { t, locale } = useT();
   const [activeId, setActiveId] = useState<string>(SECTIONS[0].id);
+
+  // 진입 시점과 뒤로/앞으로 이동 시 `?tab=`이 가리키는 섹션으로 이동한다.
+  // `useSearchParams`는 정적 페이지를 폴백으로 떨어뜨리므로 `window.location`에서 읽는다.
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const target = new URLSearchParams(window.location.search).get('tab');
+      if (isSectionId(target)) scrollToSection(target);
+    };
+
+    syncFromUrl();
+    window.addEventListener('popstate', syncFromUrl);
+    return () => window.removeEventListener('popstate', syncFromUrl);
+  }, []);
 
   useEffect(() => {
     const elements = SECTIONS.map(({ id }) => document.getElementById(id)).filter(
@@ -47,6 +71,19 @@ export function SectionNav() {
     return () => observer.disconnect();
   }, []);
 
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>, id: SectionId) => {
+      // 새 탭·새 창으로 여는 클릭은 브라우저 기본 동작(주소 그대로 열기)을 남겨둔다
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+      event.preventDefault();
+      // 같은 정적 페이지의 쿼리만 바뀌므로 RSC 왕복 없이 history만 갱신한다
+      window.history.pushState(null, '', sectionPath(locale, id));
+      scrollToSection(id);
+    },
+    [locale]
+  );
+
   return (
     <nav aria-label={t('nav.sections')}>
       <ul className="flex items-center gap-1 h-11 overflow-x-auto no-scrollbar">
@@ -55,7 +92,8 @@ export function SectionNav() {
           return (
             <li key={section.id} className="shrink-0">
               <a
-                href={`#${section.id}`}
+                href={sectionPath(locale, section.id)}
+                onClick={(event) => handleClick(event, section.id)}
                 aria-current={isActive ? 'true' : undefined}
                 className={[
                   'inline-block px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap',
