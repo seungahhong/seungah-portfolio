@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import type { Locale } from '@/lib/i18n/constants';
-import { t as translate } from '@/lib/i18n/t';
+import { t as translate, type TKey } from '@/lib/i18n/t';
 import { profileData } from '@/helpers';
 
 const validateForm = (
   form: { name: string; email: string; message: string },
-  tFn: (key: string) => string
+  tFn: (key: TKey) => string
 ): string[] => {
   const errors: string[] = [];
   if (!form.name.trim()) errors.push(tFn('contact.validation.name'));
@@ -34,7 +34,7 @@ interface ContactSectionProps {
 }
 
 export default function ContactSection({ locale }: ContactSectionProps) {
-  const t = (key: string) => translate(locale, key);
+  const t = (key: TKey) => translate(locale, key);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<{ text: string; isFallback?: boolean } | null>(null);

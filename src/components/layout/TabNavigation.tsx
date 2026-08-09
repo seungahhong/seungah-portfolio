@@ -3,6 +3,7 @@
 import { useCallback, KeyboardEvent } from 'react';
 import { useTab, TabType } from '@/components/providers/TabContext';
 import { useT } from '@/lib/i18n/useT';
+import type { TKey } from '@/lib/i18n/t';
 
 /**
  * WAI-ARIA Tabs 패턴의 탭 목록 — iOS 세그먼티드 컨트롤 형태.
@@ -13,7 +14,7 @@ import { useT } from '@/lib/i18n/useT';
  * 검색엔진과 AI 크롤러가 첫 화면에서 본문(SSR 포트폴리오)을 읽을 수 있도록
  * 포트폴리오 탭을 첫 번째이자 기본값으로 배치한다.
  */
-const TABS: { id: TabType; labelKey: string }[] = [
+const TABS: { id: TabType; labelKey: TKey }[] = [
   { id: 'portfolio', labelKey: 'nav.tab.portfolio' },
   { id: 'chat', labelKey: 'nav.tab.chat' },
 ];

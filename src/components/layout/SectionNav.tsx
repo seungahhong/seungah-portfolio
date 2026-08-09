@@ -63,7 +63,10 @@ export function SectionNav() {
 
         if (visible[0]) setActiveId(visible[0].target.id);
       },
-      // 상단 92px은 sticky 헤더에 가려지는 영역, 하단 55%는 아직 "읽는 중"이 아닌 영역
+      // 상단 92px은 sticky 헤더에 가려지는 영역, 하단 55%는 아직 "읽는 중"이 아닌 영역.
+      // 92 = 48(1행 h-12, 탭) + 44(2행 h-11, 섹션 목차). 헤더 높이를 바꾸면 이 값만으로 끝나지 않는다 —
+      // 섹션의 scroll-mt-28(112px)과 카드·항목의 scroll-mt-32(128px)가 같은 기준을 따르므로 함께 고쳐야 한다
+      // (references/ui-conventions.md). 어긋나도 빌드는 통과하고 앵커 위치만 조용히 밀린다.
       { rootMargin: '-92px 0px -55% 0px', threshold: 0 }
     );
 

@@ -4,7 +4,9 @@
  * `'use client'` 모듈에 두면 서버 컴포넌트가 import할 때 값이 아니라
  * 클라이언트 참조 프록시로 넘어와 조용히 실패한다. 그래서 지시어 없는 별도 모듈로 분리한다.
  */
-export type Locale = 'ko' | 'en';
+// 타입의 소유는 types/ 다(의존 방향 lib → types). 기존 import 경로를 지키려고 여기서 재수출한다.
+import type { Locale } from '@/types/locale';
+export type { Locale };
 
 /** 기본 로케일 — 접두사 없는 경로(`/`, `/career/wadiz`)가 이 언어다 */
 export const DEFAULT_LOCALE: Locale = 'ko';

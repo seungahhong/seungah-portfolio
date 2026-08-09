@@ -9,7 +9,8 @@ import { sectionPath } from '@/lib/sections';
 import { blogPostUrl } from '@/lib/blog';
 import SkillBadge from '@/components/ui/SkillBadge';
 import AnchorLink from '@/components/ui/AnchorLink';
-import { JsonLd, buildCareerGraph } from '@/lib/seo';
+import { buildCareerGraph } from '@/lib/seo';
+import { JsonLd } from '@/lib/seo/JsonLd';
 
 interface CareerDetailViewProps {
   locale: Locale;
@@ -27,7 +28,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
     notFound();
   }
 
-  const base = `career.companies.${slug}`;
+  const base = `career.companies.${slug}` as const;
   const name = t(locale, `${base}.title`);
   const others = careers.filter((company) => company.slug !== slug);
 
@@ -111,7 +112,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
 
         <div className="space-y-6">
           {career.items.map((item) => {
-            const itemBase = `${base}.items.${item.id}`;
+            const itemBase = `${base}.items.${item.id}` as const;
             const title = t(locale, `${itemBase}.title`);
             const imageAlts = tList(locale, `${itemBase}.imageAlts`);
             // 기술블로그 글은 화면 로케일에 맞는 번역본으로 연결한다
@@ -216,7 +217,7 @@ export function CareerDetailView({ locale, slug }: CareerDetailViewProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {career.works.map((work) => {
-              const workBase = `${base}.works.${work.id}`;
+              const workBase = `${base}.works.${work.id}` as const;
               const title = t(locale, `${workBase}.title`);
 
               return (

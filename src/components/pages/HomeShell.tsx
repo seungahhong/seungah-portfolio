@@ -1,5 +1,6 @@
 import { TabContentWrapper } from '@/components/layout/TabContentWrapper';
-import { JsonLd, buildHomeGraph } from '@/lib/seo';
+import { buildHomeGraph } from '@/lib/seo';
+import { JsonLd } from '@/lib/seo/JsonLd';
 import type { Locale } from '@/lib/i18n/constants';
 
 /**

@@ -51,13 +51,15 @@ export function useChat() {
       });
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
+        // 성공 응답은 JSON이 아니라 text/plain 스트림이다(아래 res.body). JSON은 실패 시에만 나오므로
+        // 이 값은 "응답 데이터"가 아니라 에러 페이로드다 — res.json()이 any라 이름이 유일한 단서다.
+        const errorPayload = await res.json().catch(() => ({}));
         if (res.status === 429) {
           setError(t('chat.rateLimit'));
         } else if (res.status === 503) {
           setError(t('chat.unavailable'));
         } else {
-          setError(data.error || t('chat.error'));
+          setError(errorPayload.error || t('chat.error'));
         }
         setMessages(prev => prev.filter(m => m.id !== assistantMsgId));
         setIsStreaming(false);

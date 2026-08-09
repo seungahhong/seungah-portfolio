@@ -13,7 +13,7 @@ export function CareerResponseCard() {
   return (
     <div className="space-y-3 mt-2 mb-2">
       {careers.map((career, i) => {
-        const base = `career.companies.${career.slug}`;
+        const base = `career.companies.${career.slug}` as const;
         const techStack = career.techStack.slice(0, 6);
 
         return (

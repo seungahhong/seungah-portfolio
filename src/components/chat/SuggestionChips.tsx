@@ -1,7 +1,7 @@
 'use client';
 
 import { useT } from '../../lib/i18n/useT';
-import { t as translate } from '../../lib/i18n/t';
+import { t as translate, type TKey } from '../../lib/i18n/t';
 
 interface SuggestionChipsProps {
   /** 서버가 결정한 로케일 — 없으면 컨텍스트 로케일을 쓴다 */
@@ -20,7 +20,7 @@ const CHIP_KEYS = [
 
 export function SuggestionChips({ onSelect, locale }: SuggestionChipsProps) {
   const { t: tContext } = useT();
-  const t = (key: string) => (locale ? translate(locale, key) : tContext(key));
+  const t = (key: TKey) => (locale ? translate(locale, key) : tContext(key));
 
   return (
     <div className="px-2">

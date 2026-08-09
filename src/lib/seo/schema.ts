@@ -162,7 +162,7 @@ export function buildBreadcrumbSchema(
 
 /** 경력 상세 페이지 — 재직 이력을 구조화 데이터로 노출한다 */
 export function buildCareerPageSchema(company: ICareerDetail, locale: Locale = 'ko'): Schema {
-  const base = `career.companies.${company.slug}`;
+  const base = `career.companies.${company.slug}` as const;
   const path = `/career/${company.slug}`;
   const pageUrl = localizedUrl(locale, path);
 

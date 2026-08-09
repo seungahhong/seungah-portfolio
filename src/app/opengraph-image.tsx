@@ -1,9 +1,12 @@
 import { ImageResponse } from 'next/og';
 import { blogStats, careers, experienceYears } from '@/helpers';
 import { t } from '@/lib/i18n/t';
+import { OG_IMAGE } from '@/lib/seo/config';
 
 export const alt = `${t('en', 'profile.name')} — ${t('en', 'profile.role')}`;
-export const size = { width: 1200, height: 630 };
+// 크기를 여기 다시 적지 않는다. 이 값은 <meta og:image:width>로도 나가므로 두 곳에 두면
+// 한쪽만 바뀌었을 때 실제 이미지와 메타데이터가 어긋나고, 그것을 잡는 검사가 없다.
+export const size = { width: OG_IMAGE.width, height: OG_IMAGE.height };
 export const contentType = 'image/png';
 
 /**

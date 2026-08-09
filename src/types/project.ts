@@ -8,7 +8,7 @@
  * 화면 로케일에 맞는 주소를 런타임에 만든다.
  */
 
-import type { Locale } from '@/lib/i18n/constants';
+import type { Locale } from './locale';
 
 export interface IPersonalProject {
   /** i18n 키(`projects.items.{key}`) 겸 해시 앵커 id */

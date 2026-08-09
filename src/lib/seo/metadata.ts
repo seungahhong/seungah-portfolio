@@ -90,7 +90,7 @@ export function buildCareerMetadata(locale: Locale, slug: string): Metadata {
   const career = getCareerDetail(slug);
   if (!career) return {};
 
-  const base = `career.companies.${slug}`;
+  const base = `career.companies.${slug}` as const;
   const name = t(locale, `${base}.title`);
   const summary = t(locale, `${base}.summary`);
   const title = `${name} — ${career.period}`;

@@ -54,7 +54,7 @@ export function buildLlmsTxt(): string {
 
   lines.push('## Career');
   for (const company of careers) {
-    const base = `career.companies.${company.slug}`;
+    const base = `career.companies.${company.slug}` as const;
     const path = `/career/${company.slug}`;
 
     lines.push('');
@@ -66,7 +66,7 @@ export function buildLlmsTxt(): string {
     lines.push(`Tech: ${company.techStack.join(', ')}`);
 
     for (const item of company.items) {
-      const itemBase = `${base}.items.${item.id}`;
+      const itemBase = `${base}.items.${item.id}` as const;
       lines.push(`- ${t('en', `${itemBase}.title`)} (${item.date}) — ${localizedUrl('en', path)}#${item.id}`);
       for (const point of tList('en', `${itemBase}.points`)) {
         lines.push(`  - ${point}`);
@@ -81,7 +81,7 @@ export function buildLlmsTxt(): string {
     }
 
     for (const work of company.works ?? []) {
-      const workBase = `${base}.works.${work.id}`;
+      const workBase = `${base}.works.${work.id}` as const;
       lines.push(
         `- ${t('en', `${workBase}.title`)}${work.period ? ` (${work.period})` : ''} — ${localizedUrl('en', path)}#${work.id}`
       );
@@ -118,7 +118,7 @@ export function buildLlmsTxt(): string {
 
   lines.push('## Personal Study');
   for (const group of studyGroups) {
-    const groupBase = `study.groups.${group.id}`;
+    const groupBase = `study.groups.${group.id}` as const;
     lines.push(`### ${t('en', `${groupBase}.label`)}`);
     for (const link of group.links) {
       lines.push(`- ${t('en', `${groupBase}.links.${link.id}`)}: ${blogPostUrl('en', link.blogSlug)}`);

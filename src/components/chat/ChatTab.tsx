@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useT } from '@/lib/i18n/useT';
-import { t as translate } from '@/lib/i18n/t';
+import { t as translate, type TKey } from '@/lib/i18n/t';
 import { useChat } from '@/hooks/useChat';
 import { ChatMessage } from './ChatMessage';
 import { ChatInput } from './ChatInput';
@@ -20,7 +20,7 @@ interface ChatTabProps {
 export function ChatTab({ locale }: ChatTabProps) {
   const { t: tContext, locale: contextLocale } = useT();
   const activeLocale = locale ?? contextLocale;
-  const t = (key: string) => (locale ? translate(locale, key) : tContext(key));
+  const t = (key: TKey) => (locale ? translate(locale, key) : tContext(key));
   const { messages, inputValue, setInputValue, isStreaming, error, sendMessage } = useChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [available, setAvailable] = useState<boolean | null>(null);

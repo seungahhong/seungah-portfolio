@@ -55,11 +55,11 @@ ${careers
 
   const careerDetailSections = careers
     .map((company) => {
-      const base = `career.companies.${company.slug}`;
+      const base = `career.companies.${company.slug}` as const;
 
       const technical = company.items
         .map((item) => {
-          const itemBase = `${base}.items.${item.id}`;
+          const itemBase = `${base}.items.${item.id}` as const;
           const points = tList(lc, `${itemBase}.points`)
             .map((point) => `  - ${point}`)
             .join('\n');
@@ -78,7 +78,7 @@ ${careers
 
       const works = (company.works ?? [])
         .map((work) => {
-          const workBase = `${base}.works.${work.id}`;
+          const workBase = `${base}.works.${work.id}` as const;
           const points = tList(lc, `${workBase}.points`)
             .map((point) => `  - ${point}`)
             .join('\n');
@@ -126,7 +126,7 @@ ${presentations
 # Personal Study (tech blog archive)
 ${studyGroups
   .map((group) => {
-    const groupBase = `study.groups.${group.id}`;
+    const groupBase = `study.groups.${group.id}` as const;
     const links = group.links
       .map((link) => `${t(lc, `${groupBase}.links.${link.id}`)}(${blogPostUrl(lc, link.blogSlug)})`)
       .join(', ');

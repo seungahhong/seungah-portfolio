@@ -15,7 +15,7 @@ const PREVIEW_ITEM_COUNT = 4;
 
 export default function CareerCard({ career, locale }: CareerCardProps) {
   const { slug } = career;
-  const base = `career.companies.${slug}`;
+  const base = `career.companies.${slug}` as const;
   const detailHref = localizedPath(locale, `/career/${slug}`);
   const techStack = career.techStack.slice(0, 8);
   const previewItems = career.items.slice(0, PREVIEW_ITEM_COUNT);

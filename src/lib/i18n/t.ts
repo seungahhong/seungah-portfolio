@@ -1,7 +1,16 @@
 import ko from './ko.json';
 import en from './en.json';
+import type { TranslationKey, TranslationListKey, DynamicKey } from './keys';
 
-export type TranslationKey = string;
+export type { TranslationKey, TranslationListKey, DynamicKey };
+
+/**
+ * `t()`가 실제로 받는 키 — 정적 키이거나, 명시적으로 이스케이프된 동적 키다.
+ * 키를 prop이나 데이터로 들고 다니는 곳(`labelKey` 등)은 `string`이 아니라 이 타입을 쓴다.
+ * `string`으로 두면 유니온이 그 지점에서 끊겨 오타 검사가 무력해진다.
+ */
+export type TKey = TranslationKey | DynamicKey;
+export type TListKey = TranslationListKey | DynamicKey;
 
 const translations: Record<string, unknown> = { ko, en };
 
@@ -44,7 +53,7 @@ function interpolate(template: string, params: Record<string, string | number>):
  */
 export function t(
   locale: string,
-  key: TranslationKey,
+  key: TKey,
   params?: Record<string, string | number>
 ): string {
   const value = resolve(locale, key);
@@ -55,7 +64,7 @@ export function t(
 /** 불릿 목록처럼 배열로 관리되는 번역을 읽는다 */
 export function tList(
   locale: string,
-  key: TranslationKey,
+  key: TListKey,
   params?: Record<string, string | number>
 ): string[] {
   const value = resolve(locale, key);
@@ -66,6 +75,6 @@ export function tList(
 }
 
 /** 번역 키 존재 여부 — 선택적 항목(링크 제목 등) 렌더링 분기에 사용한다 */
-export function hasTranslation(locale: string, key: TranslationKey): boolean {
+export function hasTranslation(locale: string, key: TKey | TListKey): boolean {
   return resolve(locale, key) !== undefined;
 }

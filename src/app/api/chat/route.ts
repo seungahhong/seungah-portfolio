@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isChatConfigured, streamChatResponse } from '../../../lib/chat/groq';
 
-// Simple in-memory rate limiting
+// 레이트리밋은 이 프로세스의 메모리에만 있다 — 서버리스에서는 인스턴스마다 카운터가 따로 있어
+// 실제 허용량이 (한도 × 인스턴스 수)가 되고 재배포하면 초기화된다. 알면서 수용한 트레이드오프다.
+// 근거와 재검토 조건: docs/decisions/0004-in-memory-rate-limit.md
+// 이 계약을 지키는 검사는 verify:runtime V8이며, 케이스마다 x-forwarded-for를 바꿔야 가짜 실패가 나지 않는다.
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT = 10;
 const RATE_WINDOW_MS = 60 * 1000; // 1 minute

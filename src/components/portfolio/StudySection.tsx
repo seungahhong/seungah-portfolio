@@ -49,7 +49,7 @@ export default function StudySection({ locale }: StudySectionProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {studyGroups.map((group, i) => {
           const anchorId = `study-${group.id}`;
-          const groupBase = `study.groups.${group.id}`;
+          const groupBase = `study.groups.${group.id}` as const;
           const label = t(locale, `${groupBase}.label`);
 
           return (

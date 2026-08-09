@@ -2,7 +2,7 @@
 
 import { useContext, useMemo } from 'react';
 import { I18nContext } from './provider';
-import { t, tList, hasTranslation, type TranslationKey } from './t';
+import { t, tList, hasTranslation, type TKey, type TListKey } from './t';
 
 /**
  * 클라이언트 사이드 번역 훅.
@@ -13,11 +13,10 @@ export function useT() {
 
   return useMemo(
     () => ({
-      t: (key: TranslationKey, params?: Record<string, string | number>) =>
-        t(locale, key, params),
-      tList: (key: TranslationKey, params?: Record<string, string | number>) =>
+      t: (key: TKey, params?: Record<string, string | number>) => t(locale, key, params),
+      tList: (key: TListKey, params?: Record<string, string | number>) =>
         tList(locale, key, params),
-      has: (key: TranslationKey) => hasTranslation(locale, key),
+      has: (key: TKey | TListKey) => hasTranslation(locale, key),
       locale,
     }),
     [locale]
