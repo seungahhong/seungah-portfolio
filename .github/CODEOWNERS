@@ -1,0 +1,11 @@
+# 기본 소유자
+*                       @seungahhong
+
+# 가드레일은 저장소의 강제 계층이다. 여기가 약해지면 나머지 검증이 전부 의미를 잃으므로
+# 변경 시 특히 주의해서 본다 — 특히 예외 화이트리스트가 늘어나는 diff.
+/scripts/               @seungahhong
+/.github/workflows/     @seungahhong
+
+# 콘텐츠의 정본은 이력서 문서다. 경력 사실이 바뀌는 diff는 그 문서와 대조한다.
+/src/helpers/datas/     @seungahhong
+/src/lib/i18n/          @seungahhong

@@ -2,12 +2,23 @@
   "name": "seungah-portfolio",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=20.9"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
+    "guard": "node scripts/arch-guard.mjs && node scripts/i18n-guard.mjs",
+    "prebuild": "pnpm guard",
     "build": "next build",
     "start": "next start",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
+    "preflight": "node scripts/preflight.mjs",
+    "verify": "pnpm verify:static && pnpm verify:runtime",
+    "verify:static": "pnpm lint && pnpm typecheck && node scripts/guard-selftest.mjs && pnpm build",
+    "verify:runtime": "node scripts/verify-runtime.mjs",
+    "verify:snapshot": "node scripts/verify-snapshot.mjs",
     "prepare": "husky"
   },
   "dependencies": {

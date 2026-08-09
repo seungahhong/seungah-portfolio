@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# .env.example은 값이 아니라 계약이다(미설정 시 무엇이 어떻게 축소되는지).
+# 커밋되지 않으면 존재 이유가 없다.
+!.env.example
 
 # vercel
 .vercel
@@ -42,3 +45,7 @@ next-env.d.ts
 
 # cluade
 .omc
+
+# AI 진단 산출물 — 스킬이 재생성하는 리포트다. 결정과 근거는 docs/decisions/에 남긴다.
+.claude/ai-readability/
+.claude/ai-readiness-map.html

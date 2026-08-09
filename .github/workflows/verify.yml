@@ -1,0 +1,32 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        # 버전은 package.json의 packageManager 필드에서 읽는다 — 로컬과 CI를 같은 값에 묶는다.
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      # --ignore-scripts 필수: prepare 스크립트의 husky가 core.hooksPath를 건드린다.
+      # CI에 git 훅은 불필요하고, 훅 설치가 실패하면 install 전체가 죽는다.
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+
+      # 시크릿을 넣지 않는다. 자격증명 0으로 전부 통과하는 것이 이 저장소의 self-contained 정의이고,
+      # verify:runtime의 V8이 바로 그 축소 계약을 단정한다.
+      #
+      # `next build`를 직접 부르지 않고 항상 pnpm verify를 부른다 —
+      # prebuild 게이트를 우회하지 않기 위해서다.
+      - run: pnpm verify

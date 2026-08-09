@@ -1,1 +1,11 @@
+set -e
+
 pnpm lint-staged
+
+# typecheck는 프로젝트 전체여야 한다. lint-staged처럼 파일명을 인자로 넘기면
+# `tsc --noEmit <file>`이 tsconfig.json을 통째로 무시해 @/ 별칭 해석부터 깨진다(실측).
+pnpm typecheck
+
+# 아키텍처·i18n 가드. 커밋 지연은 셋 합쳐 약 +0.9초다.
+# build(약 4초)는 넣지 않는다 — 커밋 루프를 느리게 만드는 비용이 이득을 넘는다.
+pnpm guard
