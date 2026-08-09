@@ -4,6 +4,16 @@
 두 탭으로 전환한다. `docs/resume-revision-2026.{md,html}`이 콘텐츠의 **정본**이고, 이 사이트는 그 내용을
 한/영으로 노출하는 표현 계층이다 — 경력 사실이 바뀌면 이력서 문서부터 확인한다.
 
+## 검증 (이것을 실행하라)
+
+```bash
+pnpm preflight   # 무엇이 축소 모드인지 (자격증명 없어도 exit 0이 정상)
+pnpm verify      # lint → typecheck → build(가드 선행) → 산출물 서빙 후 관측
+```
+
+**끝난 것의 기준**: 위 둘이 exit 0. 자격증명은 필요 없다.
+리팩터 중이면 착수 전 `pnpm verify:snapshot --write`, 각 단계 후 `pnpm verify:snapshot`(diff 0이 등가성 증거).
+
 ## 정적 생성을 조용히 깨뜨리는 두 가지
 
 빌드·린트·타입체크를 모두 통과하면서도 배포본이 망가지는 유형이다. 실제로 두 번 발생했다.
@@ -19,7 +29,10 @@
 
 - `/` = 한국어, `/en` = 영어. 쿠키·localStorage 없음. `<html lang>`은 루트 레이아웃에서만 지정 가능하므로
   `(ko)` / `(en)` route group이 각각 루트 레이아웃을 갖는다.
-- **새 최상위 라우트는 반드시 `(ko)` 또는 `(en)` 안에** 만든다. 밖에 만들면 루트 레이아웃이 없어 빌드가 깨진다.
+- **새 최상위 라우트는 반드시 `(ko)` 또는 `(en)` 안에** 만든다. 밖에 만들어도 **빌드는 통과한다**
+  (Next 16.2.1 실측). 대신 루트 레이아웃이 적용되지 않아 `<html lang>`·전역 CSS·폰트·프로바이더가 빠진
+  **반쪽 페이지가 조용히 정적 생성된다** — 이 사이트의 존재 이유인 hreflang·로케일 라우팅·GEO가
+  그 페이지에서 무너진다. 그래서 프레임워크가 아니라 `scripts/arch-guard.mjs`가 이것을 빌드 실패로 만든다.
   한국어에 페이지를 추가하면 영어에도 추가하고, hreflang·사이트맵이 자동으로 따라오는지 확인한다.
 - 내부 링크는 하드코딩하지 말고 `localizedPath(locale, path)`를 쓴다.
 
@@ -27,7 +40,11 @@
 
 - 표시 문구는 100% `src/lib/i18n/{ko,en}.json`. `src/helpers/datas/**`에는 id·날짜·URL·이미지 경로·기술명만 둔다.
   데이터 파일이나 컴포넌트에 한국어를 넣는 순간 영어 페이지가 반쪽이 된다.
-- **`t()`는 키를 못 찾으면 키 문자열을 그대로 반환한다.** 오타가 에러 없이 화면에 노출되므로 렌더링 결과를 눈으로 확인한다.
+- **`t()`는 키를 못 찾으면 키 문자열을 그대로 반환한다**(런타임에는 여전히 예외가 없다).
+  다만 **정적 키 오타는 이제 typecheck가 잡는다** — `TranslationKey`가 ko.json에서 파생된 유니온이라
+  TS가 `Did you mean '"profile.role"'?`까지 알려준다(`src/lib/i18n/keys.ts`).
+  타입이 못 잡는 것은 `DynamicKey`로 이스케이프한 2단 동적 키뿐이고, 그쪽은 `i18n-guard` R7이
+  실제 데이터 id를 실제 JSON과 대조해 지킨다. 그래도 새는 것이 있으면 `verify:runtime` V3가 렌더 결과에서 잡는다.
 - ko.json과 en.json은 **구조가 완전히 같아야 한다**(키·배열 길이까지).
 
 ## 데이터 한 곳 → 출력 네 곳
@@ -48,14 +65,27 @@
 ## 도구
 
 - `pnpm lint`는 `eslint src`다. Next 16에서 `next lint`가 제거돼 스크립트를 바꿨다.
+  **`next build`는 ESLint를 실행하지 않는다**(실측). 그래서 ESLint 규칙은 에디터 미러일 뿐 강제 계층이 아니고,
+  아키텍처 강제는 `prebuild` 게이트(`scripts/arch-guard.mjs`·`i18n-guard.mjs`)와 타입 계층이 맡는다.
 - `next build`가 `tsconfig.json`을 다시 쓴다(`jsx`, `include`). 이 diff는 정상이므로 되돌리지 않는다.
-- **테스트가 없다.** 빌드 통과 ≠ 동작 보장이므로 반드시 @references/verification.md 절차를 따른다.
+- **테스트 프레임워크가 없다.** 겪은 사고 2건이 단위 테스트로는 원리적으로 안 잡히는 종류였기 때문이다
+  (→ `docs/decisions/0007-no-test-framework.md`). 오라클은 `pnpm verify`의 산출물 대조다.
+  자동 검증이 없는 영역은 **클라이언트 상호작용과 챗 응답 경로** — 그쪽을 건드렸으면 브라우저로 직접 확인한다.
+
+## 진입점과 의존 이웃
+
+코드는 모듈이 하나뿐이다(`src/`). 진입점은 `src/app/**`의 라우트이고, 본문은 `src/components/pages/**`,
+사실은 `src/helpers/datas/**`, 표현 변환은 `src/lib/**`에 있다.
+의존은 `app → components/hooks → lib → helpers → types` 한 방향이며 역방향은 빌드가 막는다.
+모듈 단위 지도와 배치 기준은 `src/CLAUDE.md`에 있다.
 
 ## 상세 문서
+
+@src/CLAUDE.md
+@docs/decisions/README.md
 
 @references/architecture.md
 @references/i18n.md
 @references/content-data.md
 @references/seo-geo.md
 @references/ui-conventions.md
-@references/verification.md

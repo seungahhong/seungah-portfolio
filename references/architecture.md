@@ -8,21 +8,14 @@
 
 ## 라우트 구성
 
-```
-app/
-  (ko)/                     <html lang="ko">  — 루트 레이아웃
-    (home)/                 /                 — 탭 셸 + 홈 JSON-LD
-    career/[slug]/          /career/:slug     — SSG, dynamicParams=false
-    contact/                /contact          — noindex 레거시 페이지
-  (en)/                     <html lang="en">  — 루트 레이아웃
-    en/(home)/              /en
-    en/career/[slug]/       /en/career/:slug
-  api/ llms.txt/ robots.ts sitemap.ts manifest.ts opengraph-image.tsx
-```
-
 **루트 레이아웃이 둘인 이유**: `<html lang>`은 루트 레이아웃에서만 지정할 수 있는데 언어별로 달라야 한다.
 Next.js는 최상위 route group마다 루트 레이아웃을 두는 것을 허용한다. 대신 `app/layout.tsx`는 존재하지 않으며,
-**모든 페이지 라우트가 두 group 중 하나에 속해야 한다**. 밖에 만들면 루트 레이아웃이 없어 빌드가 실패한다.
+**모든 페이지 라우트가 두 group 중 하나에 속해야 한다**.
+
+밖에 만들면 **프레임워크는 막지 않는다** — Next 16.2.1 실측 결과 빌드는 통과하고, 루트 레이아웃이
+적용되지 않은 페이지가 그대로 정적 생성된다(`<!DOCTYPE html>`·`<html lang>`·전역 CSS·폰트·프로바이더 없음).
+조용한 반쪽 페이지가 배포되는 쪽이 빌드 실패보다 나쁘므로, 저장소가 소유한 `scripts/arch-guard.mjs`가
+이 위반을 빌드 실패로 승격시킨다(prebuild 게이트).
 
 두 레이아웃은 `RootShell`(`components/layout/RootShell.tsx`)만 로케일을 바꿔 렌더링한다.
 폰트·전역 CSS·프로바이더·헤더는 전부 여기 한 곳에 있다.
