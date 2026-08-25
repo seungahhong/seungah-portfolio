@@ -49,3 +49,8 @@ next-env.d.ts
 # AI 진단 산출물 — 스킬이 재생성하는 리포트다. 결정과 근거는 docs/decisions/에 남긴다.
 .claude/ai-readability/
 .claude/ai-readiness-map.html
+
+# playwright
+/test-results/
+/playwright-report/
+/blob-report/

@@ -1,0 +1,5 @@
+{
+  "ok": false,
+  "error": "Email service not configured",
+  "fallback": true
+}
