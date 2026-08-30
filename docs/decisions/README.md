@@ -18,6 +18,7 @@
 | [0005](0005-env-gated-degradation.md) | 자격증명이 없으면 죽는 대신 축소한다 | verify:runtime V8·V9 |
 | [0006](0006-all-copy-in-i18n-json.md) | 표시 문구는 100% i18n JSON에 둔다 | i18n-guard R6·R7 · 타입 R4·R5 |
 | [0007](0007-no-test-framework.md) | 테스트 프레임워크를 도입하지 않는다 | verify 하네스 |
+| [0008](0008-chat-context-budget.md) | 챗 프롬프트를 core/detail로 나눠 무료 티어 예산에 맞춘다 | portfolio-context·context-selector 테스트 |
 
 ## 열린 결정 (의도 확인 필요)
 

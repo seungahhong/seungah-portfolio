@@ -21,8 +21,6 @@
     "verify:snapshot": "node scripts/verify-snapshot.mjs",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "test:e2e:mock": "playwright test --grep @e2e-mock",
-    "test:e2e:live": "E2E_MODE=live playwright test --grep @e2e-live",
     "test:smoke": "playwright test --grep @smoke",
     "test:regression": "vitest run && playwright test --grep-invert @nightly",
     "test:nightly": "vitest run && playwright test",

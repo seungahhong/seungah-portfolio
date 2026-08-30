@@ -18,8 +18,14 @@ export async function GET(req: Request) {
   if (process.env.NODE_ENV === 'production') {
     return new Response(null, { status: 404 });
   }
-  const locale = new URL(req.url).searchParams.get('locale') ?? 'ko';
-  return new Response(buildPortfolioSystemPrompt(locale), {
+  const params = new URL(req.url).searchParams;
+  const locale = params.get('locale') ?? 'ko';
+
+  // 프롬프트는 이제 질의에 따라 상세 본문이 달라진다(무료 티어 예산 — lib/chat/context-selector.ts).
+  // `?q=`가 없으면 core만 나오므로, 무엇이 실리는지 보려면 실제 질문을 넣어야 한다.
+  const query = params.get('q') ?? '';
+
+  return new Response(buildPortfolioSystemPrompt(locale, query), {
     headers: { 'content-type': 'text/plain; charset=utf-8' },
   });
 }
