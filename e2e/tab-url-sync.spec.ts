@@ -23,17 +23,14 @@ test('[AC-2.2] 파라미터가 없으면 포트폴리오가 기본이다', { tag
 });
 
 /**
- * ⚠️ 알려진 코드 결함 — test.fail()로 기록한다.
+ * 한때 알려진 결함이었다 — `router.replace(pathname)`의 의도가 명백한데도 URL에 `?tab=chat`이
+ * 남아, 그 주소를 공유하면 상대방이 챗 탭으로 열게 됐다. Next 16.2.1까지 재현됐고
+ * `test.fail()`로 기록해 두었다.
  *
- * TabContext는 기본 탭으로 돌아갈 때 `params.delete('tab')` 후
- * `router.replace(pathname)`을 호출하지만, 관측 결과 URL은 `/?tab=chat`으로 남는다
- * (탭 상태 자체는 정상 전환된다). 코드의 의도는 명백하나 효과가 없다.
- *
- * 결과: 이 상태에서 주소를 공유하면 상대방은 챗 탭으로 열게 된다.
- * 수정되면 이 테스트가 '예상과 달리 통과'로 뒤집혀 알려준다 — 그때 test.fail()을 지운다.
+ * **Next 16.3.5에서 고쳐졌다**(실측: 프로덕션 빌드 대상 3/3 통과). 기록대로 `test.fail()`을 지웠고,
+ * 이제 이 단정은 회귀 감시로 남는다 — 다시 깨지면 그냥 실패한다.
  */
 test('[AC-2.3] 포트폴리오로 돌아오면 tab 파라미터가 URL에서 제거된다', { tag: ['@e2e-mock'] }, async ({ page }) => {
-  test.fail(); // 이 테스트에만 적용된다 (파일 스코프에 두면 파일 전체가 대상이 된다)
   await page.goto('/?tab=chat');
   await expect(page.getByRole('tab', { name: CHAT })).toHaveAttribute('aria-selected', 'true');
   await page.getByRole('tab', { name: PORTFOLIO }).click();

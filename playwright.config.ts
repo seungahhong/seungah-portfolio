@@ -16,8 +16,9 @@ const isLive = process.env.E2E_MODE === 'live';
  *
  * 겹치면 `reuseExistingServer`가 dev 서버를 테스트 대상으로 삼아버리고, 그때부터 이 스위트는
  * **프로덕션 빌드가 아니라 dev를 검증한다**. 실제로 그 사고가 났다: `pnpm dev`가 떠 있으면
- * `[AC-2.3]`(프로덕션에서만 재현되는 알려진 결함)이 dev에서는 통과해
- * `test.fail()`이 '예상과 달리 통과'로 뒤집히며 `pnpm test:regression`이 실패했다.
+ * 당시 `[AC-2.3]`에 걸려 있던 `test.fail()`이 dev에서만 '예상과 달리 통과'로 뒤집히며
+ * `pnpm test:regression`이 실패했다. (그 결함 자체는 Next 16.3.5에서 고쳐져 표식을 지웠지만,
+ * dev와 프로덕션이 갈리는 순간 이 스위트가 엉뚱한 것을 잰다는 사실은 그대로다.)
  *
  * 이 저장소의 오라클은 산출물이다 — 조용히 dev를 대신 재는 것이 실패보다 나쁘다.
  * `verify-runtime.mjs`가 VERIFY_PORT(3939)를 쓰는 것과 같은 이유·같은 관례다.

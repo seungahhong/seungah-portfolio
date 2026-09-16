@@ -1,16 +1,12 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
+import nextTypescript from "eslint-config-next/typescript";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
+// eslint-config-next 16부터 플랫 설정을 직접 내보낸다(`eslint-config-next/core-web-vitals`,
+// `eslint-config-next/typescript`). 15까지 쓰던 `FlatCompat`(@eslint/eslintrc) 경유는
+// 더 이상 필요 없고, 그대로 두면 `Converting circular structure to JSON`으로 죽는다(실측).
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...nextCoreWebVitals,
+  ...nextTypescript,
   {
     // arch-guard R1의 *에디터 미러*다. 강제 계층이 아니다 —
     // Next 16의 `next build`는 ESLint를 실행하지 않으므로(실측: lint exit 1, build exit 0)

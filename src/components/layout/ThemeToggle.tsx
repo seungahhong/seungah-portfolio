@@ -1,15 +1,19 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import { useT } from '@/lib/i18n/useT';
+
+const subscribeNever = () => () => {};
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const { t } = useT();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  // 하이드레이션 가드. 서버는 resolvedTheme을 알 수 없으므로 첫 렌더에서 아이콘을 그리면
+  // 마크업이 어긋난다. `useEffect`로 setState하는 대신 `useSyncExternalStore`를 쓴다 —
+  // 서버·하이드레이션 렌더에서는 getServerSnapshot(false)를, 그 이후에는 true를 돌려주므로
+  // 같은 효과를 내면서 react-hooks/set-state-in-effect(eslint-plugin-react-hooks 7)를 위반하지 않는다.
+  const mounted = useSyncExternalStore(subscribeNever, () => true, () => false);
 
   if (!mounted) {
     return (
